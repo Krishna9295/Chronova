@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chronova Watches | Shopping Cart</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+/* ===== CSS VARIABLES ===== */
+:root {
+    --primary-dark: #0f2c3f;
+    --primary-teal: #2f6f63;
+    --primary-light: #7bb88f;
+    --gold: #d4af37;
+    --gold-light: #f0d67a;
+    --gold-dark: #b8962e;
+    --dark-bg: #0c1f1b;
+    --dark-teal: #1a433d;
+    --text-light: #eef4f1;
+    --text-muted: #bcd6cb;
+    --glass-bg: rgba(255, 255, 255, 0.08);
+    --glass-border: rgba(255, 255, 255, 0.15);
+    --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===== BASE STYLES ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Poppins', 'Helvetica Neue', sans-serif;
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-teal), var(--primary-light));
+    background-attachment: fixed;
+    color: var(--text-light);
+    min-height: 100vh;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    background: rgba(10, 30, 25, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 1000;
+    transition: var(--transition);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--gold-light);
+    text-transform: uppercase;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    list-style: none;
+}
+
+.nav-links a {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-light);
+    position: relative;
+    padding: 8px 0;
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    transition: var(--transition);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-links a:hover {
+    color: var(--gold-light);
+}
+
+.cart-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.cart-link i {
+    font-size: 18px;
+}
+
+.hamburger {
+    display: none;
+    font-size: 24px;
+    color: var(--gold-light);
+    cursor: pointer;
+}
+
+/* ===== PAGE HEADER ===== */
+.page-header {
+    min-height: 35vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    background: linear-gradient(135deg, rgba(15, 44, 63, 0.9), rgba(20, 56, 51, 0.85)),
+                url('static/bnr.png') center/cover no-repeat;
+    margin-top: 70px;
+}
+
+.page-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at center, transparent 0%, rgba(10, 30, 25, 0.8) 100%);
+}
+
+.header-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        linear-gradient(45deg, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
+        linear-gradient(-45deg, rgba(212, 175, 55, 0.03) 0%, transparent 50%);
+}
+
+.header-content {
+    position: relative;
+    z-index: 2;
+}
+
+.section-tag {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 15px;
+    padding: 8px 20px;
+    background: rgba(212, 175, 55, 0.1);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 25px;
+}
+
+.header-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--white);
+}
+
+.header-content p {
+    font-size: 1rem;
+    color: var(--text-muted);
+}
+
+/* ===== CART SECTION ===== */
+.cart-section {
+    padding: 60px 0 100px;
+    background: linear-gradient(180deg, var(--dark-teal), var(--dark-bg));
+}
+
+.cart-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.cart-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--white);
+}
+
+.back-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--gold-light);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.back-link:hover {
+    transform: translateX(-5px);
+}
+
+/* ===== CART BOX ===== */
+.cart-box{
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+}
+
+/* ===== CART ITEM ===== */
+.cart-item{
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding: 25px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: var(--transition);
+}
+
+.cart-item:hover {
+    background: rgba(212, 175, 55, 0.05);
+    margin: 0 -15px;
+    padding: 25px 15px;
+    border-radius: 16px;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-item img{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 16px;
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    transition: var(--transition);
+}
+
+.cart-item:hover img {
+    border-color: var(--gold);
+    transform: scale(1.05);
+}
+
+.cart-info {
+    flex: 1;
+}
+
+.cart-info strong {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--white);
+    margin-bottom: 8px;
+}
+
+.cart-info .price {
+    font-size: 1.1rem;
+    color: var(--gold-light);
+    font-weight: 600;
+}
+
+.cart-info .quantity {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-left: 10px;
+}
+
+.cart-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.cart-actions button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 12px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: var(--text-light);
+    font-size: 14px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.cart-actions button:hover {
+    background: var(--gold);
+    color: var(--dark-bg);
+    transform: translateY(-2px);
+}
+
+.cart-actions button.remove-btn:hover {
+    background: #e74c3c;
+    color: white;
+}
+
+/* ===== EMPTY CART ===== */
+.empty{
+    text-align: center;
+    padding: 60px 0;
+}
+
+.empty i {
+    font-size: 60px;
+    color: var(--gold);
+    margin-bottom: 20px;
+    animation: pulse 2s infinite;
+}
+
+.empty p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-bottom: 25px;
+}
+
+.empty .btn-shop {
+    display: inline-block;
+    padding: 14px 35px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--dark-bg);
+    font-weight: 600;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.empty .btn-shop:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4);
+}
+
+/* ===== CART SUMMARY ===== */
+.cart-summary {
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    color: var(--text-muted);
+}
+
+.summary-row.total {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.summary-row .amount {
+    color: var(--gold-light);
+    font-weight: 600;
+}
+
+.checkout-btn {
+    width: 100%;
+    margin-top: 25px;
+    padding: 18px;
+    border: none;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--dark-bg);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.checkout-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 50px rgba(212, 175, 55, 0.5);
+}
+
+/* ===== PAYMENT MODAL ===== */
+#paymentModal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    backdrop-filter: blur(10px);
+}
+
+.payment-box {
+    background: linear-gradient(135deg, var(--dark-teal), var(--dark-bg));
+    backdrop-filter: blur(30px);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 24px;
+    padding: 40px;
+    width: 340px;
+    text-align: center;
+    animation: modalSlide 0.4s ease;
+}
+
+@keyframes modalSlide {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.payment-box h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: var(--white);
+}
+
+.payment-box .timer-text {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gold-light);
+    padding: 10px 18px;
+    background: rgba(212, 175, 55, 0.15);
+    border: 1px solid var(--gold);
+    border-radius: 25px;
+    margin-bottom: 15px;
+    animation: pulse 1.5s infinite;
+}
+
+.payment-box .payment-status {
+    font-size: 14px;
+    font-weight: 600;
+    color: #ff6b6b;
+    margin-bottom: 15px;
+}
+
+.payment-box p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 15px;
+}
+
+.payment-box img {
+    width: 200px;
+    margin: 20px auto;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.payment-box .upi-id {
+    font-size: 1rem;
+    color: var(--gold-light);
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+.payment-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.payment-buttons button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.payment-buttons .confirm-btn {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--dark-bg);
+}
+
+.payment-buttons .cancel-btn {
+    background: transparent;
+    border: 1px solid var(--text-muted);
+    color: var(--text-light);
+}
+
+.payment-buttons button:hover {
+    transform: translateY(-2px);
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    background: var(--dark-bg);
+    padding: 40px 0;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer p {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(212, 175, 55, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+    }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 15px 20px;
+        flex-wrap: wrap;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .header-content h1 {
+        font-size: 2rem;
+    }
+
+    .cart-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .cart-item {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .cart-item img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .cart-actions {
+        justify-content: center;
+    }
+
+    .payment-box {
+        width: 90%;
+        margin: 0 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">Chronova</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="signup.html">Sign Up</a></li>
+            <li>
+                <a href="cart.html" class="cart-link">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span>Cart (<span id="cartCount">0</span>)</span>
+                </a>
+            </li>
+        </ul>
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+        <div class="header-overlay"></div>
+        <div class="header-content">
+            <span class="section-tag">Shopping</span>
+            <h1>Your Cart</h1>
+            <p>Review your selected timepieces</p>
+        </div>
+    </section>
+
+    <!-- CART SECTION -->
+    <section class="cart-section">
+        <div class="cart-container">
+            <div class="cart-header">
+                <h2>Shopping Cart</h2>
+                <a href="shop.html" class="back-link">
+                    <i class="fas fa-arrow-left"></i> Continue Shopping
+                </a>
+            </div>
+
+            <div class="cart-box">
+                <div id="cartItems"></div>
+
+                <!-- Cart Summary -->
+                <div class="cart-summary" id="cartSummary" style="display: none;">
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span class="amount">₹<span id="subtotal">0</span></span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Shipping</span>
+                        <span class="amount">Free</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Tax (18%)</span>
+                        <span class="amount">₹<span id="tax">0</span></span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total</span>
+                        <span class="amount">₹<span id="total">0</span></span>
+                    </div>
+                    <button class="checkout-btn" onclick="checkout()">
+                        <i class="fas fa-lock"></i> Proceed to Checkout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Chronova Watches. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- PAYMENT MODAL -->
+    <div id="paymentModal">
+        <div class="payment-box">
+            <h2>Complete Payment</h2>
+            <p class="timer-text" id="timerText"></p>
+            <p class="payment-status" id="paymentStatus"></p>
+            <p>Scan QR to Pay</p>
+            <img id="qrCode" alt="Payment QR Code">
+            <p class="upi-id">UPI ID: <b>6203790756@ptyes</b></p>
+            <div class="payment-buttons">
+                <button class="confirm-btn" onclick="confirmPayment()">I've Paid</button>
+                <button class="cancel-btn" onclick="closePayment()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+<script>
+/* ===============================
+   PRODUCT IMAGE MAP
+================================ */
+const productImages = {
+    "Chronova Elite":"static/w1.jpg",
+    "Chronova Prime":"static/w2.jpg",
+    "Chronova Neo":"static/w3.jpg",
+    "Chronova Royal":"static/w4.jpg",
+    "Chronova Classic":"static/w5.jpg",
+    "Chronova Urban":"static/w6.jpg",
+    "Chronova Sport":"static/w7.jpg",
+    "Chronova Luxe":"static/w8.jpg",
+    "Chronova Sovereign":"static/w9.jpg",
+    "Chronova Heritage":"static/w10.jpg",
+    "Chronova Velocity":"static/w11.jpg",
+    "Chronova Monarch":"static/w12.jpg",
+    "Chronova Drift":"static/w13.jpg",
+    "Chronova Apex":"static/w14.jpg",
+    "Chronova Horizon":"static/w15.jpg",
+    "Chronova Prestige":"static/w16.jpg",
+    "Chronova Flux":"static/w17.jpg",
+    "Chronova Imperial":"static/w18.jpg",
+    "Chronova NovaX":"static/w19.jpg",
+    "Chronova Eternity":"static/w20.jpg"
+};
+
+/* ===============================
+   CART INIT
+================================ */
+let cart = JSON.parse(localStorage.getItem("chronova_cart")) || [];
+
+/* ===============================
+   PAYMENT TIMER VARIABLES
+================================ */
+let paymentTimer;
+let timeLeft = 300; // 5 minutes
+let paymentCompleted = false;
+
+/* ===============================
+   RENDER CART
+================================ */
+function renderCart(){
+    const box = document.getElementById("cartItems");
+    const summary = document.getElementById("cartSummary");
+    const subtotalEl = document.getElementById("subtotal");
+    const taxEl = document.getElementById("tax");
+    const totalEl = document.getElementById("total");
+    
+    box.innerHTML = "";
+    let total = 0;
+
+    if(cart.length === 0){
+        box.innerHTML = `
+            <div class="empty">
+                <i class="fas fa-shopping-bag"></i>
+                <p>Your cart is empty</p>
+                <a href="shop.html" class="btn-shop">Explore Collection</a>
+            </div>`;
+        summary.style.display = "none";
+        document.getElementById("cartCount").innerText = "0";
+        return;
+    }
+
+    summary.style.display = "block";
+
+    cart.forEach((item, i) => {
+        total += item.price * item.qty;
+
+        box.innerHTML += `
+        <div class="cart-item">
+            <img src="${productImages[item.name]}" alt="${item.name}">
+            <div class="cart-info">
+                <strong>${item.name}</strong>
+                <div>
+                    <span class="price">₹${item.price.toLocaleString()}</span>
+                    <span class="quantity">× ${item.qty}</span>
+                </div>
+            </div>
+            <div class="cart-actions">
+                <button onclick="changeQty(${i},-1)" title="Decrease"><i class="fas fa-minus"></i></button>
+                <button onclick="changeQty(${i},1)" title="Increase"><i class="fas fa-plus"></i></button>
+                <button class="remove-btn" onclick="removeItem(${i})" title="Remove"><i class="fas fa-trash"></i></button>
+            </div>
+        </div>`;
+    });
+
+    const subtotal = total;
+    const tax = Math.round(subtotal * 0.18);
+    const grandTotal = subtotal + tax;
+
+    subtotalEl.innerText = subtotal.toLocaleString();
+    taxEl.innerText = tax.toLocaleString();
+    totalEl.innerText = grandTotal.toLocaleString();
+    
+    // Update cart count
+    const cartCount = cart.reduce((sum, item) => sum + item.qty, 0);
+    document.getElementById("cartCount").innerText = cartCount;
+}
+
+/* ===============================
+   CART ACTIONS
+================================ */
+function changeQty(i, c){
+    cart[i].qty += c;
+    if(cart[i].qty <= 0) cart.splice(i,1);
+    save();
+}
+
+function removeItem(i){
+    if(confirm("Remove this item from cart?")){
+        cart.splice(i,1);
+        save();
+    }
+}
+
+function save(){
+    localStorage.setItem("chronova_cart", JSON.stringify(cart));
+    renderCart();
+}
+
+/* ===============================
+   CHECKOUT (UPI + QR)
+================================ */
+function checkout(){
+    if(cart.length === 0){
+        alert("Cart is empty!");
+        return;
+    }
+
+    const amount = cart.reduce((sum,item)=>sum + item.price * item.qty,0);
+    const upiId = "6203790756@ptyes";
+
+    const upiLink = `upi://pay?pa=${upiId}&pn=Chronova&am=${amount}&cu=INR`;
+
+    // Mobile → direct UPI app
+    if (/Android|iPhone|iPad/i.test(navigator.userAgent)) {
+        window.location.href = upiLink;
+    } else {
+        // Desktop → QR + Timer
+        document.getElementById("paymentModal").style.display = "flex";
+        
+        // Generate QR code with UPI payment link
+        const qrData = encodeURIComponent(upiLink);
+        const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${qrData}`;
+        document.getElementById("qrCode").src = qrUrl;
+        
+        startPaymentTimer();
+    }
+}
+
+/* ===============================
+   PAYMENT TIMER
+================================ */
+function startPaymentTimer(){
+    clearInterval(paymentTimer);
+    timeLeft = 300;
+    paymentCompleted = false;
+
+    const timerText = document.getElementById("timerText");
+    const statusText = document.getElementById("paymentStatus");
+    timerText.innerText = "";
+    statusText.innerText = "";
+
+    paymentTimer = setInterval(() => {
+        const min = Math.floor(timeLeft / 60);
+        const sec = timeLeft % 60;
+
+        timerText.innerText = `⏳ Time left: ${min}:${sec < 10 ? "0"+sec : sec}`;
+
+        if(timeLeft <= 0){
+            clearInterval(paymentTimer);
+
+            if(!paymentCompleted){
+                timerText.innerText = "";
+                statusText.innerText = "❌ Payment Failed (Time Expired)";
+            }
+        }
+
+        timeLeft--;
+    }, 1000);
+}
+
+/* ===============================
+   PAYMENT SUCCESS
+================================ */
+function confirmPayment(){
+    paymentCompleted = true;
+    clearInterval(paymentTimer);
+
+    alert("Payment Successful 🎉");
+
+    localStorage.removeItem("chronova_cart");
+    cart = [];
+    renderCart();
+    closePayment();
+}
+
+/* ===============================
+   CLOSE PAYMENT MODAL
+================================ */
+function closePayment(){
+    clearInterval(paymentTimer);
+    document.getElementById("paymentModal").style.display = "none";
+}
+
+/* ===============================
+   INITIAL LOAD
+================================ */
+renderCart();
+</script>
+
+</body>
+</html>

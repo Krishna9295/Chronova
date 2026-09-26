@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Chronova | Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        /* ===== GLOBAL ===== */
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body {
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #0f2c3f 0%, #1a4a5e 50%, #2f6f63 100%);
+            overflow:hidden;
+            position:relative;
+        }
+
+        /* ===== PARTICLES BACKGROUND ===== */
+        .particles{
+            position:fixed;
+            inset:0;
+            overflow:hidden;
+            pointer-events:none;
+        }
+
+        .particle{
+            position:absolute;
+            width:4px;
+            height:4px;
+            background:rgba(212, 175, 55, 0.6);
+            border-radius:50%;
+            animation:float 15s infinite ease-in-out;
+        }
+
+        .particle:nth-child(1){left:10%;top:20%;animation-delay:0s;animation-duration:12s;}
+        .particle:nth-child(2){left:20%;top:80%;animation-delay:2s;animation-duration:14s;}
+        .particle:nth-child(3){left:30%;top:40%;animation-delay:4s;animation-duration:16s;}
+        .particle:nth-child(4){left:40%;top:60%;animation-delay:1s;animation-duration:13s;}
+        .particle:nth-child(5){left:50%;top:10%;animation-delay:3s;animation-duration:15s;}
+        .particle:nth-child(6){left:60%;top:70%;animation-delay:5s;animation-duration:17s;}
+        .particle:nth-child(7){left:70%;top:30%;animation-delay:2.5s;animation-duration:14s;}
+        .particle:nth-child(8){left:80%;top:50%;animation-delay:1.5s;animation-duration:16s;}
+        .particle:nth-child(9){left:90%;top:90%;animation-delay:4.5s;animation-duration:12s;}
+        .particle:nth-child(10){left:15%;top:55%;animation-delay:3.5s;animation-duration:18s;}
+        .particle:nth-child(11){left:25%;top:15%;animation-delay:0.5s;animation-duration:11s;}
+        .particle:nth-child(12){left:85%;top:25%;animation-delay:6s;animation-duration:19s;}
+
+        @keyframes float{
+            0%,100%{transform:translateY(0) translateX(0) scale(1);opacity:0.6;}
+            25%{transform:translateY(-30px) translateX(10px) scale(1.2);opacity:0.8;}
+            50%{transform:translateY(-60px) translateX(-10px) scale(0.8);opacity:0.4;}
+            75%{transform:translateY(-30px) translateX(15px) scale(1.1);opacity:0.7;}
+        }
+
+        /* ===== OVERLAY ===== */
+        .overlay {
+            position:fixed;
+            inset:0;
+            background:rgba(0,0,0,0.4);
+            backdrop-filter:blur(10px);
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            animation:fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn{
+            from{opacity:0}
+            to{opacity:1}
+        }
+
+        /* ===== LOGIN BOX ===== */
+        .login-box {
+            width:380px;
+            padding:40px 35px;
+            border-radius:24px;
+            background:linear-gradient(
+                145deg,
+                rgba(255,255,255,0.15),
+                rgba(255,255,255,0.05)
+            );
+            backdrop-filter:blur(25px);
+            -webkit-backdrop-filter:blur(25px);
+            border:1px solid rgba(255,255,255,0.1);
+            box-shadow:
+                0 25px 60px rgba(0,0,0,0.4),
+                inset 0 1px 0 rgba(255,255,255,0.1);
+            text-align:center;
+            color:#fff;
+            animation:slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            position:relative;
+            overflow:hidden;
+        }
+
+        @keyframes slideUp{
+            from{transform:translateY(40px);opacity:0;}
+            to{transform:translateY(0);opacity:1}
+        }
+
+        /* Decorative corner accents */
+        .login-box::before,
+        .login-box::after{
+            content:'';
+            position:absolute;
+            width:60px;
+            height:60px;
+            border:2px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .login-box::before{
+            top:0;
+            left:0;
+            border-right:none;
+            border-bottom:none;
+            border-radius:24px 0 0 0;
+        }
+
+        .login-box::after{
+            bottom:0;
+            right:0;
+            border-left:none;
+            border-top:none;
+            border-radius:0 0 24px 0;
+        }
+
+        .login-box h2 {
+            margin-bottom:8px;
+            font-size:28px;
+            font-weight:300;
+            letter-spacing:3px;
+            text-transform:uppercase;
+            background:linear-gradient(45deg, #d4af37, #f0d67a, #d4af37);
+            background-size:200% auto;
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+            animation:shimmerText 3s linear infinite;
+        }
+
+        @keyframes shimmerText{
+            0%{background-position:0% center;}
+            100%{background-position:200% center;}
+        }
+
+        .login-box .subtitle{
+            color:rgba(255,255,255,0.6);
+            font-size:13px;
+            margin-bottom:28px;
+            letter-spacing:0.5px;
+        }
+
+        /* ===== INPUT WRAPPER ===== */
+        .input-wrapper{
+            position:relative;
+            margin-bottom:20px;
+        }
+
+        .input-wrapper input{
+            width:100%;
+            padding:16px 20px;
+            padding-left:45px;
+            border:none;
+            border-radius:14px;
+            outline:none;
+            background:rgba(255,255,255,0.08);
+            color:#fff;
+            font-size:14px;
+            transition:all 0.3s ease;
+            border:1px solid transparent;
+        }
+
+        .input-wrapper input::placeholder{
+            color:rgba(255,255,255,0.4);
+        }
+
+        .input-wrapper input:focus{
+            background:rgba(255,255,255,0.12);
+            border-color:rgba(212, 175, 55, 0.5);
+            box-shadow:0 0 20px rgba(212, 175, 55, 0.15);
+        }
+
+        .input-wrapper .icon{
+            position:absolute;
+            left:16px;
+            top:50%;
+            transform:translateY(-50%);
+            color:rgba(212, 175, 55, 0.7);
+            font-size:16px;
+            transition:all 0.3s ease;
+        }
+
+        .input-wrapper input:focus + .icon{
+            color:#d4af37;
+        }
+
+        /* Password toggle */
+        .password-wrapper{
+            position:relative;
+        }
+
+        .password-wrapper input{
+            padding-right:45px;
+        }
+
+        .toggle-password{
+            position:absolute;
+            right:16px;
+            top:50%;
+            transform:translateY(-50%);
+            cursor:pointer;
+            color:rgba(255,255,255,0.5);
+            transition:all 0.3s ease;
+            font-size:14px;
+        }
+
+        .toggle-password:hover{
+            color:#d4af37;
+        }
+
+        /* ===== REMEMBER ME ===== */
+        .remember-me{
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            margin:20px 0;
+            font-size:14px;
+            color:rgba(255,255,255,0.6);
+        }
+
+        .remember-me input[type="checkbox"]{
+            display:none;
+        }
+
+        .remember-me label{
+            display:flex;
+            align-items:center;
+            cursor:pointer;
+            transition:all 0.3s ease;
+        }
+
+        .remember-me label:hover{
+            color:#d4af37;
+        }
+
+        .checkbox-custom{
+            width:18px;
+            height:18px;
+            border:2px solid rgba(212, 175, 55, 0.5);
+            border-radius:4px;
+            margin-right:8px;
+            position:relative;
+            transition:all 0.3s ease;
+        }
+
+        .remember-me input[type="checkbox"]:checked + label .checkbox-custom{
+            background:#d4af37;
+            border-color:#d4af37;
+        }
+
+        .remember-me input[type="checkbox"]:checked + label .checkbox-custom::after{
+            content:'✓';
+            position:absolute;
+            top:50%;
+            left:50%;
+            transform:translate(-50%, -50%);
+            color:#1a1a1a;
+            font-size:12px;
+            font-weight:bold;
+        }
+
+        /* ===== BUTTON ===== */
+        .login-box button{
+            width:100%;
+            padding:16px;
+            margin-top:10px;
+            border:none;
+            border-radius:14px;
+            background:linear-gradient(45deg, #d4af37, #e6c547, #d4af37);
+            background-size:200% auto;
+            color:#1a1a1a;
+            font-size:15px;
+            font-weight:600;
+            letter-spacing:1px;
+            text-transform:uppercase;
+            cursor:pointer;
+            transition:all 0.4s ease;
+            position:relative;
+            overflow:hidden;
+        }
+
+        .login-box button::before{
+            content:'';
+            position:absolute;
+            top:0;
+            left:-100%;
+            width:100%;
+            height:100%;
+            background:linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition:all 0.5s ease;
+        }
+
+        .login-box button:hover{
+            background-position:right center;
+            transform:translateY(-2px);
+            box-shadow:0 10px 30px rgba(212, 175, 55, 0.4);
+        }
+
+        .login-box button:hover::before{
+            left:100%;
+        }
+
+        .login-box button:active{
+            transform:translateY(0);
+        }
+
+        /* Loading spinner */
+        .login-box button .spinner{
+            display:none;
+            width:20px;
+            height:20px;
+            border:2px solid transparent;
+            border-top-color:#1a1a1a;
+            border-radius:50%;
+            animation:spin 0.8s linear infinite;
+            margin:0 auto;
+        }
+
+        .login-box button.loading .spinner{
+            display:block;
+        }
+
+        .login-box button.loading .btn-text{
+            opacity:0;
+        }
+
+        @keyframes spin{
+            to{transform:rotate(360deg);}
+        }
+
+        /* ===== LINK ===== */
+        .login-box p{
+            margin-top:24px;
+            font-size:14px;
+            color:rgba(255,255,255,0.6);
+        }
+
+        .login-box a{
+            color:#d4af37;
+            text-decoration:none;
+            font-weight:600;
+            transition:all 0.3s ease;
+            position:relative;
+        }
+
+        .login-box a::after{
+            content:'';
+            position:absolute;
+            bottom:-2px;
+            left:0;
+            width:0;
+            height:1px;
+            background:#d4af37;
+            transition:width 0.3s ease;
+        }
+
+        .login-box a:hover{
+            color:#f0d67a;
+        }
+
+        .login-box a:hover::after{
+            width:100%;
+        }
+
+        /* ===== SHAKE ANIMATION ===== */
+        .shake{
+            animation:shake 0.5s ease-in-out;
+        }
+
+        @keyframes shake{
+            0%,100%{transform:translateX(0);}
+            25%{transform:translateX(-5px);}
+            75%{transform:translateX(5px);}
+        }
+    </style>
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Particles Background -->
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <div class="overlay">
+        <div class="login-box">
+            <h2>Welcome Back</h2>
+            <p class="subtitle">Access your luxury timepieces</p>
+
+            <div class="input-wrapper">
+                <input id="email" type="email" placeholder="Email Address" autocomplete="email">
+                <i class="fas fa-envelope icon"></i>
+            </div>
+
+            <div class="input-wrapper password-wrapper">
+                <input id="password" type="password" placeholder="Password" autocomplete="current-password">
+                <i class="fas fa-lock icon"></i>
+                <span class="toggle-password" onclick="togglePassword('password')">
+                    <i class="fas fa-eye"></i>
+                </span>
+            </div>
+
+            <div class="remember-me">
+                <input type="checkbox" id="remember" name="remember">
+                <label for="remember">
+                    <span class="checkbox-custom"></span>
+                    Remember me
+                </label>
+            </div>
+
+            <button onclick="login()" id="loginBtn">
+                <span class="btn-text">Login</span>
+                <div class="spinner"></div>
+            </button>
+
+            <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+        </div>
+    </div>
+
+    <script>
+        function login() {
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            // Show loading
+            const btn = document.getElementById("loginBtn");
+            btn.classList.add("loading");
+            btn.disabled = true;
+
+            // Simulate loading delay
+            setTimeout(() => {
+                const user = JSON.parse(localStorage.getItem("chronova_user"));
+
+                if (!user) {
+                    showError("No account found");
+                    return;
+                }
+
+                if (user.email === email && user.password === password) {
+                    localStorage.setItem("chronova_logged_in", "true");
+                    localStorage.setItem("chronova_username", user.name);
+                    window.location.href = "index.html";
+                } else {
+                    showError("Invalid credentials ❌");
+                }
+            }, 1000);
+        }
+
+        function showError(message) {
+            // Reset button
+            const btn = document.getElementById("loginBtn");
+            btn.classList.remove("loading");
+            btn.disabled = false;
+
+            // Shake animation
+            const box = document.querySelector(".login-box");
+            box.classList.add("shake");
+            setTimeout(() => box.classList.remove("shake"), 500);
+
+            // Show alert
+            setTimeout(() => alert(message), 300);
+        }
+
+        function togglePassword(inputId){
+            const input = document.getElementById(inputId);
+            const icon = document.querySelector(`[onclick="togglePassword('${inputId}')"] i`);
+
+            if(input.type === "password"){
+                input.type = "text";
+                icon.classList.remove("fa-eye");
+                icon.classList.add("fa-eye-slash");
+            } else {
+                input.type = "password";
+                icon.classList.remove("fa-eye-slash");
+                icon.classList.add("fa-eye");
+            }
+        }
+
+        // Auto-focus on first input
+        document.addEventListener("DOMContentLoaded", function(){
+            setTimeout(() => {
+                document.getElementById("email").focus();
+            }, 500);
+        });
+
+        // Enter key support
+        document.addEventListener("keypress", function(e){
+            if(e.key === "Enter"){
+                login();
+            }
+        });
+    </script>
+
+</body>
+
+</html>

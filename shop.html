@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chronova Watches | Shop Collection</title>
+    <link rel="stylesheet" href="shop.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">Chronova</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="shop.html" class="active">Shop</a></li>
+            <li id="userBox"></li>
+            <li>
+                <a href="cart.html" class="cart-link">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count">Cart (<span id="cartCount">0</span>)</span>
+                </a>
+            </li>
+        </ul>
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+        <div class="header-overlay"></div>
+        <div class="header-content">
+            <span class="section-tag">Our Collection</span>
+            <h1>Timeless Elegance</h1>
+            <p>Discover exceptional timepieces crafted for those who appreciate the extraordinary</p>
+        </div>
+    </section>
+
+    <!-- FILTER BAR -->
+    <section class="filter-bar">
+        <div class="container">
+            <div class="filter-content">
+                <span class="product-count">Showing 20 Products</span>
+                <div class="filter-options">
+                    <select class="filter-select">
+                        <option>Sort by: Featured</option>
+                        <option>Price: Low to High</option>
+                        <option>Price: High to Low</option>
+                        <option>Newest First</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTS SECTION -->
+    <section class="products-section">
+        <div class="container">
+            <div class="products-grid">
+
+                <div class="product-card animate-on-scroll">
+                    <div class="product-badge best-seller">Best Seller</div>
+                    <div class="product-image">
+                        <img src="static/w1.jpg" alt="Chronova Elite">
+                        <div class="product-overlay">
+                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>4.8 (1,243 reviews)</span>
+                        </div>
+                        <h3>Chronova Elite</h3>
+                        <p class="product-desc">Swiss Automatic Movement</p>
+                        <div class="product-footer">
+                            <span class="price">₹2,099</span>
+                            <button class="add-to-cart" onclick="addToCart('Chronova Elite',2099,this)">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card animate-on-scroll">
+                    <div class="product-image">
+                        <img src="static/w2.jpg" alt="Chronova Prime">
+                        <div class="product-overlay">
+                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>4.6 (932 reviews)</span>
+                        </div>
+                        <h3>Chronova Prime</h3>
+                        <p class="product-desc">Premium Leather Strap</p>
+                        <div class="product-footer">
+                            <span class="price">₹1,699</span>
+                            <button class="add-to-cart" onclick="addToCart('Chronova Prime',1699,this)">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card animate-on-scroll">
+                    <div class="product-badge new">New</div>
+                    <div class="product-image">
+                        <img src="static/w3.jpg" alt="Chronova Neo">
+                        <div class="product-overlay">
+                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>4.9 (2,031 reviews)</span>
+                        </div>
+                        <h3>Chronova Neo</h3>
+                        <p class="product-desc">Modern Design</p>
+                        <div class="product-footer">
+                            <span class="price">₹1,899</span>
+                            <button class="add-to-cart" onclick="addToCart('Chronova Neo',1899,this)">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card animate-on-scroll">
+                    <div class="product-badge premium">Premium</div>
+                    <div class="product-image">
+                        <img src="static/w4.jpg" alt="Chronova Royal">
+                        <div class="product-overlay">
+                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>4.5 (1,118 reviews)</span>
+                        </div>
+                        <h3>Chronova Royal</h3>
+                        <p class="product-desc">18K Gold Plated</p>
+                        <div class="product-footer">
+                            <span class="price">₹3,099</span>
+                            <button class="add-to-cart" onclick="addToCart('Chronova Royal',3099,this)">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card animate-on-scroll">
+                    <div class="product-image">
+                        <img src="static/w5.jpg" alt="Chronova Classic">
+                        <div class="product-overlay">
+                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>4.7 (856 reviews)</span>
+                        </div>
+                        <h3>Chronova Classic</h3>
+                        <p class="product-desc">Timeless Design</p>
+                        <div class="product-footer">
+                            <span class="price">₹2,999</span>
+                            <button class="add-to-cart" onclick="addToCart('Chronova Classic',2999,this)">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card animate-on-scroll">
+                    <div class="product-image">
+                        <img src="static/w6.jpg" alt="Chronova Urban">
+                        <div class="product-overlay">
+                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>4.4 (642 reviews)</span>
+                        </div>
+                        <h3>Chronova Urban</h3>
+                        <p class="product-desc">Sporty Elegance</p>
+                        <div class="product-footer">
+                            <span class="price">₹1,699</span>
+                            <button class="add-to-cart" onclick="addToCart('Chronova Urban',1699,this)">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card animate-on-scroll">
+                    <div class="product-badge best-seller">Best Seller</div>
+                    <div class="product-image">
+                        <img src="static/w7.jpg" alt="Chronova Sport">
+                        <div class="product-overlay">
+                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>4.8 (1,504 reviews)</span>
+                        </div>
+                        <h3>Chronova Sport</h3>
+                        <p class="product-desc">Titanium Case</p>
+                        <div class="product-footer">
+                            <span class="price">₹2,499</span>
+                            <button class="add-to-cart" onclick="addToCart('Chronova Sport',2499,this)">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card animate-on-scroll">
+                    <div class="product-image">
+                        <img src="static/w8.jpg" alt="Chronova Luxe">
+                        <div class="product-overlay">
+                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>4.6 (789 reviews)</span>
+                        </div>
+                        <h3>Chronova Luxe</h3>
+                        <p class="product-desc">Diamond Accents</p>
+                        <div class="product-footer">
+                            <span class="price">₹1,899</span>
+                            <button class="add-to-cart" onclick="addToCart('Chronova Luxe',1899,this)">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card animate-on-scroll">
+                    <div class="product-badge premium">Premium</div>
+                    <div class="product-image">
+                        <img src="static/w9.jpg" alt="Chronova Sovereign">
+                        <div class="product-overlay">
+                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>4.9 (2,412 reviews)</span>
+                        </div>
+                        <h3>Chronova Sovereign</h3>
+                        <p class="product-desc">Masterpiece Edition</p>
+                        <div class="product-footer">
+                            <span class="price">₹3,299</span>
+                            <button class="add-to-cart" onclick="addToCart('Chronova Sovereign',3299,this)">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card animate-on-scroll">
+                    <div class="product-image">
+                        <img src="static/w10.jpg" alt="Chronova Heritage">
+                        <div class="product-overlay">
+                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>4.5 (1,002 reviews)</span>
+                        </div>
+                        <h3>Chronova Heritage</h3>
+                        <p class="product-desc">Classic Collection</p>
+                        <div class="product-footer">
+                            <span class="price">₹2,799</span>
+                            <button class="add-to-cart" onclick="addToCart('Chronova Heritage',2799,this)">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card animate-on-scroll">
+                    <div class="product-image">
+                        <img src="static/w11.jpg" alt="Chronova Velocity">
+                        <div class="product-overlay">
+                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>4.7 (1,364 reviews)</span>
+                        </div>
+                        <h3>Chronova Velocity</h3>
+                        <p class="product-desc">Chronograph</p>
+                        <div class="product-footer">
+                            <span class="price">₹2,199</span>
+                            <button class="add-to-cart" onclick="addToCart('Chronova Velocity',2199,this)">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card animate-on-scroll">
+                    <div class="product-badge best-seller">Best Seller</div>
+                    <div class="product-image">
+                        <img src="static/w12.jpg" alt="Chronova Monarch">
+                        <div class="product-overlay">
+                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>4.9 (2,890 reviews)</span>
+                        </div>
+                        <h3>Chronova Monarch</h3>
+                        <p class="product-desc">Limited Edition</p>
+                        <div class="product-footer">
+                            <span class="price">₹3,599</span>
+                            <button class="add-to-cart" onclick="addToCart('Chronova Monarch',3599,this)">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card animate-on-scroll">
+                    <div class="product-image">
+                        <img src="static/w13.jpg" alt="Chronova Drift">
+                        <div class="product-overlay">
+                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>4.3 (534 reviews)</span>
+                        </div>
+                        <h3>Chronova Drift</h3>
+                        <p class="product-desc">Casual Collection</p>
+                        <div class="product-footer">
+                            <span class="price">₹1,999</span>
+                            <button class="add-to-cart" onclick="addToCart('Chronova Drift',1999,this)">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card animate-on-scroll">
+                    <div class="product-image">
+                        <img src="static/w14.jpg" alt="Chronova Apex">
+                        <div class="product-overlay">
+                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>4.8 (1,421 reviews)</span>
+                        </div>
+                        <h3>Chronova Apex</h3>
+                        <p class="product-desc">Professional Series</p>
+                        <div class="product-footer">
+                            <span class="price">₹2,899</span>
+                            <button class="add-to-cart" onclick="addToCart('Chronova Apex',2899,this)">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card animate-on-scroll">
+                    <div class="product-image">
+                        <img src="static/w15.jpg" alt="Chronova Horizon">
+                        <div class="product-overlay">
+                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>4.6 (913 reviews)</span>
+                        </div>
+                        <h3>Chronova Horizon</h3>
+                        <p class="product-desc">Explorer Edition</p>
+                        <div class="product-footer">
+                            <span class="price">₹2,699</span>
+                            <button class="add-to-cart" onclick="addToCart('Chronova Horizon',2699,this)">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card animate-on-scroll">
+                    <div class="product-badge new">New</div>
+                    <div class="product-image">
+                        <img src="static/w16.jpg" alt="Chronova Prestige">
+                        <div class="product-overlay">
+                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>4.9 (3,104 reviews)</span>
+                        </div>
+                        <h3>Chronova Prestige</h3>
+                        <p class="product-desc">Prestige Collection</p>
+                        <div class="product-footer">
+                            <span class="price">₹3,199</span>
+                            <button class="add-to-cart" onclick="addToCart('Chronova Prestige',3199,this)">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card animate-on-scroll">
+                    <div class="product-image">
+                        <img src="static/w17.jpg" alt="Chronova Flux">
+                        <div class="product-overlay">
+                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>4.5 (768 reviews)</span>
+                        </div>
+                        <h3>Chronova Flux</h3>
+                        <p class="product-desc">Modern Classic</p>
+                        <div class="product-footer">
+                            <span class="price">₹2,299</span>
+                            <button class="add-to-cart" onclick="addToCart('Chronova Flux',2299,this)">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card animate-on-scroll">
+                    <div class="product-badge premium">Premium</div>
+                    <div class="product-image">
+                        <img src="static/w18.jpg" alt="Chronova Imperial">
+                        <div class="product-overlay">
+                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>4.8 (1,876 reviews)</span>
+                        </div>
+                        <h3>Chronova Imperial</h3>
+                        <p class="product-desc">Imperial Series</p>
+                        <div class="product-footer">
+                            <span class="price">₹3,499</span>
+                            <button class="add-to-cart" onclick="addToCart('Chronova Imperial',3499,this)">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card animate-on-scroll">
+                    <div class="product-image">
+                        <img src="static/w19.jpg" alt="Chronova NovaX">
+                        <div class="product-overlay">
+                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>4.6 (1,039 reviews)</span>
+                        </div>
+                        <h3>Chronova NovaX</h3>
+                        <p class="product-desc">Innovation Series</p>
+                        <div class="product-footer">
+                            <span class="price">₹2,599</span>
+                            <button class="add-to-cart" onclick="addToCart('Chronova NovaX',2599,this)">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card animate-on-scroll">
+                    <div class="product-badge limited">Limited</div>
+                    <div class="product-image">
+                        <img src="static/w20.jpg" alt="Chronova Eternity">
+                        <div class="product-overlay">
+                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>4.9 (4,212 reviews)</span>
+                        </div>
+                        <h3>Chronova Eternity</h3>
+                        <p class="product-desc">Limited Edition</p>
+                        <div class="product-footer">
+                            <span class="price">₹1</span>
+                            <button class="add-to-cart" onclick="addToCart('Chronova Eternity',1,this)">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-main">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <div class="logo">Chronova</div>
+                        <p>Crafting exceptional timepieces since 1985. Swiss precision meets timeless elegance.</p>
+                        <div class="footer-social">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-links">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="shop.html">Shop</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="#">About Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-links">
+                        <h4>Customer Service</h4>
+                        <ul>
+                            <li><a href="#">Shipping Policy</a></li>
+                            <li><a href="#">Returns & Exchanges</a></li>
+                            <li><a href="#">Warranty</a></li>
+                            <li><a href="#">FAQ</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-contact">
+                        <h4>Contact Us</h4>
+                        <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                        <p><i class="fas fa-envelope"></i> support@chronova.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> 21 Luxury Street, Mumbai, India</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 Chronova Watches. All Rights Reserved. | Crafted with <i class="fas fa-heart"></i> for Luxury</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Login check
+        if(localStorage.getItem("chronova_logged_in") !== "true"){
+            alert("Please login first");
+            window.location.href = "login.html";
+        }
+
+        // Cart functionality
+        let cart = JSON.parse(localStorage.getItem("chronova_cart")) || [];
+
+        function addToCart(name, price, btn) {
+            const item = cart.find(p => p.name === name);
+            if (item) item.qty += 1;
+            else cart.push({ name, price, qty: 1 });
+
+            localStorage.setItem("chronova_cart", JSON.stringify(cart));
+            updateCartCount();
+
+            // Cart animation dot
+            const dot = document.createElement("div");
+            dot.className = "cart-dot";
+            document.body.appendChild(dot);
+
+            const btnRect = btn.getBoundingClientRect();
+            const cartIcon = document.querySelector("a[href='cart.html']").getBoundingClientRect();
+
+            dot.style.left = btnRect.left + btnRect.width / 2 + "px";
+            dot.style.top = btnRect.top + "px";
+
+            setTimeout(() => {
+                dot.style.left = cartIcon.left + cartIcon.width / 2 + "px";
+                dot.style.top = cartIcon.top + "px";
+                dot.style.opacity = "0";
+                dot.style.transform = "scale(0.3)";
+            }, 10);
+
+            setTimeout(() => dot.remove(), 600);
+        }
+
+        function updateCartCount() {
+            const count = cart.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById("cartCount").innerText = count;
+        }
+        updateCartCount();
+
+        // Login/Logout
+        const isLoggedIn = localStorage.getItem("chronova_logged_in");
+        const username = localStorage.getItem("chronova_username");
+        const userBox = document.getElementById("userBox");
+
+        if(isLoggedIn === "true" && username){
+            userBox.innerHTML = `
+                <span style="color:#f0d67a;font-weight:bold;">
+                    Hi, ${username}
+                </span>
+                <a href="#" onclick="logout()" style="margin-left:12px;">Logout</a>
+            `;
+        } else {
+            userBox.innerHTML = `
+                <a href="login.html">Login</a>
+                <a href="signup.html">Sign Up</a>
+            `;
+        }
+
+        function logout(){
+            localStorage.removeItem("chronova_logged_in");
+            localStorage.removeItem("chronova_username");
+            window.location.href = "index.html";
+        }
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("animated");
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll(".animate-on-scroll").forEach(el => {
+            observer.observe(el);
+        });
+
+        // Navbar scroll effect
+        window.addEventListener("scroll", () => {
+            const navbar = document.querySelector(".navbar");
+            if (window.scrollY > 100) {
+                navbar.classList.add("scrolled");
+            } else {
+                navbar.classList.remove("scrolled");
+            }
+        });
+
+        // Mobile menu toggle
+        document.querySelector(".hamburger").addEventListener("click", () => {
+            document.querySelector(".nav-links").classList.toggle("active");
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chronova Watches | Luxury Timepieces</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">Chronova</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#heritage">Heritage</a></li>
+            <li><a href="#collections">Collections</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="contact.html">Contact</a></li>
+
+            <!-- JS CONTROLLED AREA -->
+            <li id="userBox"></li>
+
+            <li>
+                <a href="cart.html" class="cart-link">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count">Cart (<span id="cartCount">0</span>)</span>
+                </a>
+            </li>
+        </ul>
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- HERO SCROLL ANIMATION SECTION -->
+    <section id="home" class="hero-scroll-container">
+        <div class="hero-sticky">
+            <div class="hero-ambient-glow" id="heroAmbientGlow"></div>
+            <div class="hero-light-sweep" id="heroLightSweep"></div>
+            <canvas id="heroCanvas"></canvas>
+
+            <!-- Hero content layered above the animation -->
+            <div class="hero-content-layer">
+                <!-- Initial Hero Content (Starts at top, watch is on the right) -->
+                <div class="hero-main-content" id="heroMainContent">
+                    <span class="hero-subtitle animate-fade-up">Swiss Precision Since 1985</span>
+                    <h1 class="animate-fade-up delay-1">Time, Perfected.</h1>
+                    <p class="animate-fade-up delay-2">Discover the art of haute horlogerie. Each Chronova timepiece is a
+                        masterwork of precision, crafted for those who appreciate the extraordinary.</p>
+                    <div class="hero-buttons animate-fade-up delay-3">
+                        <a href="shop.html" class="btn-primary">Explore Collection</a>
+                        <a href="#heritage" class="btn-secondary">Our Story</a>
+                    </div>
+                </div>
+
+                <!-- Center Macro Detail Tag (Appears when watch zooms into the center) -->
+                <div class="hero-mid-tag" id="heroMidTag">
+                    <span class="section-tag">Haute Horlogerie</span>
+                    <h2>Engineered Precision</h2>
+                </div>
+
+                <!-- End Storytelling Tag (Appears on the right when watch settles on the left) -->
+                <div class="hero-end-content" id="heroEndContent">
+                    <span class="section-tag">Swiss Craftsmanship</span>
+                    <h2>Your Time. Your Legacy.</h2>
+                    <p>Designed for those who command their destiny.</p>
+                    <a href="shop.html" class="btn-primary">Explore Collection</a>
+                </div>
+            </div>
+
+            <!-- Scroll indicator -->
+            <div class="scroll-indicator" id="heroScrollIndicator">
+                <span>Scroll to Discover</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+
+            <!-- Scroll progress indicator -->
+            <div class="scroll-progress-bar">
+                <div class="scroll-progress-fill" id="heroProgressFill"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SCROLL-DRIVEN FRAME ANIMATION SECTION (HOME.ZIP) ===== -->
+    <!-- 
+        This section creates an Apple-style scroll-driven animation.
+        A tall scroll container (500vh) pins a canvas to the viewport.
+        As the user scrolls through this section, frames from static/home/
+        are rendered on the canvas, creating a cinematic watch animation.
+    -->
+    <section id="scroll-animation" class="scroll-animation-container">
+        <div class="scroll-animation-sticky">
+            <canvas id="scrollCanvas"></canvas>
+            <!-- Overlay text that fades in/out during scroll -->
+            <div class="scroll-anim-overlay">
+                <div class="scroll-anim-text scroll-anim-intro">
+                    <span class="section-tag">The Art of Time</span>
+                    <h2>Crafted to Perfection</h2>
+                    <p>Every angle reveals a new dimension of luxury</p>
+                </div>
+                <div class="scroll-anim-text scroll-anim-mid" style="opacity: 0;">
+                    <span class="section-tag">Swiss Engineering</span>
+                    <h2>Precision in Motion</h2>
+                </div>
+                <div class="scroll-anim-text scroll-anim-end" style="opacity: 0;">
+                    <span class="section-tag">Discover More</span>
+                    <h2>Your Time. Your Legacy.</h2>
+                    <a href="shop.html" class="btn-primary">Explore Collection</a>
+                </div>
+            </div>
+            <!-- Scroll progress indicator -->
+            <div class="scroll-progress-bar">
+                <div class="scroll-progress-fill" id="scrollProgressFill"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRUST STRIP -->
+    <section class="trust-strip">
+        <div class="trust-item animate-on-scroll">
+            <i class="fas fa-award"></i>
+            <span>2 Years Warranty</span>
+        </div>
+        <div class="trust-item animate-on-scroll">
+            <i class="fas fa-water"></i>
+            <span>Water Resistant</span>
+        </div>
+        <div class="trust-item animate-on-scroll">
+            <i class="fas fa-shipping-fast"></i>
+            <span>Free Shipping</span>
+        </div>
+        <div class="trust-item animate-on-scroll">
+            <i class="fas fa-heart"></i>
+            <span>10,000+ Happy Customers</span>
+        </div>
+    </section>
+
+    <!-- BRAND HERITAGE -->
+    <section id="heritage" class="heritage-section">
+        <div class="container">
+            <div class="heritage-grid">
+                <div class="heritage-content animate-on-scroll">
+                    <span class="section-tag">Our Heritage</span>
+                    <h2>Four Decades of Excellence</h2>
+                    <p>Since 1985, Chronova has been at the forefront of Swiss watchmaking innovation. Our journey began
+                        in the heart of Geneva, where master craftsmen dedicated their lives to perfecting the art of
+                        time.</p>
+                    <p>Today, we continue this legacy, combining traditional craftsmanship with cutting-edge technology
+                        to create timepieces that transcend generations.</p>
+                    <div class="heritage-features">
+                        <div class="feature">
+                            <i class="fas fa-gem"></i>
+                            <span>Premium Materials</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-clock"></i>
+                            <span>Swiss Movement</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-crown"></i>
+                            <span>Luxury Craftsmanship</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="heritage-image animate-on-scroll">
+                    <div class="image-frame">
+                        <img src="static/w1.jpg" alt="Chronova Heritage">
+                        <div class="frame-accent"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS SECTION -->
+    <section class="stats-section">
+        <div class="stats-bg"></div>
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item animate-on-scroll">
+                    <span class="stat-number" data-target="39">0</span>
+                    <span class="stat-label">Years of Excellence</span>
+                </div>
+                <div class="stat-item animate-on-scroll">
+                    <span class="stat-number" data-target="150">0</span>
+                    <span class="stat-suffix">+</span>
+                    <span class="stat-label">Master Craftsmen</span>
+                </div>
+                <div class="stat-item animate-on-scroll">
+                    <span class="stat-number" data-target="50">0</span>
+                    <span class="stat-suffix">K</span>
+                    <span class="stat-label">Timepieces Created</span>
+                </div>
+                <div class="stat-item animate-on-scroll">
+                    <span class="stat-number" data-target="98">0</span>
+                    <span class="stat-suffix">%</span>
+                    <span class="stat-label">Customer Satisfaction</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURED COLLECTIONS -->
+    <section id="collections" class="collections-section">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag">Featured Collection</span>
+                <h2>Timeless Elegance</h2>
+                <p>Discover our curated selection of exceptional timepieces</p>
+            </div>
+            <div class="products-grid">
+                <div class="product-card animate-on-scroll">
+                    <div class="product-image">
+                        <img src="static/w2.jpg" alt="Chronova Elite">
+                        <div class="product-overlay">
+                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+                        </div>
+                        <span class="product-badge">Best Seller</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>Chronova Elite</h3>
+                        <p class="product-desc">Swiss Automatic Movement</p>
+                        <div class="product-price">
+                            <span class="price">₹45,999</span>
+                            <button class="add-to-cart" onclick="addToCart('Chronova Elite', 45999)">
+                                <i class="fas fa-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card animate-on-scroll">
+                    <div class="product-image">
+                        <img src="static/w3.jpg" alt="Chronova Royal">
+                        <div class="product-overlay">
+                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Chronova Royal</h3>
+                        <p class="product-desc">18K Gold Plated</p>
+                        <div class="product-price">
+                            <span class="price">₹62,999</span>
+                            <button class="add-to-cart" onclick="addToCart('Chronova Royal', 62999)">
+                                <i class="fas fa-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card animate-on-scroll">
+                    <div class="product-image">
+                        <img src="static/w4.jpg" alt="Chronova Sport">
+                        <div class="product-overlay">
+                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+                        </div>
+                        <span class="product-badge new">New</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>Chronova Sport</h3>
+                        <p class="product-desc">Titanium Case</p>
+                        <div class="product-price">
+                            <span class="price">₹38,999</span>
+                            <button class="add-to-cart" onclick="addToCart('Chronova Sport', 38999)">
+                                <i class="fas fa-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card animate-on-scroll">
+                    <div class="product-image">
+                        <img src="static/w5.jpg" alt="Chronova Classic">
+                        <div class="product-overlay">
+                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Chronova Classic</h3>
+                        <p class="product-desc">Leather Strap</p>
+                        <div class="product-price">
+                            <span class="price">₹28,999</span>
+                            <button class="add-to-cart" onclick="addToCart('Chronova Classic', 28999)">
+                                <i class="fas fa-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="collection-cta animate-on-scroll">
+                <a href="shop.html" class="btn-primary">View All Collections</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- TECHNICAL SPECIFICATIONS -->
+    <section class="specs-section">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag">Craftsmanship</span>
+                <h2>Technical Excellence</h2>
+                <p>Every detail engineered for perfection</p>
+            </div>
+            <div class="specs-grid">
+                <div class="spec-card animate-on-scroll">
+                    <div class="spec-icon">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <h3>Swiss Movement</h3>
+                    <p>Powered by precision Swiss automatic movement with 72-hour power reserve.</p>
+                </div>
+                <div class="spec-card animate-on-scroll">
+                    <div class="spec-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Sapphire Crystal</h3>
+                    <p>Scratch-resistant sapphire glass with anti-reflective coating.</p>
+                </div>
+                <div class="spec-card animate-on-scroll">
+                    <div class="spec-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <h3>Water Resistant</h3>
+                    <p>Tested up to 100 meters (330 feet) for ultimate durability.</p>
+                </div>
+                <div class="spec-card animate-on-scroll">
+                    <div class="spec-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3>Premium Materials</h3>
+                    <p>316L stainless steel, titanium, and genuine leather selections.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag">Testimonials</span>
+                <h2>What Our Clients Say</h2>
+                <p>Join thousands of satisfied customers worldwide</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card animate-on-scroll">
+                    <div class="testimonial-content">
+                        <i class="fas fa-quote-left"></i>
+                        <p>The Chronova Elite exceeds all expectations. The craftsmanship is impeccable, and it has
+                            become my signature piece.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="static/w10.jpg" alt="Customer">
+                        <div class="author-info">
+                            <h4>Rajesh Kumar</h4>
+                            <span>Business Executive</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card animate-on-scroll">
+                    <div class="testimonial-content">
+                        <i class="fas fa-quote-left"></i>
+                        <p>I purchased the Chronova Royal as a gift for my husband. The quality and elegance are
+                            unmatched. Truly a masterpiece!</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="static/w11.jpg" alt="Customer">
+                        <div class="author-info">
+                            <h4>Priya Sharma</h4>
+                            <span>Healthcare Professional</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card animate-on-scroll">
+                    <div class="testimonial-content">
+                        <i class="fas fa-quote-left"></i>
+                        <p>After 5 years, my Chronova still looks brand new. The timeless design and durability are
+                            remarkable. Worth every penny.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="static/w12.jpg" alt="Customer">
+                        <div class="author-info">
+                            <h4>Arun Patel</h4>
+                            <span>Entrepreneur</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY CHOOSE US -->
+    <section class="why-section">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag">Why Chronova</span>
+                <h2>Experience Luxury</h2>
+            </div>
+            <div class="why-grid">
+                <div class="why-card animate-on-scroll">
+                    <div class="why-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h3>Free Global Shipping</h3>
+                    <p>Complimentary express shipping on all orders worldwide with insurance.</p>
+                </div>
+                <div class="why-card animate-on-scroll">
+                    <div class="why-icon">
+                        <i class="fas fa-undo"></i>
+                    </div>
+                    <h3>30-Day Returns</h3>
+                    <p>Not satisfied? Return within 30 days for a full refund.</p>
+                </div>
+                <div class="why-card animate-on-scroll">
+                    <div class="why-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p>Our luxury concierge is always available to assist you.</p>
+                </div>
+                <div class="why-card animate-on-scroll">
+                    <div class="why-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Authenticity Guaranteed</h3>
+                    <p>Every timepiece comes with certificate of authenticity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content animate-on-scroll">
+                <h2>Stay Informed</h2>
+                <p>Subscribe to receive exclusive offers, new arrivals, and luxury insights.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit" class="btn-primary">Subscribe</button>
+                </form>
+                <div class="newsletter-benefits">
+                    <span><i class="fas fa-check"></i> Early access to new collections</span>
+                    <span><i class="fas fa-check"></i> Exclusive member discounts</span>
+                    <span><i class="fas fa-check"></i> Luxury watch care tips</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-main">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <div class="logo">Chronova</div>
+                        <p>Crafting exceptional timepieces since 1985. Swiss precision meets timeless elegance.</p>
+                        <div class="footer-social">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-links">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="shop.html">Shop</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="#">About Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-links">
+                        <h4>Customer Service</h4>
+                        <ul>
+                            <li><a href="#">Shipping Policy</a></li>
+                            <li><a href="#">Returns & Exchanges</a></li>
+                            <li><a href="#">Warranty</a></li>
+                            <li><a href="#">FAQ</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-contact">
+                        <h4>Contact Us</h4>
+                        <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                        <p><i class="fas fa-envelope"></i> support@chronova.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> 21 Luxury Street, Mumbai, India</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 Chronova Watches. All Rights Reserved. | Crafted with <i class="fas fa-heart"></i> for
+                    Luxury</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== INIT CART =====
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        document.getElementById("cartCount").textContent = cart.length;
+
+        // ===== ADD TO CART =====
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            localStorage.setItem("cart", JSON.stringify(cart));
+            document.getElementById("cartCount").textContent = cart.length;
+            alert(name + " added to cart 🛒");
+        }
+
+        // Login/Logout 
+        const isLoggedIn = localStorage.getItem("chronova_logged_in");
+        const username = localStorage.getItem("chronova_username");
+
+        const userBox = document.getElementById("userBox");
+
+        if (isLoggedIn === "true" && username) {
+            userBox.innerHTML = `
+                <span style="color:#f0d67a;font-weight:bold;">
+                    Hi, ${username}
+                </span>
+                <a href="#" onclick="logout()" style="margin-left:12px;">Logout</a>
+            `;
+        } else {
+            userBox.innerHTML = `
+                <a href="login.html">Login</a>
+                <a href="signup.html">Sign Up</a>
+            `;
+        }
+
+        function logout() {
+            localStorage.removeItem("chronova_logged_in");
+            localStorage.removeItem("chronova_username");
+            window.location.href = "index.html";
+        }
+
+        // ===== SCROLL ANIMATIONS =====
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("animated");
+
+                    // Counter animation
+                    if (entry.target.classList.contains("stat-item")) {
+                        const counter = entry.target.querySelector(".stat-number");
+                        if (counter) {
+                            animateCounter(counter);
+                        }
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll(".animate-on-scroll").forEach(el => {
+            observer.observe(el);
+        });
+
+        // Counter animation function
+        function animateCounter(element) {
+            const target = parseInt(element.getAttribute("data-target"));
+            const duration = 2000;
+            const step = target / (duration / 16);
+            let current = 0;
+
+            const timer = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 16);
+        }
+
+        // Navbar scroll effect
+        window.addEventListener("scroll", () => {
+            const navbar = document.querySelector(".navbar");
+            if (window.scrollY > 100) {
+                navbar.classList.add("scrolled");
+            } else {
+                navbar.classList.remove("scrolled");
+            }
+        });
+
+        // Mobile menu toggle
+        document.querySelector(".hamburger").addEventListener("click", () => {
+            document.querySelector(".nav-links").classList.toggle("active");
+        });
+
+        // ===================================================================
+        // ===== SCROLL-DRIVEN FRAME ANIMATION ENGINE =====
+        // ===================================================================
+        // 
+        // HOW IT WORKS:
+        // 1. FRAME LOADING: 240 frames are loaded from static/home/ folder.
+        //    Frame filenames follow the pattern "ezgif-frame-001.jpg" to 
+        //    "ezgif-frame-240.jpg". They are sorted in natural numeric order.
+        //
+        // 2. PRELOADING STRATEGY: Frames are loaded in two phases:
+        //    - Priority batch: first 30 frames load immediately (for instant start)
+        //    - Background batch: remaining frames load progressively after
+        //
+        // 3. SCROLL MAPPING: The scroll-animation-container section is 500vh tall.
+        //    As the user scrolls through it, scroll progress (0.0 to 1.0) is
+        //    calculated and mapped to a frame index (0 to 239).
+        //
+        // 4. CANVAS RENDERING: A single <canvas> element renders the current
+        //    frame. drawImage is called via requestAnimationFrame only when
+        //    the frame index actually changes (no redundant redraws).
+        //
+        // 5. OVERLAY TEXT: Three text overlays fade in/out at different scroll
+        //    progress points to create a cinematic storytelling experience.
+        // ===================================================================
+
+        (function() {
+            'use strict';
+
+            // ----- CONFIGURATION -----
+            const TOTAL_FRAMES = 300;
+            const FRAME_PATH = 'static/hero/';
+            const PRIORITY_BATCH_SIZE = 35; // Preload initial frames for immediate first frame render
+            const CONCURRENT_LOADS = 8;     // Concurrent loads for remaining frames
+            const LERP_FACTOR = 0.15;       // Smoothness factor for scroll interpolation
+
+            // ----- FRAME ORDER -----
+            // Build frame filenames in natural numeric order (001, 002, ... 300)
+            const frameFilenames = [];
+            for (let i = 1; i <= TOTAL_FRAMES; i++) {
+                const padded = String(i).padStart(3, '0');
+                frameFilenames.push(`${FRAME_PATH}ezgif-frame-${padded}.jpg`);
+            }
+
+            // ----- STATE -----
+            const images = new Array(TOTAL_FRAMES);
+            const loadedFlags = new Array(TOTAL_FRAMES).fill(false);
+            let currentFrameIndex = -1;
+            let currentScale = 1.0;
+            let targetProgress = 0;
+            let smoothProgress = 0;
+            let isLoopRunning = false;
+
+            // ----- DOM REFS -----
+            const canvas = document.getElementById('heroCanvas');
+            if (!canvas) return;
+
+            const ctx = canvas.getContext('2d');
+            const container = document.querySelector('.hero-scroll-container');
+            const progressFill = document.getElementById('heroProgressFill');
+            const mainContent = document.getElementById('heroMainContent');
+            const midTag = document.getElementById('heroMidTag');
+            const endContent = document.getElementById('heroEndContent');
+            const scrollIndicator = document.getElementById('heroScrollIndicator');
+            const ambientGlow = document.getElementById('heroAmbientGlow');
+            const lightSweep = document.getElementById('heroLightSweep');
+
+            // ----- CANVAS SIZING -----
+            function resizeCanvas() {
+                const dpr = window.devicePixelRatio || 1;
+                const rect = canvas.getBoundingClientRect();
+                canvas.width = rect.width * dpr;
+                canvas.height = rect.height * dpr;
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                if (currentFrameIndex >= 0 && loadedFlags[currentFrameIndex]) {
+                    renderFrame(currentFrameIndex, currentScale);
+                }
+            }
+
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+
+            // ----- RESPONSIVE FRAME RENDERING WITH CENTER ZOOM MOMENT -----
+            function renderFrame(index, subtleScale) {
+                const img = images[index];
+                if (!img || !loadedFlags[index]) return;
+
+                const dpr = window.devicePixelRatio || 1;
+                const cw = canvas.width / dpr;
+                const ch = canvas.height / dpr;
+                const iw = img.naturalWidth || 1920;
+                const ih = img.naturalHeight || 1080;
+
+                const isPortrait = cw < ch;
+                let baseScale;
+                let drawX;
+
+                if (isPortrait) {
+                    // Mobile & Tablet Portrait:
+                    // Scale so watch detail is prominently sized
+                    baseScale = Math.max(cw / (iw * 0.72), ch / (ih * 1.18));
+                    const finalScale = baseScale * (subtleScale || 1.0);
+                    const drawW = iw * finalScale;
+                    const drawH = ih * finalScale;
+                    const drawY = (ch - drawH) / 2;
+
+                    // Dynamically track watch center as it moves from x=1450 (right) -> x=960 (center) -> x=500 (left)
+                    const watchRelX = 1450 - smoothProgress * (1450 - 500);
+                    drawX = cw / 2 - watchRelX * finalScale;
+
+                    ctx.clearRect(0, 0, cw, ch);
+                    ctx.drawImage(img, drawX, drawY, drawW, drawH);
+                } else {
+                    // Desktop / Laptop Widescreen:
+                    // Standard cover scaling so the cinematic full-frame journey unfolds from Right to Center to Left
+                    baseScale = Math.max(cw / iw, ch / ih);
+                    const finalScale = baseScale * (subtleScale || 1.0);
+                    const drawW = iw * finalScale;
+                    const drawH = ih * finalScale;
+                    drawX = (cw - drawW) / 2;
+                    const drawY = (ch - drawH) / 2;
+
+                    ctx.clearRect(0, 0, cw, ch);
+                    ctx.drawImage(img, drawX, drawY, drawW, drawH);
+                }
+
+                currentFrameIndex = index;
+                currentScale = subtleScale || 1.0;
+            }
+
+            // Find nearest loaded frame if current frame is loading
+            function getNearestLoadedFrame(targetIdx) {
+                if (loadedFlags[targetIdx]) return targetIdx;
+                for (let offset = 1; offset < TOTAL_FRAMES; offset++) {
+                    const down = targetIdx - offset;
+                    if (down >= 0 && loadedFlags[down]) return down;
+                    const up = targetIdx + offset;
+                    if (up < TOTAL_FRAMES && loadedFlags[up]) return up;
+                }
+                return -1;
+            }
+
+            // ----- IMAGE PRELOADING -----
+            function loadImage(index) {
+                return new Promise((resolve) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        images[index] = img;
+                        loadedFlags[index] = true;
+                        // If this is the first frame and nothing rendered yet, render immediately
+                        if (index === 0 && currentFrameIndex === -1) {
+                            renderFrame(0, 1.0);
+                        }
+                        resolve(index);
+                    };
+                    img.onerror = () => {
+                        console.warn('Failed to load hero frame:', frameFilenames[index]);
+                        resolve(index);
+                    };
+                    img.src = frameFilenames[index];
+                });
+            }
+
+            async function preloadFrames() {
+                // Priority batch: first frames
+                const priorityPromises = [];
+                for (let i = 0; i < Math.min(PRIORITY_BATCH_SIZE, TOTAL_FRAMES); i++) {
+                    priorityPromises.push(loadImage(i));
+                }
+                await Promise.all(priorityPromises);
+
+                // Background batch loading
+                const remaining = [];
+                for (let i = PRIORITY_BATCH_SIZE; i < TOTAL_FRAMES; i++) {
+                    remaining.push(i);
+                }
+                for (let b = 0; b < remaining.length; b += CONCURRENT_LOADS) {
+                    const batch = remaining.slice(b, b + CONCURRENT_LOADS);
+                    await Promise.all(batch.map(idx => loadImage(idx)));
+                }
+            }
+
+            preloadFrames();
+
+            // ----- SCROLL PROGRESS CALCULATION -----
+            function getScrollProgress() {
+                if (!container) return 0;
+                const rect = container.getBoundingClientRect();
+                const sectionHeight = container.offsetHeight - window.innerHeight;
+                const scrolled = -rect.top;
+                if (sectionHeight <= 0) return 0;
+                return Math.max(0, Math.min(1, scrolled / sectionHeight));
+            }
+
+            // ----- HERO CONTENT CHOREOGRAPHY -----
+            function updateHeroContent(p) {
+                // 1. Initial Hero Main Content (Watch moves Right -> Center)
+                if (mainContent) {
+                    if (p <= 0.18) {
+                        mainContent.style.opacity = '1';
+                        mainContent.style.transform = 'translateY(-50%)';
+                        mainContent.style.pointerEvents = 'auto';
+                    } else if (p < 0.32) {
+                        const t = (p - 0.18) / 0.14;
+                        mainContent.style.opacity = Math.max(0, 1 - t).toFixed(3);
+                        mainContent.style.transform = `translateY(calc(-50% - ${t * 25}px))`;
+                        mainContent.style.pointerEvents = t > 0.6 ? 'none' : 'auto';
+                    } else {
+                        mainContent.style.opacity = '0';
+                        mainContent.style.pointerEvents = 'none';
+                    }
+                }
+
+                // 2. Mid Macro Zoom Callout (Watch in Center, frames ~130-170)
+                if (midTag) {
+                    if (p < 0.38) {
+                        midTag.style.opacity = '0';
+                    } else if (p < 0.48) {
+                        const t = (p - 0.38) / 0.10;
+                        midTag.style.opacity = Math.min(1, t).toFixed(3);
+                        midTag.style.transform = `translateX(-50%) translateY(${(1 - t) * 15}px)`;
+                    } else if (p <= 0.58) {
+                        midTag.style.opacity = '1';
+                        midTag.style.transform = 'translateX(-50%) translateY(0)';
+                    } else if (p < 0.68) {
+                        const t = (p - 0.58) / 0.10;
+                        midTag.style.opacity = Math.max(0, 1 - t).toFixed(3);
+                        midTag.style.transform = `translateX(-50%) translateY(${-t * 15}px)`;
+                    } else {
+                        midTag.style.opacity = '0';
+                    }
+                }
+
+                // 3. End Storytelling CTA (Watch on Left, text on Right, frames ~240-300)
+                if (endContent) {
+                    if (p < 0.72) {
+                        endContent.style.opacity = '0';
+                        endContent.style.pointerEvents = 'none';
+                    } else if (p < 0.86) {
+                        const t = (p - 0.72) / 0.14;
+                        endContent.style.opacity = Math.min(1, t).toFixed(3);
+                        endContent.style.transform = `translateY(calc(-50% + ${(1 - t) * 25}px))`;
+                        endContent.style.pointerEvents = t > 0.4 ? 'auto' : 'none';
+                    } else {
+                        endContent.style.opacity = '1';
+                        endContent.style.transform = 'translateY(-50%)';
+                        endContent.style.pointerEvents = 'auto';
+                    }
+                }
+
+                // 4. Scroll Indicator
+                if (scrollIndicator) {
+                    scrollIndicator.style.opacity = p > 0.04 ? '0' : '1';
+                }
+            }
+
+            // ----- SUBTLE LIGHTING & SWEEP EFFECTS -----
+            function updateSubtleEffects(p) {
+                if (ambientGlow) {
+                    const glowScale = 1 + p * 0.12;
+                    const glowOpacity = 0.5 + Math.sin(p * Math.PI) * 0.35;
+                    const glowY = (p - 0.5) * 25;
+                    ambientGlow.style.transform = `translate(-50%, calc(-50% + ${glowY.toFixed(1)}px)) scale(${glowScale.toFixed(3)})`;
+                    ambientGlow.style.opacity = glowOpacity.toFixed(3);
+                }
+
+                if (lightSweep) {
+                    if (p >= 0.25 && p <= 0.75) {
+                        const sweepPeak = Math.sin(((p - 0.25) / 0.5) * Math.PI);
+                        const sweepOpacity = Math.max(0, sweepPeak * 0.26);
+                        const sweepX = ((p - 0.25) / 0.5 - 0.5) * 140;
+                        lightSweep.style.opacity = sweepOpacity.toFixed(3);
+                        lightSweep.style.transform = `translateX(${sweepX.toFixed(1)}%)`;
+                    } else {
+                        lightSweep.style.opacity = '0';
+                    }
+                }
+            }
+
+            // ----- ANIMATION TICK LOOP -----
+            function animationTick() {
+                const diff = targetProgress - smoothProgress;
+                if (Math.abs(diff) < 0.0002) {
+                    smoothProgress = targetProgress;
+                } else {
+                    smoothProgress += diff * LERP_FACTOR;
+                }
+
+                // Map interpolated progress to 0..299 frame index
+                const targetFrame = Math.min(
+                    TOTAL_FRAMES - 1,
+                    Math.max(0, Math.round(smoothProgress * (TOTAL_FRAMES - 1)))
+                );
+
+                // Subtle cinematic zoom/detail moment when watch reaches the center (peak at p=0.5)
+                const centerZoom = 1.0 + 0.035 * Math.sin(smoothProgress * Math.PI);
+
+                const renderIdx = getNearestLoadedFrame(targetFrame);
+                if (renderIdx >= 0 && (renderIdx !== currentFrameIndex || Math.abs(currentScale - centerZoom) > 0.002)) {
+                    renderFrame(renderIdx, centerZoom);
+                }
+
+                // Update text choreography
+                updateHeroContent(smoothProgress);
+
+                // Update ambient lighting & studio sweep
+                updateSubtleEffects(smoothProgress);
+
+                // Update progress bar
+                if (progressFill) {
+                    progressFill.style.height = (smoothProgress * 100).toFixed(1) + '%';
+                }
+
+                if (Math.abs(targetProgress - smoothProgress) > 0.0001) {
+                    requestAnimationFrame(animationTick);
+                } else {
+                    isLoopRunning = false;
+                }
+            }
+
+            function requestTick() {
+                if (!isLoopRunning) {
+                    isLoopRunning = true;
+                    requestAnimationFrame(animationTick);
+                }
+            }
+
+            // ----- SCROLL EVENT LISTENER -----
+            function onScroll() {
+                targetProgress = getScrollProgress();
+                requestTick();
+            }
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+
+            // Initial trigger
+            onScroll();
+        })();
+        // ===== END HERO SCROLL-DRIVEN FRAME ANIMATION ENGINE (HERO.ZIP) =====
+
+        // ===== SCROLL-DRIVEN FRAME ANIMATION ENGINE (HOME.ZIP) =====
+        (function () {
+            const TOTAL_FRAMES = 240;
+            const PRIORITY_BATCH_SIZE = 40;
+            const CONCURRENT_LOADS = 16;
+            const FRAME_PATH = 'static/home/';
+            const LERP_FACTOR = 0.14; // Smooth interpolation rate
+
+            const container = document.getElementById('scroll-animation');
+            const canvas = document.getElementById('scrollCanvas');
+            if (!container || !canvas) return;
+
+            const ctx = canvas.getContext('2d');
+            const introText = document.querySelector('.scroll-anim-intro');
+            const midText = document.querySelector('.scroll-anim-mid');
+            const endText = document.querySelector('.scroll-anim-end');
+            const progressFill = document.getElementById('scrollProgressFill');
+
+            // Generate frame file paths (ezgif-frame-001.jpg to ezgif-frame-240.jpg)
+            const frameFilenames = [];
+            for (let i = 1; i <= TOTAL_FRAMES; i++) {
+                const pad = String(i).padStart(3, '0');
+                frameFilenames.push(`${FRAME_PATH}ezgif-frame-${pad}.jpg`);
+            }
+
+            const images = new Array(TOTAL_FRAMES);
+            const loadedFlags = new Array(TOTAL_FRAMES).fill(false);
+            let currentFrameIndex = -1;
+            let targetProgress = 0;
+            let smoothProgress = 0;
+            let isLoopRunning = false;
+
+            // ----- CANVAS SIZING -----
+            function resizeCanvas() {
+                const rect = canvas.getBoundingClientRect();
+                const dpr = window.devicePixelRatio || 1;
+                canvas.width = rect.width * dpr;
+                canvas.height = rect.height * dpr;
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                if (currentFrameIndex >= 0 && loadedFlags[currentFrameIndex]) {
+                    renderFrame(currentFrameIndex);
+                }
+            }
+
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+
+            // ----- FLICKER-FREE FRAME RENDERING -----
+            function renderFrame(index) {
+                const img = images[index];
+                if (!img || !loadedFlags[index]) return;
+
+                const dpr = window.devicePixelRatio || 1;
+                const cw = canvas.width / dpr;
+                const ch = canvas.height / dpr;
+                const iw = img.naturalWidth || 1920;
+                const ih = img.naturalHeight || 1080;
+
+                // Object-fit cover
+                const baseScale = Math.max(cw / iw, ch / ih);
+                const drawW = iw * baseScale;
+                const drawH = ih * baseScale;
+                const drawX = (cw - drawW) / 2;
+                const drawY = (ch - drawH) / 2;
+
+                ctx.clearRect(0, 0, cw, ch);
+                ctx.drawImage(img, drawX, drawY, drawW, drawH);
+                currentFrameIndex = index;
+            }
+
+            // Find nearest loaded frame as fallback to eliminate blank flashes
+            function getNearestLoadedFrame(targetIdx) {
+                if (loadedFlags[targetIdx]) return targetIdx;
+                for (let offset = 1; offset < TOTAL_FRAMES; offset++) {
+                    const down = targetIdx - offset;
+                    if (down >= 0 && loadedFlags[down]) return down;
+                    const up = targetIdx + offset;
+                    if (up < TOTAL_FRAMES && loadedFlags[up]) return up;
+                }
+                return -1;
+            }
+
+            // ----- HIGH-THROUGHPUT IMAGE PRELOADING PIPELINE -----
+            function loadImage(index) {
+                return new Promise((resolve) => {
+                    if (loadedFlags[index]) return resolve(index);
+                    const img = new Image();
+                    img.onload = () => {
+                        images[index] = img;
+                        loadedFlags[index] = true;
+                        // If this newly loaded image is what the user is currently viewing, render it immediately!
+                        const targetFrame = Math.min(
+                            TOTAL_FRAMES - 1,
+                            Math.max(0, Math.round(smoothProgress * (TOTAL_FRAMES - 1)))
+                        );
+                        if (index === targetFrame || currentFrameIndex === -1) {
+                            renderFrame(index);
+                        }
+                        resolve(index);
+                    };
+                    img.onerror = () => {
+                        console.warn('Failed to load home frame:', frameFilenames[index]);
+                        resolve(index);
+                    };
+                    img.src = frameFilenames[index];
+                });
+            }
+
+            async function preloadFrames() {
+                // Priority: load frame 0 immediately
+                await loadImage(0);
+
+                // Queue all remaining frames for worker pool
+                const queue = [];
+                for (let i = 1; i < TOTAL_FRAMES; i++) {
+                    queue.push(i);
+                }
+
+                // 12 concurrent worker loaders
+                const CONCURRENCY = 12;
+                const workers = [];
+                for (let w = 0; w < CONCURRENCY; w++) {
+                    workers.push((async () => {
+                        while (queue.length > 0) {
+                            const idx = queue.shift();
+                            await loadImage(idx);
+                        }
+                    })());
+                }
+                await Promise.all(workers);
+            }
+
+            preloadFrames();
+
+            // ----- SCROLL PROGRESS CALCULATION -----
+            function getScrollProgress() {
+                const rect = container.getBoundingClientRect();
+                const sectionHeight = container.offsetHeight - window.innerHeight;
+                if (sectionHeight <= 0) return 0;
+                const scrolled = -rect.top;
+                return Math.max(0, Math.min(1, scrolled / sectionHeight));
+            }
+
+            // ----- OVERLAY TEXT CHOREOGRAPHY -----
+            function updateOverlayText(p) {
+                // 1. Intro text: 0% to ~22%
+                if (introText) {
+                    if (p <= 0.12) {
+                        introText.style.opacity = '1';
+                        introText.style.transform = 'translateX(-50%) translateY(0)';
+                    } else if (p < 0.24) {
+                        const t = (p - 0.12) / 0.12;
+                        introText.style.opacity = Math.max(0, 1 - t).toFixed(3);
+                        introText.style.transform = `translateX(-50%) translateY(${-t * 20}px)`;
+                    } else {
+                        introText.style.opacity = '0';
+                    }
+                }
+
+                // 2. Mid text: ~36% to ~64%
+                if (midText) {
+                    if (p < 0.34) {
+                        midText.style.opacity = '0';
+                    } else if (p < 0.44) {
+                        const t = (p - 0.34) / 0.10;
+                        midText.style.opacity = Math.min(1, t).toFixed(3);
+                        midText.style.transform = `translateX(-50%) translateY(${(1 - t) * 15}px)`;
+                    } else if (p <= 0.54) {
+                        midText.style.opacity = '1';
+                        midText.style.transform = 'translateX(-50%) translateY(0)';
+                    } else if (p < 0.64) {
+                        const t = (p - 0.54) / 0.10;
+                        midText.style.opacity = Math.max(0, 1 - t).toFixed(3);
+                        midText.style.transform = `translateX(-50%) translateY(${-t * 15}px)`;
+                    } else {
+                        midText.style.opacity = '0';
+                    }
+                }
+
+                // 3. End text: ~74% to 100%
+                if (endText) {
+                    if (p < 0.74) {
+                        endText.style.opacity = '0';
+                        endText.style.pointerEvents = 'none';
+                    } else if (p < 0.86) {
+                        const t = (p - 0.74) / 0.12;
+                        endText.style.opacity = Math.min(1, t).toFixed(3);
+                        endText.style.transform = `translateX(-50%) translateY(${(1 - t) * 20}px)`;
+                        endText.style.pointerEvents = t > 0.4 ? 'auto' : 'none';
+                    } else {
+                        endText.style.opacity = '1';
+                        endText.style.transform = 'translateX(-50%) translateY(0)';
+                        endText.style.pointerEvents = 'auto';
+                    }
+                }
+            }
+
+            // ----- ANIMATION TICK LOOP (RAF LERP FOR BIDIRECTIONAL SMOOTH PLAYBACK) -----
+            function animationTick() {
+                const diff = targetProgress - smoothProgress;
+                if (Math.abs(diff) < 0.0003) {
+                    smoothProgress = targetProgress;
+                } else {
+                    smoothProgress += diff * LERP_FACTOR;
+                }
+
+                // Map smooth interpolated progress to 0..239 frame index
+                const targetFrame = Math.min(
+                    TOTAL_FRAMES - 1,
+                    Math.max(0, Math.round(smoothProgress * (TOTAL_FRAMES - 1)))
+                );
+
+                const renderIdx = getNearestLoadedFrame(targetFrame);
+                if (renderIdx >= 0 && renderIdx !== currentFrameIndex) {
+                    renderFrame(renderIdx);
+                }
+
+                // Update text overlays
+                updateOverlayText(smoothProgress);
+
+                // Update progress bar
+                if (progressFill) {
+                    progressFill.style.height = (smoothProgress * 100).toFixed(1) + '%';
+                }
+
+                if (Math.abs(targetProgress - smoothProgress) > 0.0002) {
+                    requestAnimationFrame(animationTick);
+                } else {
+                    isLoopRunning = false;
+                }
+            }
+
+            function requestTick() {
+                if (!isLoopRunning) {
+                    isLoopRunning = true;
+                    requestAnimationFrame(animationTick);
+                }
+            }
+
+            // ----- SCROLL EVENT HANDLER -----
+            function onScroll() {
+                targetProgress = getScrollProgress();
+                requestTick();
+            }
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
+        })();
+        // ===== END SCROLL-DRIVEN FRAME ANIMATION ENGINE (HOME.ZIP) =====
+
+    </script>
+
+</body>
+
+</html>
