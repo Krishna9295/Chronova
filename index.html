@@ -3,14 +3,19 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Chronova Watches | Luxury Timepieces</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=4.0">
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- GSAP & Plugins for Scroll-Driven Kinetic Trajectory -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
 </head>
 
 <body>
@@ -52,7 +57,7 @@
                 <!-- Initial Hero Content (Starts at top, watch is on the right) -->
                 <div class="hero-main-content" id="heroMainContent">
                     <span class="hero-subtitle animate-fade-up">Swiss Precision Since 1985</span>
-                    <h1 class="animate-fade-up delay-1">Time, Perfected.</h1>
+                    <h1 class="delay-1">Time, Perfected.</h1>
                     <p class="animate-fade-up delay-2">Discover the art of haute horlogerie. Each Chronova timepiece is a
                         masterwork of precision, crafted for those who appreciate the extraordinary.</p>
                     <div class="hero-buttons animate-fade-up delay-3">
@@ -122,6 +127,78 @@
             </div>
         </div>
     </section>
+ 
+    <!-- ===== KINETIC TRAJECTORY SCROLL-PATH SECTION ===== -->
+    <!-- 
+        Directly following "Crafted to Perfection", this cinematic section 
+        animates the Chronova chronograph along an S-curved Bézier flight path 
+        synchronized smoothly to the user's scroll via GSAP ScrollTrigger + MotionPathPlugin.
+    -->
+    <section id="kinetic-trajectory" class="kinetic-trajectory-section">
+        <div class="kinetic-pinned-container" id="kineticPinnedContainer">
+            <!-- Luxury Ambient Radial Glows -->
+            <div class="kinetic-ambient-glow kinetic-glow-top"></div>
+            <div class="kinetic-ambient-glow kinetic-glow-bottom"></div>
+
+            <!-- Subtle Horological Coordinates / Radial Rings (decorative backdrop) -->
+            <div class="kinetic-grid-backdrop" aria-hidden="true">
+                <div class="kinetic-radial-ring ring-outer"></div>
+                <div class="kinetic-radial-ring ring-inner"></div>
+                <div class="kinetic-dial-axes"></div>
+                <div class="kinetic-dial-ticks"></div>
+            </div>
+
+            <!-- Balanced Two-Column Composition Container -->
+            <div class="kinetic-layout-container">
+                <!-- Left Column: Editorial Header & Storytelling Milestones -->
+                <div class="kinetic-content-col">
+                    <div class="kinetic-header">
+                        <span class="section-tag">Mastery in Motion</span>
+                        <h2 class="kinetic-title">The Art of Kinetic Trajectory</h2>
+                        <p class="kinetic-subtitle">Witness precision in flight. Every curve and angle of the Chronova chronograph engineered for aerodynamic poise and horological balance.</p>
+                    </div>
+
+                    <!-- Storytelling Milestones (Crossfading chapters beside trajectory) -->
+                    <div class="kinetic-milestones-container">
+                        <div class="kinetic-milestone milestone-1 active" id="kMilestone1">
+                            <span class="milestone-badge">01 / BALANCED AERODYNAMICS</span>
+                            <h3>Contoured 316L Geometry</h3>
+                            <p>Fluid lug arches shaped to slice effortlessly against resistance, anchoring weightlessly to the wrist with sculpted ergonomic symmetry.</p>
+                        </div>
+
+                        <div class="kinetic-milestone milestone-2" id="kMilestone2">
+                            <span class="milestone-badge">02 / GYROSCOPIC BALANCE</span>
+                            <h3>Precision Tri-Compax Caliber</h3>
+                            <p>High-beat column-wheel escapement calibrated against gravitational variance across every plane of 3D trajectory.</p>
+                        </div>
+
+                        <div class="kinetic-milestone milestone-3" id="kMilestone3">
+                            <span class="milestone-badge">03 / ENDURING PRESENCE</span>
+                            <h3>Surgical Haute Finition</h3>
+                            <p>Alternating satin grain and hand-beveled edges catching ambient light in perpetual motion. A masterwork of Swiss horology.</p>
+                            <div class="milestone-action">
+                                <a href="shop.html" class="btn-primary">Explore Timepiece</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Dedicated Visual Stage for the Timepiece -->
+                <div class="kinetic-stage-col" id="kineticStageCol" aria-hidden="true"></div>
+            </div>
+
+            <!-- The Travelling Chronova Timepiece Asset -->
+            <div class="kinetic-watch-wrapper" id="kineticWatch">
+                <div class="kinetic-watch-halo"></div>
+                <img src="static/chronova-watch.png" alt="Chronova Luxury Timepiece" class="kinetic-watch-img" id="kineticWatchImg">
+            </div>
+
+            <!-- Scroll Progress Track -->
+            <div class="kinetic-scroll-track" aria-hidden="true">
+                <div class="kinetic-scroll-bar" id="kineticScrollBar"></div>
+            </div>
+        </div>
+    </section>
 
     <!-- TRUST STRIP -->
     <section class="trust-strip">
@@ -143,39 +220,123 @@
         </div>
     </section>
 
-    <!-- BRAND HERITAGE -->
-    <section id="heritage" class="heritage-section">
-        <div class="container">
-            <div class="heritage-grid">
-                <div class="heritage-content animate-on-scroll">
-                    <span class="section-tag">Our Heritage</span>
-                    <h2>Four Decades of Excellence</h2>
-                    <p>Since 1985, Chronova has been at the forefront of Swiss watchmaking innovation. Our journey began
-                        in the heart of Geneva, where master craftsmen dedicated their lives to perfecting the art of
-                        time.</p>
-                    <p>Today, we continue this legacy, combining traditional craftsmanship with cutting-edge technology
-                        to create timepieces that transcend generations.</p>
-                    <div class="heritage-features">
-                        <div class="feature">
-                            <i class="fas fa-gem"></i>
-                            <span>Premium Materials</span>
+    <!-- BRAND HERITAGE — CINEMATIC SCROLL-DRIVEN STORYTELLING -->
+    <section id="heritage" class="heritage-cinematic-section">
+        <div class="heritage-pinned" id="heritagePinned">
+            <!-- Atmospheric Ambient Glows -->
+            <div class="heritage-ambient heritage-ambient-tl"></div>
+            <div class="heritage-ambient heritage-ambient-br"></div>
+
+            <!-- Subtle decorative border lines -->
+            <div class="heritage-deco-line heritage-deco-top" aria-hidden="true"></div>
+            <div class="heritage-deco-line heritage-deco-bottom" aria-hidden="true"></div>
+
+            <div class="heritage-layout">
+                <!-- LEFT: Narrative Chapters (Crossfade) -->
+                <div class="heritage-narrative-stack">
+                    <!-- Chapter 1: The Origin -->
+                    <div class="heritage-chapter heritage-ch-1 active" id="heritageChapter1">
+                        <span class="section-tag">Our Heritage</span>
+                        <h2>Four Decades of Excellence</h2>
+                        <p>Since 1985, Chronova has been at the forefront of Swiss watchmaking innovation. Our journey began in the heart of Geneva, where master craftsmen dedicated their lives to perfecting the art of time.</p>
+                        <div class="heritage-features">
+                            <div class="feature">
+                                <i class="fas fa-gem"></i>
+                                <span>Premium Materials</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-clock"></i>
+                                <span>Swiss Movement</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-crown"></i>
+                                <span>Luxury Craftsmanship</span>
+                            </div>
                         </div>
-                        <div class="feature">
-                            <i class="fas fa-clock"></i>
-                            <span>Swiss Movement</span>
+                    </div>
+
+                    <!-- Chapter 2: The Craft -->
+                    <div class="heritage-chapter heritage-ch-2" id="heritageChapter2">
+                        <span class="heritage-chapter-badge">02 / THE CRAFT</span>
+                        <h2>Mastery Born in Geneva</h2>
+                        <p>Today, we continue this legacy, combining traditional craftsmanship with cutting-edge technology to create timepieces that transcend generations. Every component hand-assembled with microscopic precision.</p>
+                        <div class="heritage-detail-row">
+                            <div class="heritage-detail-item">
+                                <span class="heritage-detail-value">316L</span>
+                                <span class="heritage-detail-label">Surgical Steel</span>
+                            </div>
+                            <div class="heritage-detail-item">
+                                <span class="heritage-detail-value">28,800</span>
+                                <span class="heritage-detail-label">Vibrations / Hour</span>
+                            </div>
                         </div>
-                        <div class="feature">
-                            <i class="fas fa-crown"></i>
-                            <span>Luxury Craftsmanship</span>
+                    </div>
+
+                    <!-- Chapter 3: The Legacy -->
+                    <div class="heritage-chapter heritage-ch-3" id="heritageChapter3">
+                        <span class="heritage-chapter-badge">03 / THE LEGACY</span>
+                        <h2>A Heritage Without End</h2>
+                        <p>From the ateliers of Geneva to the wrists of visionaries worldwide — Chronova remains the definitive emblem of timeless sophistication and horological artistry.</p>
+                        <a href="shop.html" class="btn-primary heritage-cta">Explore the Collection</a>
+                    </div>
+                </div>
+
+                <!-- RIGHT: Cinematic Watch Showcase (3D Book Page-Turn Folio) -->
+                <div class="heritage-showcase" id="heritageShowcase">
+                    <div class="heritage-frame-wrapper" id="heritageFrameWrapper">
+                        <div class="heritage-frame-glow" id="heritageFrameGlow"></div>
+                        <div class="image-frame">
+                            <div class="heritage-book-stage" id="heritageBookStage">
+                                <!-- Page 4: Folio IV (Base Page, Revealed Last) -->
+                                <div class="heritage-page page-4" id="heritagePage4" style="z-index: 1;">
+                                    <div class="page-content">
+                                        <img src="static/w4.jpg" alt="Chronova Heritage Timepiece - Legacy" class="page-img">
+                                        <div class="page-crease"></div>
+                                        <span class="page-folio-badge">FOLIO IV • LEGACY</span>
+                                    </div>
+                                </div>
+
+                                <!-- Page 3: Folio III -->
+                                <div class="heritage-page page-3" id="heritagePage3" style="z-index: 2;">
+                                    <div class="page-under-shadow" id="pageUnderShadow3"></div>
+                                    <div class="page-content">
+                                        <img src="static/w3.jpg" alt="Chronova Heritage Timepiece - Haute Finition" class="page-img">
+                                        <div class="page-crease"></div>
+                                        <div class="page-curl-shadow" id="pageCurlShadow3"></div>
+                                        <span class="page-folio-badge">FOLIO III • ATELIER</span>
+                                    </div>
+                                </div>
+
+                                <!-- Page 2: Folio II -->
+                                <div class="heritage-page page-2" id="heritagePage2" style="z-index: 3;">
+                                    <div class="page-under-shadow" id="pageUnderShadow2"></div>
+                                    <div class="page-content">
+                                        <img src="static/w2.jpg" alt="Chronova Heritage Timepiece - Caliber" class="page-img">
+                                        <div class="page-crease"></div>
+                                        <div class="page-curl-shadow" id="pageCurlShadow2"></div>
+                                        <span class="page-folio-badge">FOLIO II • CALIBER</span>
+                                    </div>
+                                </div>
+
+                                <!-- Page 1: Folio I (Top-most Page, Turns First) -->
+                                <div class="heritage-page page-1 active" id="heritagePage1" style="z-index: 4;">
+                                    <div class="page-content">
+                                        <img src="static/w1.jpg" alt="Chronova Heritage Timepiece - Genesis" class="page-img">
+                                        <div class="page-crease"></div>
+                                        <div class="page-curl-shadow" id="pageCurlShadow1"></div>
+                                        <span class="page-folio-badge">FOLIO I • GENESIS</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="frame-accent"></div>
                         </div>
                     </div>
                 </div>
-                <div class="heritage-image animate-on-scroll">
-                    <div class="image-frame">
-                        <img src="static/w1.jpg" alt="Chronova Heritage">
-                        <div class="frame-accent"></div>
-                    </div>
-                </div>
+            </div>
+
+            <!-- Scroll Progress Track -->
+            <div class="heritage-scroll-track" aria-hidden="true">
+                <div class="heritage-scroll-bar" id="heritageScrollBar"></div>
             </div>
         </div>
     </section>
@@ -629,6 +790,10 @@
         (function() {
             'use strict';
 
+            if ('scrollRestoration' in history) {
+                history.scrollRestoration = 'manual';
+            }
+
             // ----- CONFIGURATION -----
             const TOTAL_FRAMES = 300;
             const FRAME_PATH = 'static/hero/';
@@ -669,10 +834,10 @@
 
             // ----- CANVAS SIZING -----
             function resizeCanvas() {
-                const dpr = window.devicePixelRatio || 1;
+                const dpr = Math.min(window.devicePixelRatio || 1, 2);
                 const rect = canvas.getBoundingClientRect();
-                canvas.width = rect.width * dpr;
-                canvas.height = rect.height * dpr;
+                canvas.width = Math.round(rect.width * dpr);
+                canvas.height = Math.round(rect.height * dpr);
                 ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
                 if (currentFrameIndex >= 0 && loadedFlags[currentFrameIndex]) {
                     renderFrame(currentFrameIndex, currentScale);
@@ -687,40 +852,55 @@
                 const img = images[index];
                 if (!img || !loadedFlags[index]) return;
 
-                const dpr = window.devicePixelRatio || 1;
+                const dpr = Math.min(window.devicePixelRatio || 1, 2);
                 const cw = canvas.width / dpr;
                 const ch = canvas.height / dpr;
                 const iw = img.naturalWidth || 1920;
                 const ih = img.naturalHeight || 1080;
 
                 const isPortrait = cw < ch;
-                let baseScale;
                 let drawX;
+                let drawY;
 
                 if (isPortrait) {
                     // Mobile & Tablet Portrait:
-                    // Scale so watch detail is prominently sized
-                    baseScale = Math.max(cw / (iw * 0.72), ch / (ih * 1.18));
+                    // Intelligently stack: watch is prominently showcased in the upper portion,
+                    // allowing the hero typography and CTA to sit comfortably below without occlusion.
+                    let baseScale = Math.max(cw / 780, ch / 1280);
+                    baseScale = Math.max(baseScale, cw / 680);
+                    baseScale = Math.min(baseScale, cw / 420);
+                    if (ch < 620) {
+                        baseScale *= 0.82;
+                    }
+
                     const finalScale = baseScale * (subtleScale || 1.0);
                     const drawW = iw * finalScale;
                     const drawH = ih * finalScale;
-                    const drawY = (ch - drawH) / 2;
 
-                    // Dynamically track watch center as it moves from x=1450 (right) -> x=960 (center) -> x=500 (left)
+                    // Watch center in source frames:
+                    // Frame 1 (p=0): x ≈ 1450
+                    // Frame 150 (p=0.5): x ≈ 960
+                    // Frame 300 (p=1.0): x ≈ 500
                     const watchRelX = 1450 - smoothProgress * (1450 - 500);
                     drawX = cw / 2 - watchRelX * finalScale;
+
+                    // Dynamic vertical placement:
+                    // At p=0 and p=1: centered around ~33-36% of screen height
+                    // At p=0.5 (macro zoom): centered around ~42% of screen height
+                    const centerRatio = ch < 620 ? 0.30 : (0.34 + 0.08 * Math.sin(smoothProgress * Math.PI));
+                    const targetWatchY = ch * centerRatio;
+                    drawY = targetWatchY - (ih * 0.5) * finalScale;
 
                     ctx.clearRect(0, 0, cw, ch);
                     ctx.drawImage(img, drawX, drawY, drawW, drawH);
                 } else {
                     // Desktop / Laptop Widescreen:
-                    // Standard cover scaling so the cinematic full-frame journey unfolds from Right to Center to Left
-                    baseScale = Math.max(cw / iw, ch / ih);
+                    const baseScale = Math.max(cw / iw, ch / ih);
                     const finalScale = baseScale * (subtleScale || 1.0);
                     const drawW = iw * finalScale;
                     const drawH = ih * finalScale;
                     drawX = (cw - drawW) / 2;
-                    const drawY = (ch - drawH) / 2;
+                    drawY = (ch - drawH) / 2;
 
                     ctx.clearRect(0, 0, cw, ch);
                     ctx.drawImage(img, drawX, drawY, drawW, drawH);
@@ -764,9 +944,13 @@
             }
 
             async function preloadFrames() {
-                // Priority batch: first frames
+                // Priority 1: load frame 0 immediately for instant first frame render
+                await loadImage(0);
+                renderFrame(0, 1.0);
+
+                // Priority batch: initial frames for smooth scroll start
                 const priorityPromises = [];
-                for (let i = 0; i < Math.min(PRIORITY_BATCH_SIZE, TOTAL_FRAMES); i++) {
+                for (let i = 1; i < Math.min(PRIORITY_BATCH_SIZE, TOTAL_FRAMES); i++) {
                     priorityPromises.push(loadImage(i));
                 }
                 await Promise.all(priorityPromises);
@@ -1189,6 +1373,579 @@
             onScroll();
         })();
         // ===== END SCROLL-DRIVEN FRAME ANIMATION ENGINE (HOME.ZIP) =====
+
+        // ===================================================================
+        // ===== KINETIC TRAJECTORY SCROLL-PATH ENGINE (GSAP) =====
+        // ===================================================================
+        (function() {
+            'use strict';
+
+            function setupKinetic() {
+                if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined' || typeof MotionPathPlugin === 'undefined') {
+                    console.warn('GSAP or MotionPathPlugin not available yet, retrying...');
+                    setTimeout(setupKinetic, 100);
+                    return;
+                }
+
+                gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
+
+                const section = document.getElementById('kinetic-trajectory');
+                const pinnedContainer = document.getElementById('kineticPinnedContainer');
+                const watch = document.getElementById('kineticWatch');
+                const watchImg = document.getElementById('kineticWatchImg');
+                const scrollBar = document.getElementById('kineticScrollBar');
+                const milestone1 = document.getElementById('kMilestone1');
+                const milestone2 = document.getElementById('kMilestone2');
+                const milestone3 = document.getElementById('kMilestone3');
+
+                if (!section || !pinnedContainer || !watch || !watchImg) return;
+
+                let kineticTimeline = null;
+
+                function buildTimeline() {
+                    if (kineticTimeline) {
+                        kineticTimeline.kill();
+                        const existingTrigger = ScrollTrigger.getById('kineticScrollTrigger');
+                        if (existingTrigger) existingTrigger.kill();
+                    }
+
+                    const W = pinnedContainer.clientWidth;
+                    const H = pinnedContainer.clientHeight;
+                    const isMobile = W < 768;
+                    const isTablet = W >= 768 && W <= 1024;
+
+                    // Dedicated stage positioning and geometry calculation
+                    const stageCol = document.getElementById('kineticStageCol');
+                    let stageCenterX, stageCenterY, stageW;
+
+                    // Watch dimensions for collision avoidance and entry offset
+                    const watchW = watch.offsetWidth || (isMobile ? Math.min(175, Math.max(135, W * 0.34)) : (isTablet ? Math.min(260, Math.max(180, W * 0.22)) : Math.min(320, Math.max(220, W * 0.20))));
+                    const watchH = watch.offsetHeight || (watchW * 1.43);
+
+                    let pathPoints = [];
+                    let startRot, enterRot, heroRot, finalRot;
+                    let startScale, enterScale, heroScale, finalScale;
+
+                    if (!isMobile && !isTablet) {
+                        // Desktop & Large Screens (> 1024px)
+                        stageCenterX = 0.71 * W;
+                        stageCenterY = 0.50 * H;
+                        stageW = 0.45 * W;
+
+                        if (stageCol) {
+                            const stageRect = stageCol.getBoundingClientRect();
+                            const pinRect = pinnedContainer.getBoundingClientRect();
+                            if (stageRect.width > 50) {
+                                stageCenterX = (stageRect.left - pinRect.left) + stageRect.width * 0.5;
+                                stageCenterY = (stageRect.top - pinRect.top) + stageRect.height * 0.5;
+                                stageW = stageRect.width;
+                            }
+                        }
+
+                        // INITIAL STATE: Watch starts partially outside the right visible frame (approx 38% peeking in)
+                        // Safe vertical placement prevents accidental clipping at top or bottom
+                        const startX = W + watchW * 0.12;
+                        const startY = Math.max(watchH * 0.54, stageCenterY - 0.18 * H);
+
+                        pathPoints = [
+                            { x: startX, y: startY },                                            // 1. Partially outside frame
+                            { x: stageCenterX + stageW * 0.28, y: stageCenterY - 0.09 * H },     // 2. Enters frame with aerodynamic poise
+                            { x: stageCenterX - stageW * 0.05, y: stageCenterY + 0.04 * H },     // 3. Focal zone sweep (hero zoom climax)
+                            { x: stageCenterX + stageW * 0.04, y: stageCenterY + 0.02 * H },     // 4. Subtle counter-arc dampening momentum
+                            { x: stageCenterX, y: stageCenterY }                                 // 5. Final settled position locked in dial coordinates
+                        ];
+
+                        startRot = 16;
+                        enterRot = -6;
+                        heroRot = -1;
+                        finalRot = 1;
+
+                        startScale = 0.95;
+                        enterScale = 1.15;
+                        heroScale = 1.36;
+                        finalScale = 1.06;
+
+                    } else if (isTablet) {
+                        // Tablet (768px - 1024px)
+                        stageCenterX = 0.72 * W;
+                        stageCenterY = 0.50 * H;
+                        stageW = 0.40 * W;
+
+                        if (stageCol) {
+                            const stageRect = stageCol.getBoundingClientRect();
+                            const pinRect = pinnedContainer.getBoundingClientRect();
+                            if (stageRect.width > 50) {
+                                stageCenterX = (stageRect.left - pinRect.left) + stageRect.width * 0.5;
+                                stageCenterY = (stageRect.top - pinRect.top) + stageRect.height * 0.5;
+                                stageW = stageRect.width;
+                            }
+                        }
+
+                        const startX = W + watchW * 0.10;
+                        const startY = Math.max(watchH * 0.54, stageCenterY - 0.16 * H);
+
+                        pathPoints = [
+                            { x: startX, y: startY },
+                            { x: stageCenterX + stageW * 0.24, y: stageCenterY - 0.08 * H },
+                            { x: stageCenterX - stageW * 0.04, y: stageCenterY + 0.03 * H },
+                            { x: stageCenterX + stageW * 0.03, y: stageCenterY + 0.01 * H },
+                            { x: stageCenterX, y: stageCenterY }
+                        ];
+
+                        startRot = 14;
+                        enterRot = -5;
+                        heroRot = 0;
+                        finalRot = 0.5;
+
+                        startScale = 0.92;
+                        enterScale = 1.12;
+                        heroScale = 1.28;
+                        finalScale = 1.02;
+
+                    } else {
+                        // Portrait Mobile (< 768px)
+                        // Balanced corridor between header (top) and milestone card (bottom)
+                        stageCenterX = 0.50 * W;
+                        stageCenterY = 0.47 * H;
+
+                        const startX = W + watchW * 0.10;
+                        const startY = Math.max(watchH * 0.54, 0.30 * H);
+
+                        pathPoints = [
+                            { x: startX, y: startY },                         // Partially outside right edge
+                            { x: 0.70 * W, y: 0.37 * H },                     // Enters frame into central corridor
+                            { x: 0.38 * W, y: 0.44 * H },                     // Sweeps across focal center
+                            { x: 0.54 * W, y: 0.49 * H },                     // Gentle counter-curve
+                            { x: stageCenterX, y: stageCenterY }              // Settles dead-center in dial rings
+                        ];
+
+                        startRot = 12;
+                        enterRot = -4;
+                        heroRot = 0;
+                        finalRot = 0;
+
+                        startScale = 0.88;
+                        enterScale = 1.06;
+                        heroScale = 1.22;
+                        finalScale = 0.98;
+                    }
+
+                    // Reset watch initial state: partially outside frame
+                    gsap.set(watch, {
+                        x: pathPoints[0].x,
+                        y: pathPoints[0].y,
+                        xPercent: -50,
+                        yPercent: -50,
+                        opacity: 1
+                    });
+                    gsap.set(watchImg, {
+                        rotation: startRot,
+                        scale: startScale
+                    });
+
+                    const halo = watch.querySelector('.kinetic-watch-halo');
+                    if (halo) {
+                        gsap.set(halo, { xPercent: -50, yPercent: -50, scale: 1.0, opacity: 0.65 });
+                    }
+
+                    // Build scrubbed master timeline
+                    kineticTimeline = gsap.timeline({
+                        scrollTrigger: {
+                            id: 'kineticScrollTrigger',
+                            trigger: section,
+                            start: 'top top',
+                            end: '+=250%',
+                            pin: pinnedContainer,
+                            scrub: 1.2,
+                            anticipatePin: 1,
+                            onUpdate: (self) => {
+                                if (scrollBar) {
+                                    scrollBar.style.height = (self.progress * 100).toFixed(1) + '%';
+                                }
+                            }
+                        }
+                    });
+
+                    // 1. Motion Path flight: Enters frame -> Swoops into focal position -> Decelerates & settles
+                    // Reaches destination around progress 0.82 and remains centered through 1.0
+                    kineticTimeline.to(watch, {
+                        motionPath: {
+                            path: pathPoints,
+                            curviness: 1.25,
+                            autoRotate: false
+                        },
+                        duration: 0.82,
+                        ease: 'power1.out'
+                    }, 0);
+
+                    // 2. Cinematic 5-Stage Physical Banking, Hero Zoom & Settle:
+                    // Stage 1 (0 -> 0.30): Enters frame, starts enlarging
+                    // Stage 2 (0.30 -> 0.54): Climaxes into Hero Zoom at main focal position
+                    // Stage 3 (0.54 -> 0.82): Smoothly settles down to final slightly smaller size
+                    // Stage 4 (0.82 -> 1.00): Locked in final premium position
+                    kineticTimeline.to(watchImg, {
+                        keyframes: [
+                            { rotation: enterRot, scale: enterScale, duration: 0.30, ease: 'power1.out' },
+                            { rotation: heroRot, scale: heroScale, duration: 0.24, ease: 'power2.inOut' },
+                            { rotation: finalRot, scale: finalScale, duration: 0.28, ease: 'power2.out' },
+                            { rotation: finalRot, scale: finalScale, duration: 0.18, ease: 'none' }
+                        ],
+                        duration: 1,
+                        ease: 'none'
+                    }, 0);
+
+                    // 3. Dynamic Ambient Halo Luminance matching hero zoom
+                    if (halo) {
+                        kineticTimeline.to(halo, {
+                            keyframes: [
+                                { scale: 1.15, opacity: 0.75, duration: 0.30, ease: 'power1.out' },
+                                { scale: 1.45, opacity: 0.95, duration: 0.24, ease: 'power2.inOut' },
+                                { scale: 1.15, opacity: 0.75, duration: 0.28, ease: 'power2.out' },
+                                { scale: 1.15, opacity: 0.75, duration: 0.18, ease: 'none' }
+                            ],
+                            duration: 1,
+                            ease: 'none'
+                        }, 0);
+                    }
+
+                    // 3. Narrative Milestone Transitions with clean visibility management
+                    gsap.set(milestone1, { autoAlpha: 1, y: 0, pointerEvents: 'auto' });
+                    gsap.set(milestone2, { autoAlpha: 0, y: 20, pointerEvents: 'none' });
+                    gsap.set(milestone3, { autoAlpha: 0, y: 20, pointerEvents: 'none' });
+
+                    // Milestone 1 out: 0.26 - 0.33
+                    kineticTimeline.to(milestone1, {
+                        autoAlpha: 0,
+                        y: -18,
+                        duration: 0.07,
+                        pointerEvents: 'none',
+                        ease: 'power1.in'
+                    }, 0.26);
+
+                    // Milestone 2 in: 0.34 - 0.42
+                    kineticTimeline.to(milestone2, {
+                        autoAlpha: 1,
+                        y: 0,
+                        duration: 0.08,
+                        pointerEvents: 'auto',
+                        ease: 'power1.out'
+                    }, 0.34);
+
+                    // Milestone 2 out: 0.57 - 0.64
+                    kineticTimeline.to(milestone2, {
+                        autoAlpha: 0,
+                        y: -18,
+                        duration: 0.07,
+                        pointerEvents: 'none',
+                        ease: 'power1.in'
+                    }, 0.57);
+
+                    // Milestone 3 in: 0.65 - 0.75 (persists to end)
+                    kineticTimeline.to(milestone3, {
+                        autoAlpha: 1,
+                        y: 0,
+                        duration: 0.10,
+                        pointerEvents: 'auto',
+                        ease: 'power1.out'
+                    }, 0.65);
+                }
+
+                // Initial build
+                buildTimeline();
+
+                // Responsive rebuild on resize with debounce
+                let resizeTimer;
+                window.addEventListener('resize', () => {
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(() => {
+                        buildTimeline();
+                        ScrollTrigger.refresh();
+                    }, 180);
+                });
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', setupKinetic);
+            } else {
+                setupKinetic();
+            }
+        })();
+        // ===== END KINETIC TRAJECTORY SCROLL-PATH ENGINE =====
+
+        // ===================================================================
+        // ===== HERITAGE CINEMATIC SCROLL-DRIVEN STORYTELLING ENGINE =====
+        // ===================================================================
+        (function() {
+            'use strict';
+
+            function setupHeritageCinematic() {
+                const section = document.getElementById('heritage');
+                const pinned = document.getElementById('heritagePinned');
+                const ch1 = document.getElementById('heritageChapter1');
+                const ch2 = document.getElementById('heritageChapter2');
+                const ch3 = document.getElementById('heritageChapter3');
+                const frameWrapper = document.getElementById('heritageFrameWrapper');
+                const frameGlow = document.getElementById('heritageFrameGlow');
+                const scrollBar = document.getElementById('heritageScrollBar');
+
+                // 3D Book Pages & Dynamic Shadows
+                const page1 = document.getElementById('heritagePage1');
+                const page2 = document.getElementById('heritagePage2');
+                const page3 = document.getElementById('heritagePage3');
+                const page4 = document.getElementById('heritagePage4');
+
+                const curlShadow1 = document.getElementById('pageCurlShadow1');
+                const curlShadow2 = document.getElementById('pageCurlShadow2');
+                const curlShadow3 = document.getElementById('pageCurlShadow3');
+
+                const underShadow2 = document.getElementById('pageUnderShadow2');
+                const underShadow3 = document.getElementById('pageUnderShadow3');
+
+                if (!section || !pinned || !ch1 || !ch2 || !ch3 || !page1 || !page2 || !page3 || !page4) return;
+
+                // Respect prefers-reduced-motion
+                const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+                // Reset frameWrapper transform — strictly NO zoom or parallax
+                if (frameWrapper) {
+                    frameWrapper.style.transform = 'none';
+                }
+
+                // Scroll progress calculator for CSS sticky pinned section
+                function getHeritageProgress() {
+                    const rect = section.getBoundingClientRect();
+                    const sectionHeight = section.offsetHeight - window.innerHeight;
+                    if (sectionHeight <= 0) return 0;
+                    const scrolled = -rect.top;
+                    return Math.max(0, Math.min(1, scrolled / sectionHeight));
+                }
+
+                // Chapter management
+                const chapters = [ch1, ch2, ch3];
+                let activeChapter = 0;
+
+                function setActiveChapter(index) {
+                    if (index === activeChapter) return;
+                    chapters.forEach((ch, i) => {
+                        if (i === index) {
+                            ch.style.opacity = '1';
+                            ch.style.visibility = 'visible';
+                            ch.style.pointerEvents = 'auto';
+                            ch.style.transform = 'translateY(0)';
+                            ch.classList.add('active');
+                        } else {
+                            ch.style.opacity = '0';
+                            ch.style.visibility = 'hidden';
+                            ch.style.pointerEvents = 'none';
+                            ch.style.transform = 'translateY(18px)';
+                            ch.classList.remove('active');
+                        }
+                    });
+                    activeChapter = index;
+                }
+
+                // Smooth crossfade between narrative chapters synced to book pages
+                function updateChapterBlend(progress) {
+                    let ch1Opacity, ch2Opacity, ch3Opacity;
+
+                    if (progress < 0.22) {
+                        ch1Opacity = 1;
+                        ch2Opacity = 0;
+                        ch3Opacity = 0;
+                    } else if (progress < 0.36) {
+                        const t = (progress - 0.22) / 0.14;
+                        ch1Opacity = 1 - t;
+                        ch2Opacity = 0;
+                        ch3Opacity = 0;
+                    } else if (progress < 0.44) {
+                        const t = (progress - 0.36) / 0.08;
+                        ch1Opacity = 0;
+                        ch2Opacity = t;
+                        ch3Opacity = 0;
+                    } else if (progress < 0.58) {
+                        ch1Opacity = 0;
+                        ch2Opacity = 1;
+                        ch3Opacity = 0;
+                    } else if (progress < 0.70) {
+                        const t = (progress - 0.58) / 0.12;
+                        ch1Opacity = 0;
+                        ch2Opacity = 1 - t;
+                        ch3Opacity = 0;
+                    } else if (progress < 0.78) {
+                        const t = (progress - 0.70) / 0.08;
+                        ch1Opacity = 0;
+                        ch2Opacity = 0;
+                        ch3Opacity = t;
+                    } else {
+                        ch1Opacity = 0;
+                        ch2Opacity = 0;
+                        ch3Opacity = 1;
+                    }
+
+                    ch1.style.opacity = ch1Opacity.toFixed(3);
+                    ch1.style.visibility = ch1Opacity > 0.01 ? 'visible' : 'hidden';
+                    ch1.style.pointerEvents = ch1Opacity > 0.5 ? 'auto' : 'none';
+                    ch1.style.transform = `translateY(${(1 - ch1Opacity) * 18}px)`;
+
+                    ch2.style.opacity = ch2Opacity.toFixed(3);
+                    ch2.style.visibility = ch2Opacity > 0.01 ? 'visible' : 'hidden';
+                    ch2.style.pointerEvents = ch2Opacity > 0.5 ? 'auto' : 'none';
+                    ch2.style.transform = `translateY(${(1 - ch2Opacity) * 18}px)`;
+
+                    ch3.style.opacity = ch3Opacity.toFixed(3);
+                    ch3.style.visibility = ch3Opacity > 0.01 ? 'visible' : 'hidden';
+                    ch3.style.pointerEvents = ch3Opacity > 0.5 ? 'auto' : 'none';
+                    ch3.style.transform = `translateY(${(1 - ch3Opacity) * 18}px)`;
+                }
+
+                // 3D Realistic Book Page Turn Function
+                function animatePageTurn(page, curlShadow, underShadow, progress, start, end) {
+                    if (!page) return;
+
+                    if (progress <= start) {
+                        // Resting flat on book stack
+                        page.style.transform = 'rotateY(0deg) rotateZ(0deg) rotateX(0deg)';
+                        page.style.opacity = '1';
+                        page.style.visibility = 'visible';
+                        page.style.pointerEvents = 'auto';
+                        if (curlShadow) curlShadow.style.opacity = '0';
+                        if (underShadow) underShadow.style.opacity = '0.55';
+                    } else if (progress >= end) {
+                        // Turned completely away (past 90° edge-on)
+                        page.style.transform = 'rotateY(-90deg) rotateZ(0deg) rotateX(0deg)';
+                        page.style.opacity = '0';
+                        page.style.visibility = 'hidden';
+                        page.style.pointerEvents = 'none';
+                        if (curlShadow) curlShadow.style.opacity = '0';
+                        if (underShadow) underShadow.style.opacity = '0';
+                    } else {
+                        // Mid-turn in progress!
+                        const rawP = (progress - start) / (end - start);
+                        // Hermite smoothstep for physical page inertia
+                        const p = rawP * rawP * (3 - 2 * rawP);
+
+                        // Primary Y-axis fold away from spine (0° to -88°)
+                        const rotY = -88 * p;
+                        // Organic natural paper curvature during fold
+                        const rotZ = -3.5 * Math.sin(rawP * Math.PI);
+                        const rotX = 2.0 * Math.sin(rawP * Math.PI);
+
+                        page.style.transform = `rotateY(${rotY.toFixed(2)}deg) rotateZ(${rotZ.toFixed(2)}deg) rotateX(${rotX.toFixed(2)}deg)`;
+
+                        // Dynamic page curl lighting & shadow on the moving page
+                        if (curlShadow) {
+                            const shadowAmt = Math.sin(rawP * Math.PI) * 0.75;
+                            curlShadow.style.opacity = shadowAmt.toFixed(3);
+                        }
+
+                        // Cast shadow on the page underneath clears as top page lifts away
+                        if (underShadow) {
+                            const underAmt = (1 - rawP) * 0.55;
+                            underShadow.style.opacity = underAmt.toFixed(3);
+                        }
+
+                        // Clean visibility / opacity: crisp front face until near perpendicular
+                        if (rawP < 0.85) {
+                            page.style.opacity = '1';
+                            page.style.visibility = 'visible';
+                            page.style.pointerEvents = 'auto';
+                        } else {
+                            const fade = (1 - (rawP - 0.85) / 0.15);
+                            page.style.opacity = Math.max(0, fade).toFixed(3);
+                            page.style.visibility = 'visible';
+                            page.style.pointerEvents = 'none';
+                        }
+                    }
+                }
+
+                // Update 3D Book Pages
+                function updateBookPages(progress) {
+                    if (prefersReduced) {
+                        // Reduced-motion fallback: clean sequential crossfades
+                        if (page1) page1.style.opacity = progress < 0.32 ? '1' : '0';
+                        if (page2) page2.style.opacity = (progress >= 0.32 && progress < 0.64) ? '1' : '0';
+                        if (page3) page3.style.opacity = (progress >= 0.64 && progress < 0.86) ? '1' : '0';
+                        if (page4) page4.style.opacity = '1';
+                        return;
+                    }
+
+                    // Turn 1: Page 1 (Genesis w1) turns away, revealing Page 2 (Caliber w2)
+                    animatePageTurn(page1, curlShadow1, underShadow2, progress, 0.16, 0.38);
+
+                    // Turn 2: Page 2 (Caliber w2) turns away, revealing Page 3 (Atelier w3)
+                    animatePageTurn(page2, curlShadow2, underShadow3, progress, 0.48, 0.70);
+
+                    // Turn 3: Page 3 (Atelier w3) turns away, revealing Page 4 (Legacy w4)
+                    animatePageTurn(page3, curlShadow3, null, progress, 0.76, 0.96);
+
+                    // Ambient glow breathing subtly with page turns
+                    if (frameGlow) {
+                        const glowPhase = Math.sin(progress * Math.PI * 3);
+                        const glowIntensity = 0.7 + 0.25 * Math.abs(glowPhase);
+                        frameGlow.style.opacity = glowIntensity.toFixed(3);
+                    }
+                }
+
+                // Scroll progress bar
+                function updateScrollBar(progress) {
+                    if (scrollBar) {
+                        scrollBar.style.height = (progress * 100).toFixed(1) + '%';
+                    }
+                }
+
+                // Smooth animation loop with LERP
+                let targetProgress = 0;
+                let smoothProgress = 0;
+                let isRunning = false;
+                const LERP = 0.08;
+
+                function tick() {
+                    const diff = targetProgress - smoothProgress;
+                    if (Math.abs(diff) < 0.0003) {
+                        smoothProgress = targetProgress;
+                    } else {
+                        smoothProgress += diff * LERP;
+                    }
+
+                    updateChapterBlend(smoothProgress);
+                    updateBookPages(smoothProgress);
+                    updateScrollBar(smoothProgress);
+
+                    if (Math.abs(targetProgress - smoothProgress) > 0.0002) {
+                        requestAnimationFrame(tick);
+                    } else {
+                        isRunning = false;
+                    }
+                }
+
+                function requestTick() {
+                    if (!isRunning) {
+                        isRunning = true;
+                        requestAnimationFrame(tick);
+                    }
+                }
+
+                function onScroll() {
+                    targetProgress = getHeritageProgress();
+                    requestTick();
+                }
+
+                window.addEventListener('scroll', onScroll, { passive: true });
+
+                // Initialize
+                setActiveChapter(0);
+                updateBookPages(0);
+                onScroll();
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', setupHeritageCinematic);
+            } else {
+                setupHeritageCinematic();
+            }
+        })();
+        // ===== END HERITAGE CINEMATIC SCROLL-DRIVEN ENGINE =====
+
 
     </script>
 
