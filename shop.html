@@ -5,21 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chronova Watches | Shop Collection</title>
+    <meta name="description" content="Explore the complete Chronova luxury watch collection. Swiss precision, timeless elegance, and masterful craftsmanship in every timepiece.">
+    <!-- Global Theme Controller -->
+    <script src="theme.js"></script>
+
     <link rel="stylesheet" href="shop.css">
+    <link rel="stylesheet" href="theme.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
 
 <body>
 
     <!-- NAVBAR -->
-    <nav class="navbar">
+    <nav class="navbar" id="shopNavbar">
         <div class="logo">Chronova</div>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="heritage.html">Heritage</a></li>
+            <li><a href="collections.html">Collections</a></li>
             <li><a href="shop.html" class="active">Shop</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="account.html">Account</a></li>
             <li id="userBox"></li>
             <li>
                 <a href="cart.html" class="cart-link">
@@ -33,587 +44,734 @@
         </div>
     </nav>
 
-    <!-- PAGE HEADER -->
-    <section class="page-header">
-        <div class="header-overlay"></div>
-        <div class="header-content">
-            <span class="section-tag">Our Collection</span>
-            <h1>Timeless Elegance</h1>
-            <p>Discover exceptional timepieces crafted for those who appreciate the extraordinary</p>
-        </div>
-    </section>
-
-    <!-- FILTER BAR -->
-    <section class="filter-bar">
-        <div class="container">
-            <div class="filter-content">
-                <span class="product-count">Showing 20 Products</span>
-                <div class="filter-options">
-                    <select class="filter-select">
-                        <option>Sort by: Featured</option>
-                        <option>Price: Low to High</option>
-                        <option>Price: High to Low</option>
-                        <option>Newest First</option>
-                    </select>
+    <!-- ============================================ -->
+    <!-- CINEMATIC SHOP HERO                          -->
+    <!-- ============================================ -->
+    <section class="shop-hero" id="shopHero">
+        <div class="shop-hero__bg-grain"></div>
+        <div class="shop-hero__radial"></div>
+        <div class="shop-hero__container">
+            <div class="shop-hero__content" id="heroContent">
+                <span class="shop-hero__eyebrow" id="heroEyebrow">The Chronova Collection</span>
+                <h1 class="shop-hero__heading" id="heroHeading">
+                    <span class="shop-hero__heading-line">Where Time</span>
+                    <span class="shop-hero__heading-line">Becomes Art</span>
+                </h1>
+                <p class="shop-hero__subtext" id="heroSubtext">
+                    Twenty exceptional timepieces. Each one a masterwork of Swiss precision, sculpted for those who refuse to settle for ordinary.
+                </p>
+                <div class="shop-hero__scroll-indicator" id="heroScrollIndicator">
+                    <span>Explore</span>
+                    <div class="shop-hero__scroll-line"></div>
+                </div>
+            </div>
+            <div class="shop-hero__image-wrap">
+                <div class="shop-hero__featured-image" id="heroFeaturedImage">
+                    <img src="static/w1.jpg" alt="Chronova Featured Watch">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PRODUCTS SECTION -->
-    <section class="products-section">
+    <!-- ============================================ -->
+    <!-- CATEGORY FILTER BAR                          -->
+    <!-- ============================================ -->
+    <section class="shop-filters" id="shopFilters">
         <div class="container">
-            <div class="products-grid">
+            <div class="shop-filters__inner">
+                <div class="shop-filters__categories" id="filterCategories">
+                    <button class="shop-filters__btn active" data-category="all">All</button>
+                    <button class="shop-filters__btn" data-category="best-seller">Best Sellers</button>
+                    <button class="shop-filters__btn" data-category="new">New Arrivals</button>
+                    <button class="shop-filters__btn" data-category="premium">Premium</button>
+                    <button class="shop-filters__btn" data-category="limited">Limited</button>
+                </div>
+                <div class="shop-filters__controls">
+                    <div class="shop-filters__search" id="shopSearch">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search watches..." id="searchInput">
+                    </div>
+                    <select class="shop-filters__sort" id="sortSelect">
+                        <option value="featured">Sort: Featured</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="newest">Newest First</option>
+                    </select>
+                </div>
+            </div>
+            <div class="shop-filters__count">
+                <span id="productCountText">Showing 20 Timepieces</span>
+            </div>
+        </div>
+    </section>
 
-                <div class="product-card animate-on-scroll">
-                    <div class="product-badge best-seller">Best Seller</div>
-                    <div class="product-image">
-                        <img src="static/w1.jpg" alt="Chronova Elite">
-                        <div class="product-overlay">
-                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+    <!-- ============================================ -->
+    <!-- FEATURED COLLECTION (First 4 watches)        -->
+    <!-- ============================================ -->
+    <section class="shop-collection" id="featuredCollection">
+        <div class="container">
+            <div class="shop-collection__header">
+                <span class="shop-collection__tag">Featured Selection</span>
+                <h2 class="shop-collection__title">Signature Timepieces</h2>
+            </div>
+            <div class="products-grid" id="productsGrid">
+
+                <!-- Product 1: Chronova Elite -->
+                <div class="product-card" data-category="best-seller" data-name="Chronova Elite" data-price="2099">
+                    <div class="product-card__badge best-seller">Best Seller</div>
+                    <div class="product-card__image">
+                        <img src="static/w1.jpg" alt="Chronova Elite" loading="lazy">
+                        <div class="product-card__image-overlay">
+                            <button class="product-card__quick-view"><i class="fas fa-eye"></i> Quick View</button>
                         </div>
                     </div>
-                    <div class="product-content">
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <span>4.8 (1,243 reviews)</span>
+                    <div class="product-card__body">
+                        <div class="product-card__rating">
+                            <div class="product-card__stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <span class="product-card__reviews">4.8 (1,243)</span>
                         </div>
-                        <h3>Chronova Elite</h3>
-                        <p class="product-desc">Swiss Automatic Movement</p>
-                        <div class="product-footer">
-                            <span class="price">₹2,099</span>
-                            <button class="add-to-cart" onclick="addToCart('Chronova Elite',2099,this)">
-                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                        <h3 class="product-card__name">Chronova Elite</h3>
+                        <p class="product-card__desc">Swiss Automatic Movement</p>
+                        <div class="product-card__footer">
+                            <span class="product-card__price">₹2,099</span>
+                            <button class="product-card__add-to-cart" onclick="addToCart('Chronova Elite',2099,this)">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span>Add to Cart</span>
+                                <i class="fas fa-check product-card__check"></i>
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-card animate-on-scroll">
-                    <div class="product-image">
-                        <img src="static/w2.jpg" alt="Chronova Prime">
-                        <div class="product-overlay">
-                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+                <!-- Product 2: Chronova Prime -->
+                <div class="product-card" data-category="classic" data-name="Chronova Prime" data-price="1699">
+                    <div class="product-card__image">
+                        <img src="static/w2.jpg" alt="Chronova Prime" loading="lazy">
+                        <div class="product-card__image-overlay">
+                            <button class="product-card__quick-view"><i class="fas fa-eye"></i> Quick View</button>
                         </div>
                     </div>
-                    <div class="product-content">
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                            <span>4.6 (932 reviews)</span>
+                    <div class="product-card__body">
+                        <div class="product-card__rating">
+                            <div class="product-card__stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="product-card__reviews">4.6 (932)</span>
                         </div>
-                        <h3>Chronova Prime</h3>
-                        <p class="product-desc">Premium Leather Strap</p>
-                        <div class="product-footer">
-                            <span class="price">₹1,699</span>
-                            <button class="add-to-cart" onclick="addToCart('Chronova Prime',1699,this)">
-                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                        <h3 class="product-card__name">Chronova Prime</h3>
+                        <p class="product-card__desc">Premium Leather Strap</p>
+                        <div class="product-card__footer">
+                            <span class="product-card__price">₹1,699</span>
+                            <button class="product-card__add-to-cart" onclick="addToCart('Chronova Prime',1699,this)">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span>Add to Cart</span>
+                                <i class="fas fa-check product-card__check"></i>
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-card animate-on-scroll">
-                    <div class="product-badge new">New</div>
-                    <div class="product-image">
-                        <img src="static/w3.jpg" alt="Chronova Neo">
-                        <div class="product-overlay">
-                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+                <!-- Product 3: Chronova Neo -->
+                <div class="product-card" data-category="new" data-name="Chronova Neo" data-price="1899">
+                    <div class="product-card__badge new">New</div>
+                    <div class="product-card__image">
+                        <img src="static/w3.jpg" alt="Chronova Neo" loading="lazy">
+                        <div class="product-card__image-overlay">
+                            <button class="product-card__quick-view"><i class="fas fa-eye"></i> Quick View</button>
                         </div>
                     </div>
-                    <div class="product-content">
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <span>4.9 (2,031 reviews)</span>
+                    <div class="product-card__body">
+                        <div class="product-card__rating">
+                            <div class="product-card__stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <span class="product-card__reviews">4.9 (2,031)</span>
                         </div>
-                        <h3>Chronova Neo</h3>
-                        <p class="product-desc">Modern Design</p>
-                        <div class="product-footer">
-                            <span class="price">₹1,899</span>
-                            <button class="add-to-cart" onclick="addToCart('Chronova Neo',1899,this)">
-                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                        <h3 class="product-card__name">Chronova Neo</h3>
+                        <p class="product-card__desc">Modern Design</p>
+                        <div class="product-card__footer">
+                            <span class="product-card__price">₹1,899</span>
+                            <button class="product-card__add-to-cart" onclick="addToCart('Chronova Neo',1899,this)">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span>Add to Cart</span>
+                                <i class="fas fa-check product-card__check"></i>
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-card animate-on-scroll">
-                    <div class="product-badge premium">Premium</div>
-                    <div class="product-image">
-                        <img src="static/w4.jpg" alt="Chronova Royal">
-                        <div class="product-overlay">
-                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+                <!-- Product 4: Chronova Royal -->
+                <div class="product-card" data-category="premium" data-name="Chronova Royal" data-price="3099">
+                    <div class="product-card__badge premium">Premium</div>
+                    <div class="product-card__image">
+                        <img src="static/w4.jpg" alt="Chronova Royal" loading="lazy">
+                        <div class="product-card__image-overlay">
+                            <button class="product-card__quick-view"><i class="fas fa-eye"></i> Quick View</button>
                         </div>
                     </div>
-                    <div class="product-content">
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                            <span>4.5 (1,118 reviews)</span>
+                    <div class="product-card__body">
+                        <div class="product-card__rating">
+                            <div class="product-card__stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="product-card__reviews">4.5 (1,118)</span>
                         </div>
-                        <h3>Chronova Royal</h3>
-                        <p class="product-desc">18K Gold Plated</p>
-                        <div class="product-footer">
-                            <span class="price">₹3,099</span>
-                            <button class="add-to-cart" onclick="addToCart('Chronova Royal',3099,this)">
-                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                        <h3 class="product-card__name">Chronova Royal</h3>
+                        <p class="product-card__desc">18K Gold Plated</p>
+                        <div class="product-card__footer">
+                            <span class="product-card__price">₹3,099</span>
+                            <button class="product-card__add-to-cart" onclick="addToCart('Chronova Royal',3099,this)">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span>Add to Cart</span>
+                                <i class="fas fa-check product-card__check"></i>
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-card animate-on-scroll">
-                    <div class="product-image">
-                        <img src="static/w5.jpg" alt="Chronova Classic">
-                        <div class="product-overlay">
-                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+                <!-- Product 5: Chronova Classic -->
+                <div class="product-card" data-category="classic" data-name="Chronova Classic" data-price="2999">
+                    <div class="product-card__image">
+                        <img src="static/w5.jpg" alt="Chronova Classic" loading="lazy">
+                        <div class="product-card__image-overlay">
+                            <button class="product-card__quick-view"><i class="fas fa-eye"></i> Quick View</button>
                         </div>
                     </div>
-                    <div class="product-content">
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <span>4.7 (856 reviews)</span>
+                    <div class="product-card__body">
+                        <div class="product-card__rating">
+                            <div class="product-card__stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <span class="product-card__reviews">4.7 (856)</span>
                         </div>
-                        <h3>Chronova Classic</h3>
-                        <p class="product-desc">Timeless Design</p>
-                        <div class="product-footer">
-                            <span class="price">₹2,999</span>
-                            <button class="add-to-cart" onclick="addToCart('Chronova Classic',2999,this)">
-                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                        <h3 class="product-card__name">Chronova Classic</h3>
+                        <p class="product-card__desc">Timeless Design</p>
+                        <div class="product-card__footer">
+                            <span class="product-card__price">₹2,999</span>
+                            <button class="product-card__add-to-cart" onclick="addToCart('Chronova Classic',2999,this)">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span>Add to Cart</span>
+                                <i class="fas fa-check product-card__check"></i>
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-card animate-on-scroll">
-                    <div class="product-image">
-                        <img src="static/w6.jpg" alt="Chronova Urban">
-                        <div class="product-overlay">
-                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+                <!-- Product 6: Chronova Urban -->
+                <div class="product-card" data-category="classic" data-name="Chronova Urban" data-price="1699">
+                    <div class="product-card__image">
+                        <img src="static/w6.jpg" alt="Chronova Urban" loading="lazy">
+                        <div class="product-card__image-overlay">
+                            <button class="product-card__quick-view"><i class="fas fa-eye"></i> Quick View</button>
                         </div>
                     </div>
-                    <div class="product-content">
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                            <span>4.4 (642 reviews)</span>
+                    <div class="product-card__body">
+                        <div class="product-card__rating">
+                            <div class="product-card__stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="product-card__reviews">4.4 (642)</span>
                         </div>
-                        <h3>Chronova Urban</h3>
-                        <p class="product-desc">Sporty Elegance</p>
-                        <div class="product-footer">
-                            <span class="price">₹1,699</span>
-                            <button class="add-to-cart" onclick="addToCart('Chronova Urban',1699,this)">
-                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                        <h3 class="product-card__name">Chronova Urban</h3>
+                        <p class="product-card__desc">Sporty Elegance</p>
+                        <div class="product-card__footer">
+                            <span class="product-card__price">₹1,699</span>
+                            <button class="product-card__add-to-cart" onclick="addToCart('Chronova Urban',1699,this)">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span>Add to Cart</span>
+                                <i class="fas fa-check product-card__check"></i>
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-card animate-on-scroll">
-                    <div class="product-badge best-seller">Best Seller</div>
-                    <div class="product-image">
-                        <img src="static/w7.jpg" alt="Chronova Sport">
-                        <div class="product-overlay">
-                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+                <!-- Product 7: Chronova Sport -->
+                <div class="product-card" data-category="best-seller" data-name="Chronova Sport" data-price="2499">
+                    <div class="product-card__badge best-seller">Best Seller</div>
+                    <div class="product-card__image">
+                        <img src="static/w7.jpg" alt="Chronova Sport" loading="lazy">
+                        <div class="product-card__image-overlay">
+                            <button class="product-card__quick-view"><i class="fas fa-eye"></i> Quick View</button>
                         </div>
                     </div>
-                    <div class="product-content">
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <span>4.8 (1,504 reviews)</span>
+                    <div class="product-card__body">
+                        <div class="product-card__rating">
+                            <div class="product-card__stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <span class="product-card__reviews">4.8 (1,504)</span>
                         </div>
-                        <h3>Chronova Sport</h3>
-                        <p class="product-desc">Titanium Case</p>
-                        <div class="product-footer">
-                            <span class="price">₹2,499</span>
-                            <button class="add-to-cart" onclick="addToCart('Chronova Sport',2499,this)">
-                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                        <h3 class="product-card__name">Chronova Sport</h3>
+                        <p class="product-card__desc">Titanium Case</p>
+                        <div class="product-card__footer">
+                            <span class="product-card__price">₹2,499</span>
+                            <button class="product-card__add-to-cart" onclick="addToCart('Chronova Sport',2499,this)">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span>Add to Cart</span>
+                                <i class="fas fa-check product-card__check"></i>
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-card animate-on-scroll">
-                    <div class="product-image">
-                        <img src="static/w8.jpg" alt="Chronova Luxe">
-                        <div class="product-overlay">
-                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+                <!-- Product 8: Chronova Luxe -->
+                <div class="product-card" data-category="classic" data-name="Chronova Luxe" data-price="1899">
+                    <div class="product-card__image">
+                        <img src="static/w8.jpg" alt="Chronova Luxe" loading="lazy">
+                        <div class="product-card__image-overlay">
+                            <button class="product-card__quick-view"><i class="fas fa-eye"></i> Quick View</button>
                         </div>
                     </div>
-                    <div class="product-content">
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                            <span>4.6 (789 reviews)</span>
+                    <div class="product-card__body">
+                        <div class="product-card__rating">
+                            <div class="product-card__stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="product-card__reviews">4.6 (789)</span>
                         </div>
-                        <h3>Chronova Luxe</h3>
-                        <p class="product-desc">Diamond Accents</p>
-                        <div class="product-footer">
-                            <span class="price">₹1,899</span>
-                            <button class="add-to-cart" onclick="addToCart('Chronova Luxe',1899,this)">
-                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                        <h3 class="product-card__name">Chronova Luxe</h3>
+                        <p class="product-card__desc">Diamond Accents</p>
+                        <div class="product-card__footer">
+                            <span class="product-card__price">₹1,899</span>
+                            <button class="product-card__add-to-cart" onclick="addToCart('Chronova Luxe',1899,this)">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span>Add to Cart</span>
+                                <i class="fas fa-check product-card__check"></i>
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-card animate-on-scroll">
-                    <div class="product-badge premium">Premium</div>
-                    <div class="product-image">
-                        <img src="static/w9.jpg" alt="Chronova Sovereign">
-                        <div class="product-overlay">
-                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+                <!-- Product 9: Chronova Sovereign -->
+                <div class="product-card" data-category="premium" data-name="Chronova Sovereign" data-price="3299">
+                    <div class="product-card__badge premium">Premium</div>
+                    <div class="product-card__image">
+                        <img src="static/w9.jpg" alt="Chronova Sovereign" loading="lazy">
+                        <div class="product-card__image-overlay">
+                            <button class="product-card__quick-view"><i class="fas fa-eye"></i> Quick View</button>
                         </div>
                     </div>
-                    <div class="product-content">
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <span>4.9 (2,412 reviews)</span>
+                    <div class="product-card__body">
+                        <div class="product-card__rating">
+                            <div class="product-card__stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <span class="product-card__reviews">4.9 (2,412)</span>
                         </div>
-                        <h3>Chronova Sovereign</h3>
-                        <p class="product-desc">Masterpiece Edition</p>
-                        <div class="product-footer">
-                            <span class="price">₹3,299</span>
-                            <button class="add-to-cart" onclick="addToCart('Chronova Sovereign',3299,this)">
-                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                        <h3 class="product-card__name">Chronova Sovereign</h3>
+                        <p class="product-card__desc">Masterpiece Edition</p>
+                        <div class="product-card__footer">
+                            <span class="product-card__price">₹3,299</span>
+                            <button class="product-card__add-to-cart" onclick="addToCart('Chronova Sovereign',3299,this)">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span>Add to Cart</span>
+                                <i class="fas fa-check product-card__check"></i>
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-card animate-on-scroll">
-                    <div class="product-image">
-                        <img src="static/w10.jpg" alt="Chronova Heritage">
-                        <div class="product-overlay">
-                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+                <!-- Product 10: Chronova Heritage -->
+                <div class="product-card" data-category="classic" data-name="Chronova Heritage" data-price="2799">
+                    <div class="product-card__image">
+                        <img src="static/w10.jpg" alt="Chronova Heritage" loading="lazy">
+                        <div class="product-card__image-overlay">
+                            <button class="product-card__quick-view"><i class="fas fa-eye"></i> Quick View</button>
                         </div>
                     </div>
-                    <div class="product-content">
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                            <span>4.5 (1,002 reviews)</span>
+                    <div class="product-card__body">
+                        <div class="product-card__rating">
+                            <div class="product-card__stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="product-card__reviews">4.5 (1,002)</span>
                         </div>
-                        <h3>Chronova Heritage</h3>
-                        <p class="product-desc">Classic Collection</p>
-                        <div class="product-footer">
-                            <span class="price">₹2,799</span>
-                            <button class="add-to-cart" onclick="addToCart('Chronova Heritage',2799,this)">
-                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                        <h3 class="product-card__name">Chronova Heritage</h3>
+                        <p class="product-card__desc">Classic Collection</p>
+                        <div class="product-card__footer">
+                            <span class="product-card__price">₹2,799</span>
+                            <button class="product-card__add-to-cart" onclick="addToCart('Chronova Heritage',2799,this)">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span>Add to Cart</span>
+                                <i class="fas fa-check product-card__check"></i>
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-card animate-on-scroll">
-                    <div class="product-image">
-                        <img src="static/w11.jpg" alt="Chronova Velocity">
-                        <div class="product-overlay">
-                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- SCROLL-DRIVEN PRODUCT STORY                  -->
+    <!-- ============================================ -->
+    <section class="product-story" id="productStory">
+        <div class="product-story__bg"></div>
+        <div class="product-story__container">
+            <div class="product-story__image-wrap" id="storyImageWrap">
+                <img src="static/w9.jpg" alt="Chronova Sovereign" class="product-story__image" id="storyImage">
+            </div>
+            <div class="product-story__content" id="storyContent">
+                <span class="product-story__tag">The Art of Horology</span>
+                <h2 class="product-story__title">Crafted Beyond<br>Perfection</h2>
+                <p class="product-story__text">
+                    Each Chronova timepiece undergoes 847 individual quality inspections. 
+                    From the precision-machined case to the hand-finished movement, 
+                    every detail reflects our uncompromising commitment to excellence.
+                </p>
+                <div class="product-story__stats">
+                    <div class="product-story__stat">
+                        <span class="product-story__stat-number">847</span>
+                        <span class="product-story__stat-label">Quality Checks</span>
+                    </div>
+                    <div class="product-story__stat">
+                        <span class="product-story__stat-number">72hr</span>
+                        <span class="product-story__stat-label">Power Reserve</span>
+                    </div>
+                    <div class="product-story__stat">
+                        <span class="product-story__stat-number">100m</span>
+                        <span class="product-story__stat-label">Water Resistant</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- EXTENDED COLLECTION (Watches 11-20)          -->
+    <!-- ============================================ -->
+    <section class="shop-collection shop-collection--extended" id="extendedCollection">
+        <div class="container">
+            <div class="shop-collection__header">
+                <span class="shop-collection__tag">Complete Collection</span>
+                <h2 class="shop-collection__title">Explore Every Detail</h2>
+            </div>
+            <div class="products-grid products-grid--extended" id="productsGridExtended">
+
+                <!-- Product 11: Chronova Velocity -->
+                <div class="product-card" data-category="classic" data-name="Chronova Velocity" data-price="2199">
+                    <div class="product-card__image">
+                        <img src="static/w11.jpg" alt="Chronova Velocity" loading="lazy">
+                        <div class="product-card__image-overlay">
+                            <button class="product-card__quick-view"><i class="fas fa-eye"></i> Quick View</button>
                         </div>
                     </div>
-                    <div class="product-content">
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <span>4.7 (1,364 reviews)</span>
+                    <div class="product-card__body">
+                        <div class="product-card__rating">
+                            <div class="product-card__stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <span class="product-card__reviews">4.7 (1,364)</span>
                         </div>
-                        <h3>Chronova Velocity</h3>
-                        <p class="product-desc">Chronograph</p>
-                        <div class="product-footer">
-                            <span class="price">₹2,199</span>
-                            <button class="add-to-cart" onclick="addToCart('Chronova Velocity',2199,this)">
-                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                        <h3 class="product-card__name">Chronova Velocity</h3>
+                        <p class="product-card__desc">Chronograph</p>
+                        <div class="product-card__footer">
+                            <span class="product-card__price">₹2,199</span>
+                            <button class="product-card__add-to-cart" onclick="addToCart('Chronova Velocity',2199,this)">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span>Add to Cart</span>
+                                <i class="fas fa-check product-card__check"></i>
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-card animate-on-scroll">
-                    <div class="product-badge best-seller">Best Seller</div>
-                    <div class="product-image">
-                        <img src="static/w12.jpg" alt="Chronova Monarch">
-                        <div class="product-overlay">
-                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+                <!-- Product 12: Chronova Monarch -->
+                <div class="product-card" data-category="best-seller" data-name="Chronova Monarch" data-price="3599">
+                    <div class="product-card__badge best-seller">Best Seller</div>
+                    <div class="product-card__image">
+                        <img src="static/w12.jpg" alt="Chronova Monarch" loading="lazy">
+                        <div class="product-card__image-overlay">
+                            <button class="product-card__quick-view"><i class="fas fa-eye"></i> Quick View</button>
                         </div>
                     </div>
-                    <div class="product-content">
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <span>4.9 (2,890 reviews)</span>
+                    <div class="product-card__body">
+                        <div class="product-card__rating">
+                            <div class="product-card__stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <span class="product-card__reviews">4.9 (2,890)</span>
                         </div>
-                        <h3>Chronova Monarch</h3>
-                        <p class="product-desc">Limited Edition</p>
-                        <div class="product-footer">
-                            <span class="price">₹3,599</span>
-                            <button class="add-to-cart" onclick="addToCart('Chronova Monarch',3599,this)">
-                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                        <h3 class="product-card__name">Chronova Monarch</h3>
+                        <p class="product-card__desc">Limited Edition</p>
+                        <div class="product-card__footer">
+                            <span class="product-card__price">₹3,599</span>
+                            <button class="product-card__add-to-cart" onclick="addToCart('Chronova Monarch',3599,this)">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span>Add to Cart</span>
+                                <i class="fas fa-check product-card__check"></i>
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-card animate-on-scroll">
-                    <div class="product-image">
-                        <img src="static/w13.jpg" alt="Chronova Drift">
-                        <div class="product-overlay">
-                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+                <!-- Product 13: Chronova Drift -->
+                <div class="product-card" data-category="classic" data-name="Chronova Drift" data-price="1999">
+                    <div class="product-card__image">
+                        <img src="static/w13.jpg" alt="Chronova Drift" loading="lazy">
+                        <div class="product-card__image-overlay">
+                            <button class="product-card__quick-view"><i class="fas fa-eye"></i> Quick View</button>
                         </div>
                     </div>
-                    <div class="product-content">
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                            <span>4.3 (534 reviews)</span>
+                    <div class="product-card__body">
+                        <div class="product-card__rating">
+                            <div class="product-card__stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="product-card__reviews">4.3 (534)</span>
                         </div>
-                        <h3>Chronova Drift</h3>
-                        <p class="product-desc">Casual Collection</p>
-                        <div class="product-footer">
-                            <span class="price">₹1,999</span>
-                            <button class="add-to-cart" onclick="addToCart('Chronova Drift',1999,this)">
-                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                        <h3 class="product-card__name">Chronova Drift</h3>
+                        <p class="product-card__desc">Casual Collection</p>
+                        <div class="product-card__footer">
+                            <span class="product-card__price">₹1,999</span>
+                            <button class="product-card__add-to-cart" onclick="addToCart('Chronova Drift',1999,this)">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span>Add to Cart</span>
+                                <i class="fas fa-check product-card__check"></i>
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-card animate-on-scroll">
-                    <div class="product-image">
-                        <img src="static/w14.jpg" alt="Chronova Apex">
-                        <div class="product-overlay">
-                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+                <!-- Product 14: Chronova Apex -->
+                <div class="product-card" data-category="classic" data-name="Chronova Apex" data-price="2899">
+                    <div class="product-card__image">
+                        <img src="static/w14.jpg" alt="Chronova Apex" loading="lazy">
+                        <div class="product-card__image-overlay">
+                            <button class="product-card__quick-view"><i class="fas fa-eye"></i> Quick View</button>
                         </div>
                     </div>
-                    <div class="product-content">
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <span>4.8 (1,421 reviews)</span>
+                    <div class="product-card__body">
+                        <div class="product-card__rating">
+                            <div class="product-card__stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <span class="product-card__reviews">4.8 (1,421)</span>
                         </div>
-                        <h3>Chronova Apex</h3>
-                        <p class="product-desc">Professional Series</p>
-                        <div class="product-footer">
-                            <span class="price">₹2,899</span>
-                            <button class="add-to-cart" onclick="addToCart('Chronova Apex',2899,this)">
-                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                        <h3 class="product-card__name">Chronova Apex</h3>
+                        <p class="product-card__desc">Professional Series</p>
+                        <div class="product-card__footer">
+                            <span class="product-card__price">₹2,899</span>
+                            <button class="product-card__add-to-cart" onclick="addToCart('Chronova Apex',2899,this)">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span>Add to Cart</span>
+                                <i class="fas fa-check product-card__check"></i>
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-card animate-on-scroll">
-                    <div class="product-image">
-                        <img src="static/w15.jpg" alt="Chronova Horizon">
-                        <div class="product-overlay">
-                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+                <!-- Product 15: Chronova Horizon -->
+                <div class="product-card" data-category="classic" data-name="Chronova Horizon" data-price="2699">
+                    <div class="product-card__image">
+                        <img src="static/w15.jpg" alt="Chronova Horizon" loading="lazy">
+                        <div class="product-card__image-overlay">
+                            <button class="product-card__quick-view"><i class="fas fa-eye"></i> Quick View</button>
                         </div>
                     </div>
-                    <div class="product-content">
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                            <span>4.6 (913 reviews)</span>
+                    <div class="product-card__body">
+                        <div class="product-card__rating">
+                            <div class="product-card__stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="product-card__reviews">4.6 (913)</span>
                         </div>
-                        <h3>Chronova Horizon</h3>
-                        <p class="product-desc">Explorer Edition</p>
-                        <div class="product-footer">
-                            <span class="price">₹2,699</span>
-                            <button class="add-to-cart" onclick="addToCart('Chronova Horizon',2699,this)">
-                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                        <h3 class="product-card__name">Chronova Horizon</h3>
+                        <p class="product-card__desc">Explorer Edition</p>
+                        <div class="product-card__footer">
+                            <span class="product-card__price">₹2,699</span>
+                            <button class="product-card__add-to-cart" onclick="addToCart('Chronova Horizon',2699,this)">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span>Add to Cart</span>
+                                <i class="fas fa-check product-card__check"></i>
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-card animate-on-scroll">
-                    <div class="product-badge new">New</div>
-                    <div class="product-image">
-                        <img src="static/w16.jpg" alt="Chronova Prestige">
-                        <div class="product-overlay">
-                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+                <!-- Product 16: Chronova Prestige -->
+                <div class="product-card" data-category="new" data-name="Chronova Prestige" data-price="3199">
+                    <div class="product-card__badge new">New</div>
+                    <div class="product-card__image">
+                        <img src="static/w16.jpg" alt="Chronova Prestige" loading="lazy">
+                        <div class="product-card__image-overlay">
+                            <button class="product-card__quick-view"><i class="fas fa-eye"></i> Quick View</button>
                         </div>
                     </div>
-                    <div class="product-content">
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <span>4.9 (3,104 reviews)</span>
+                    <div class="product-card__body">
+                        <div class="product-card__rating">
+                            <div class="product-card__stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <span class="product-card__reviews">4.9 (3,104)</span>
                         </div>
-                        <h3>Chronova Prestige</h3>
-                        <p class="product-desc">Prestige Collection</p>
-                        <div class="product-footer">
-                            <span class="price">₹3,199</span>
-                            <button class="add-to-cart" onclick="addToCart('Chronova Prestige',3199,this)">
-                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                        <h3 class="product-card__name">Chronova Prestige</h3>
+                        <p class="product-card__desc">Prestige Collection</p>
+                        <div class="product-card__footer">
+                            <span class="product-card__price">₹3,199</span>
+                            <button class="product-card__add-to-cart" onclick="addToCart('Chronova Prestige',3199,this)">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span>Add to Cart</span>
+                                <i class="fas fa-check product-card__check"></i>
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-card animate-on-scroll">
-                    <div class="product-image">
-                        <img src="static/w17.jpg" alt="Chronova Flux">
-                        <div class="product-overlay">
-                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+                <!-- Product 17: Chronova Flux -->
+                <div class="product-card" data-category="classic" data-name="Chronova Flux" data-price="2299">
+                    <div class="product-card__image">
+                        <img src="static/w17.jpg" alt="Chronova Flux" loading="lazy">
+                        <div class="product-card__image-overlay">
+                            <button class="product-card__quick-view"><i class="fas fa-eye"></i> Quick View</button>
                         </div>
                     </div>
-                    <div class="product-content">
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                            <span>4.5 (768 reviews)</span>
+                    <div class="product-card__body">
+                        <div class="product-card__rating">
+                            <div class="product-card__stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="product-card__reviews">4.5 (768)</span>
                         </div>
-                        <h3>Chronova Flux</h3>
-                        <p class="product-desc">Modern Classic</p>
-                        <div class="product-footer">
-                            <span class="price">₹2,299</span>
-                            <button class="add-to-cart" onclick="addToCart('Chronova Flux',2299,this)">
-                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                        <h3 class="product-card__name">Chronova Flux</h3>
+                        <p class="product-card__desc">Modern Classic</p>
+                        <div class="product-card__footer">
+                            <span class="product-card__price">₹2,299</span>
+                            <button class="product-card__add-to-cart" onclick="addToCart('Chronova Flux',2299,this)">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span>Add to Cart</span>
+                                <i class="fas fa-check product-card__check"></i>
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-card animate-on-scroll">
-                    <div class="product-badge premium">Premium</div>
-                    <div class="product-image">
-                        <img src="static/w18.jpg" alt="Chronova Imperial">
-                        <div class="product-overlay">
-                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+                <!-- Product 18: Chronova Imperial -->
+                <div class="product-card" data-category="premium" data-name="Chronova Imperial" data-price="3499">
+                    <div class="product-card__badge premium">Premium</div>
+                    <div class="product-card__image">
+                        <img src="static/w18.jpg" alt="Chronova Imperial" loading="lazy">
+                        <div class="product-card__image-overlay">
+                            <button class="product-card__quick-view"><i class="fas fa-eye"></i> Quick View</button>
                         </div>
                     </div>
-                    <div class="product-content">
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <span>4.8 (1,876 reviews)</span>
+                    <div class="product-card__body">
+                        <div class="product-card__rating">
+                            <div class="product-card__stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <span class="product-card__reviews">4.8 (1,876)</span>
                         </div>
-                        <h3>Chronova Imperial</h3>
-                        <p class="product-desc">Imperial Series</p>
-                        <div class="product-footer">
-                            <span class="price">₹3,499</span>
-                            <button class="add-to-cart" onclick="addToCart('Chronova Imperial',3499,this)">
-                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                        <h3 class="product-card__name">Chronova Imperial</h3>
+                        <p class="product-card__desc">Imperial Series</p>
+                        <div class="product-card__footer">
+                            <span class="product-card__price">₹3,499</span>
+                            <button class="product-card__add-to-cart" onclick="addToCart('Chronova Imperial',3499,this)">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span>Add to Cart</span>
+                                <i class="fas fa-check product-card__check"></i>
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-card animate-on-scroll">
-                    <div class="product-image">
-                        <img src="static/w19.jpg" alt="Chronova NovaX">
-                        <div class="product-overlay">
-                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+                <!-- Product 19: Chronova NovaX -->
+                <div class="product-card" data-category="new" data-name="Chronova NovaX" data-price="2599">
+                    <div class="product-card__image">
+                        <img src="static/w19.jpg" alt="Chronova NovaX" loading="lazy">
+                        <div class="product-card__image-overlay">
+                            <button class="product-card__quick-view"><i class="fas fa-eye"></i> Quick View</button>
                         </div>
                     </div>
-                    <div class="product-content">
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                            <span>4.6 (1,039 reviews)</span>
+                    <div class="product-card__body">
+                        <div class="product-card__rating">
+                            <div class="product-card__stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="product-card__reviews">4.6 (1,039)</span>
                         </div>
-                        <h3>Chronova NovaX</h3>
-                        <p class="product-desc">Innovation Series</p>
-                        <div class="product-footer">
-                            <span class="price">₹2,599</span>
-                            <button class="add-to-cart" onclick="addToCart('Chronova NovaX',2599,this)">
-                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                        <h3 class="product-card__name">Chronova NovaX</h3>
+                        <p class="product-card__desc">Innovation Series</p>
+                        <div class="product-card__footer">
+                            <span class="product-card__price">₹2,599</span>
+                            <button class="product-card__add-to-cart" onclick="addToCart('Chronova NovaX',2599,this)">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span>Add to Cart</span>
+                                <i class="fas fa-check product-card__check"></i>
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="product-card animate-on-scroll">
-                    <div class="product-badge limited">Limited</div>
-                    <div class="product-image">
-                        <img src="static/w20.jpg" alt="Chronova Eternity">
-                        <div class="product-overlay">
-                            <button class="quick-view"><i class="fas fa-eye"></i> Quick View</button>
+                <!-- Product 20: Chronova Eternity -->
+                <div class="product-card" data-category="limited" data-name="Chronova Eternity" data-price="1">
+                    <div class="product-card__badge limited">Limited</div>
+                    <div class="product-card__image">
+                        <img src="static/w20.jpg" alt="Chronova Eternity" loading="lazy">
+                        <div class="product-card__image-overlay">
+                            <button class="product-card__quick-view"><i class="fas fa-eye"></i> Quick View</button>
                         </div>
                     </div>
-                    <div class="product-content">
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <span>4.9 (4,212 reviews)</span>
+                    <div class="product-card__body">
+                        <div class="product-card__rating">
+                            <div class="product-card__stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <span class="product-card__reviews">4.9 (4,212)</span>
                         </div>
-                        <h3>Chronova Eternity</h3>
-                        <p class="product-desc">Limited Edition</p>
-                        <div class="product-footer">
-                            <span class="price">₹1</span>
-                            <button class="add-to-cart" onclick="addToCart('Chronova Eternity',1,this)">
-                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                        <h3 class="product-card__name">Chronova Eternity</h3>
+                        <p class="product-card__desc">Limited Edition</p>
+                        <div class="product-card__footer">
+                            <span class="product-card__price">₹1</span>
+                            <button class="product-card__add-to-cart" onclick="addToCart('Chronova Eternity',1,this)">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span>Add to Cart</span>
+                                <i class="fas fa-check product-card__check"></i>
                             </button>
                         </div>
                     </div>
                 </div>
 
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- EDITORIAL CRAFTSMANSHIP SECTION              -->
+    <!-- ============================================ -->
+    <section class="shop-editorial" id="shopEditorial">
+        <div class="container">
+            <div class="shop-editorial__grid">
+                <div class="shop-editorial__content" id="editorialContent">
+                    <span class="shop-editorial__tag">Chronova Promise</span>
+                    <h2 class="shop-editorial__title">A Legacy of<br>Uncompromising Quality</h2>
+                    <p class="shop-editorial__text">
+                        Every Chronova timepiece is backed by our lifetime craftsmanship guarantee. 
+                        From complimentary servicing to our global warranty program, your investment 
+                        is protected by the same standards that create it.
+                    </p>
+                    <div class="shop-editorial__features">
+                        <div class="shop-editorial__feature">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Lifetime Warranty</span>
+                        </div>
+                        <div class="shop-editorial__feature">
+                            <i class="fas fa-shipping-fast"></i>
+                            <span>Free Worldwide Shipping</span>
+                        </div>
+                        <div class="shop-editorial__feature">
+                            <i class="fas fa-undo-alt"></i>
+                            <span>30-Day Returns</span>
+                        </div>
+                    </div>
+                    <a href="contact.html" class="shop-editorial__cta">Speak With Us <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="shop-editorial__image-wrap" id="editorialImage">
+                    <img src="static/w12.jpg" alt="Chronova Craftsmanship">
+                </div>
             </div>
         </div>
     </section>
@@ -667,14 +825,115 @@
         </div>
     </footer>
 
+    <!-- ============================================ -->
+    <!-- LUXURY QUICK VIEW MODAL                      -->
+    <!-- ============================================ -->
+    <div class="quickview-backdrop" id="quickViewBackdrop" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="qvModalTitle">
+        <div class="quickview-modal" id="quickViewModal">
+            <!-- Close Button -->
+            <button class="quickview-close" id="quickViewClose" aria-label="Close product preview">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <div class="quickview-grid">
+                <!-- Visual Column -->
+                <div class="quickview-media">
+                    <div class="quickview-media__halo"></div>
+                    <div class="quickview-media__badge" id="qvBadge">Best Seller</div>
+                    <div class="quickview-media__frame">
+                        <img src="static/w1.jpg" alt="Chronova Watch" id="qvImage" class="quickview-media__img">
+                    </div>
+                    <div class="quickview-media__footer">
+                        <span class="quickview-media__cert"><i class="fas fa-certificate"></i> Swiss Chronometer Certified</span>
+                        <span class="quickview-media__sku" id="qvSku">REF: CH-01-ELT</span>
+                    </div>
+                </div>
+
+                <!-- Product Details Column -->
+                <div class="quickview-details" id="qvDetails">
+                    <div class="quickview-header">
+                        <div class="quickview-category-row">
+                            <span class="quickview-category" id="qvCategory">Signature Collection</span>
+                            <span class="quickview-stock" id="qvStock">
+                                <span class="quickview-stock-dot"></span>
+                                <span id="qvStockText">In Stock • Dispatched within 24h</span>
+                            </span>
+                        </div>
+                        
+                        <h2 class="quickview-title" id="qvModalTitle">Chronova Elite</h2>
+
+                        <div class="quickview-rating-row">
+                            <div class="quickview-stars" id="qvStars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <span class="quickview-reviews" id="qvReviews">4.8 (1,243 reviews)</span>
+                        </div>
+
+                        <div class="quickview-price-row">
+                            <span class="quickview-price" id="qvPrice">₹2,099</span>
+                            <span class="quickview-tax">Includes Luxury Taxes, Atelier Packaging & Insured Shipping</span>
+                        </div>
+                    </div>
+
+                    <div class="quickview-divider"></div>
+
+                    <!-- Full Description -->
+                    <p class="quickview-description" id="qvDescription">
+                        The absolute pinnacle of Chronova horological craftsmanship. The Elite showcases an in-house Swiss automatic calibre encased in hand-polished 316L stainless steel, radiating poise, balance, and peerless mechanical pedigree for the discerning collector.
+                    </p>
+
+                    <!-- Key Specifications Grid -->
+                    <div class="quickview-specs">
+                        <h4 class="quickview-specs__heading">Key Specifications</h4>
+                        <div class="quickview-specs__grid" id="qvSpecsGrid">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="quickview-actions">
+                        <button class="quickview-add-to-cart" id="qvAddToCartBtn">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span id="qvAddToCartText">Add to Cart</span>
+                            <i class="fas fa-check quickview-check" id="qvCheckIcon"></i>
+                        </button>
+                        <a href="cart.html" class="quickview-view-cart-btn" id="qvViewCartBtn">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>View Bag</span>
+                        </a>
+                    </div>
+
+                    <!-- Luxury Assurances Footer -->
+                    <div class="quickview-guarantee">
+                        <div class="quickview-guarantee__item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>5-Yr Atelier Warranty</span>
+                        </div>
+                        <div class="quickview-guarantee__item">
+                            <i class="fas fa-truck"></i>
+                            <span>Free Express Delivery</span>
+                        </div>
+                        <div class="quickview-guarantee__item">
+                            <i class="fas fa-undo"></i>
+                            <span>14-Day Vault Returns</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- JAVASCRIPT                                    -->
+    <!-- ============================================ -->
     <script>
-        // Login check
+        // ===== LOGIN CHECK (Preserved) =====
         if(localStorage.getItem("chronova_logged_in") !== "true"){
             alert("Please login first");
             window.location.href = "login.html";
         }
 
-        // Cart functionality
+        // ===== CART FUNCTIONALITY (Preserved & Enhanced) =====
         let cart = JSON.parse(localStorage.getItem("chronova_cart")) || [];
 
         function addToCart(name, price, btn) {
@@ -685,7 +944,11 @@
             localStorage.setItem("chronova_cart", JSON.stringify(cart));
             updateCartCount();
 
-            // Cart animation dot
+            // Premium button feedback
+            btn.classList.add('added');
+            setTimeout(() => btn.classList.remove('added'), 1800);
+
+            // Subtle cart dot animation
             const dot = document.createElement("div");
             dot.className = "cart-dot";
             document.body.appendChild(dot);
@@ -696,14 +959,19 @@
             dot.style.left = btnRect.left + btnRect.width / 2 + "px";
             dot.style.top = btnRect.top + "px";
 
-            setTimeout(() => {
+            requestAnimationFrame(() => {
                 dot.style.left = cartIcon.left + cartIcon.width / 2 + "px";
                 dot.style.top = cartIcon.top + "px";
                 dot.style.opacity = "0";
                 dot.style.transform = "scale(0.3)";
-            }, 10);
+            });
 
-            setTimeout(() => dot.remove(), 600);
+            setTimeout(() => dot.remove(), 700);
+
+            // Pulse cart count
+            const countEl = document.getElementById('cartCount');
+            countEl.classList.add('pulse');
+            setTimeout(() => countEl.classList.remove('pulse'), 500);
         }
 
         function updateCartCount() {
@@ -712,16 +980,18 @@
         }
         updateCartCount();
 
-        // Login/Logout
+        // ===== LOGIN/LOGOUT (Preserved) =====
         const isLoggedIn = localStorage.getItem("chronova_logged_in");
         const username = localStorage.getItem("chronova_username");
         const userBox = document.getElementById("userBox");
 
         if(isLoggedIn === "true" && username){
             userBox.innerHTML = `
-                <span style="color:#f0d67a;font-weight:bold;">
-                    Hi, ${username}
-                </span>
+                <a href="account.html" title="Atelier Profile" style="background:transparent;border:none;padding:0;box-shadow:none;transform:none;">
+                    <span style="color:#f0d67a;font-weight:bold;cursor:pointer;">
+                        Hi, ${username}
+                    </span>
+                </a>
                 <a href="#" onclick="logout()" style="margin-left:12px;">Logout</a>
             `;
         } else {
@@ -737,25 +1007,7 @@
             window.location.href = "index.html";
         }
 
-        // Scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: "0px 0px -50px 0px"
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("animated");
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll(".animate-on-scroll").forEach(el => {
-            observer.observe(el);
-        });
-
-        // Navbar scroll effect
+        // ===== NAVBAR SCROLL (Preserved) =====
         window.addEventListener("scroll", () => {
             const navbar = document.querySelector(".navbar");
             if (window.scrollY > 100) {
@@ -765,9 +1017,806 @@
             }
         });
 
-        // Mobile menu toggle
+        // ===== MOBILE MENU (Preserved) =====
         document.querySelector(".hamburger").addEventListener("click", () => {
             document.querySelector(".nav-links").classList.toggle("active");
+        });
+
+        // ===== GSAP SCROLL ANIMATIONS =====
+        gsap.registerPlugin(ScrollTrigger);
+
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (!prefersReducedMotion) {
+
+            // --- Hero Entrance ---
+            const heroTl = gsap.timeline({ delay: 0.2 });
+            heroTl
+                .from('#heroContent', { 
+                    opacity: 0, y: 35, duration: 0.9, ease: 'power3.out' 
+                })
+                .from('#heroEyebrow', { 
+                    opacity: 0, y: 15, duration: 0.6, ease: 'power2.out' 
+                }, '-=0.6')
+                .from('.shop-hero__heading-line', { 
+                    opacity: 0, y: 30, duration: 0.8, ease: 'power3.out', stagger: 0.12 
+                }, '-=0.4')
+                .from('#heroSubtext', { 
+                    opacity: 0, y: 20, duration: 0.6, ease: 'power2.out' 
+                }, '-=0.4')
+                .from('#heroScrollIndicator', { 
+                    opacity: 0, y: 15, duration: 0.5, ease: 'power2.out' 
+                }, '-=0.3')
+                .from('#heroFeaturedImage', { 
+                    opacity: 0, scale: 0.88, duration: 1.1, ease: 'power2.out' 
+                }, '-=0.8');
+
+            // --- Hero Scroll Animation (Always Visible & Transitions Smoothly) ---
+            ScrollTrigger.matchMedia({
+                // Desktop: smooth subtle parallax, image ALWAYS remains visible, stable both directions
+                "(min-width: 1025px)": function() {
+                    gsap.to('#heroFeaturedImage', {
+                        y: 50,
+                        scale: 0.98,
+                        ease: 'none',
+                        scrollTrigger: {
+                            trigger: '.shop-hero',
+                            start: 'top top',
+                            end: 'bottom top',
+                            scrub: 1.2,
+                            invalidateOnRefresh: true
+                        }
+                    });
+                    gsap.to('#heroContent', {
+                        y: 25,
+                        ease: 'none',
+                        scrollTrigger: {
+                            trigger: '.shop-hero',
+                            start: 'top top',
+                            end: 'bottom top',
+                            scrub: 1.2,
+                            invalidateOnRefresh: true
+                        }
+                    });
+                },
+                // Tablet / Mobile: micro parallax, completely stable in both directions
+                "(max-width: 1024px)": function() {
+                    gsap.to('#heroFeaturedImage', {
+                        y: 20,
+                        ease: 'none',
+                        scrollTrigger: {
+                            trigger: '.shop-hero',
+                            start: 'top top',
+                            end: 'bottom top',
+                            scrub: 0.8,
+                            invalidateOnRefresh: true
+                        }
+                    });
+                }
+            });
+
+            // --- Filter bar reveal ---
+            gsap.from('.shop-filters', {
+                opacity: 0,
+                y: 30,
+                duration: 0.8,
+                scrollTrigger: {
+                    trigger: '.shop-filters',
+                    start: 'top 90%',
+                    toggleActions: 'play none none none'
+                }
+            });
+
+            // --- Collection header reveals ---
+            document.querySelectorAll('.shop-collection__header').forEach(header => {
+                const tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: header,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    }
+                });
+                tl.from(header.querySelector('.shop-collection__tag'), {
+                    opacity: 0, y: 20, duration: 0.6, ease: 'power2.out'
+                })
+                .from(header.querySelector('.shop-collection__title'), {
+                    opacity: 0, y: 40, duration: 0.8, ease: 'power3.out'
+                }, '-=0.3');
+            });
+
+            // --- Product card staggered reveals ---
+            document.querySelectorAll('.products-grid').forEach(grid => {
+                const cards = grid.querySelectorAll('.product-card');
+                gsap.from(cards, {
+                    opacity: 0,
+                    y: 60,
+                    scale: 0.95,
+                    duration: 0.7,
+                    stagger: {
+                        each: 0.08,
+                        from: 'start'
+                    },
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: grid,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    }
+                });
+            });
+
+            // --- Product Story scroll-driven section ---
+            const storyTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: '#productStory',
+                    start: 'top 80%',
+                    end: 'center center',
+                    scrub: 1
+                }
+            });
+
+            storyTl
+                .from('#storyImageWrap', {
+                    clipPath: 'inset(20% 20% 20% 20%)',
+                    scale: 0.8,
+                    opacity: 0,
+                    duration: 1
+                })
+                .from('#storyContent .product-story__tag', {
+                    opacity: 0, x: -30, duration: 0.5
+                }, '-=0.5')
+                .from('#storyContent .product-story__title', {
+                    opacity: 0, y: 40, duration: 0.6
+                }, '-=0.3')
+                .from('#storyContent .product-story__text', {
+                    opacity: 0, y: 30, duration: 0.5
+                }, '-=0.2')
+                .from('.product-story__stat', {
+                    opacity: 0, y: 20, stagger: 0.1, duration: 0.4
+                }, '-=0.2');
+
+            // Subtle parallax on story image
+            gsap.to('#storyImage', {
+                y: -40,
+                scrollTrigger: {
+                    trigger: '#productStory',
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    scrub: 2
+                }
+            });
+
+            // --- Editorial section ---
+            const editTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: '#shopEditorial',
+                    start: 'top 80%',
+                    toggleActions: 'play none none none'
+                }
+            });
+
+            editTl
+                .from('#editorialContent .shop-editorial__tag', {
+                    opacity: 0, y: 20, duration: 0.6
+                })
+                .from('#editorialContent .shop-editorial__title', {
+                    opacity: 0, y: 40, duration: 0.8, ease: 'power3.out'
+                }, '-=0.3')
+                .from('#editorialContent .shop-editorial__text', {
+                    opacity: 0, y: 20, duration: 0.6
+                }, '-=0.3')
+                .from('.shop-editorial__feature', {
+                    opacity: 0, x: -20, stagger: 0.1, duration: 0.5
+                }, '-=0.2')
+                .from('.shop-editorial__cta', {
+                    opacity: 0, y: 15, duration: 0.5
+                }, '-=0.2')
+                .from('#editorialImage', {
+                    opacity: 0, clipPath: 'inset(10% 10% 10% 10%)', scale: 0.9, duration: 1, ease: 'power2.out'
+                }, '-=1');
+
+            // --- Footer reveal ---
+            gsap.from('.footer-grid > *', {
+                opacity: 0,
+                y: 30,
+                stagger: 0.1,
+                duration: 0.6,
+                scrollTrigger: {
+                    trigger: '.footer',
+                    start: 'top 90%',
+                    toggleActions: 'play none none none'
+                }
+            });
+
+        } else {
+            // Reduced motion: make everything visible immediately
+            gsap.set([
+                '#heroContent', '#heroEyebrow', '.shop-hero__heading-line', '#heroSubtext',
+                '#heroScrollIndicator', '#heroFeaturedImage', '.shop-filters',
+                '.shop-collection__tag', '.shop-collection__title', '.product-card',
+                '#storyImageWrap', '#storyContent *', '#editorialContent *',
+                '#editorialImage', '.footer-grid > *'
+            ], { opacity: 1, y: 0, x: 0, scale: 1, clipPath: 'none' });
+        }
+
+        // ===== CATEGORY FILTERING =====
+        const filterBtns = document.querySelectorAll('.shop-filters__btn');
+        const allCards = document.querySelectorAll('.product-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active state
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const category = btn.dataset.category;
+                filterProducts(category, document.getElementById('searchInput').value);
+            });
+        });
+
+        function filterProducts(category, searchTerm) {
+            const search = (searchTerm || '').toLowerCase().trim();
+            let visibleCount = 0;
+
+            allCards.forEach((card, i) => {
+                const cardCategory = card.dataset.category;
+                const cardName = card.dataset.name.toLowerCase();
+                const matchesCategory = category === 'all' || cardCategory === category;
+                const matchesSearch = !search || cardName.includes(search);
+                const shouldShow = matchesCategory && matchesSearch;
+
+                if (shouldShow) {
+                    visibleCount++;
+                    // Stagger the reveal
+                    gsap.to(card, {
+                        opacity: 1,
+                        scale: 1,
+                        y: 0,
+                        duration: 0.4,
+                        delay: visibleCount * 0.05,
+                        ease: 'power2.out',
+                        onStart: () => { card.style.display = ''; }
+                    });
+                } else {
+                    gsap.to(card, {
+                        opacity: 0,
+                        scale: 0.95,
+                        duration: 0.25,
+                        ease: 'power2.in',
+                        onComplete: () => { card.style.display = 'none'; }
+                    });
+                }
+            });
+
+            // Update count
+            document.getElementById('productCountText').textContent = 
+                `Showing ${visibleCount} Timepiece${visibleCount !== 1 ? 's' : ''}`;
+        }
+
+        // ===== SEARCH =====
+        const searchInput = document.getElementById('searchInput');
+        let searchDebounce;
+
+        searchInput.addEventListener('input', () => {
+            clearTimeout(searchDebounce);
+            searchDebounce = setTimeout(() => {
+                const activeCategory = document.querySelector('.shop-filters__btn.active').dataset.category;
+                filterProducts(activeCategory, searchInput.value);
+            }, 250);
+        });
+
+        // ===== SORT =====
+        document.getElementById('sortSelect').addEventListener('change', function() {
+            const grids = document.querySelectorAll('.products-grid');
+            grids.forEach(grid => {
+                const cards = Array.from(grid.querySelectorAll('.product-card'));
+                
+                cards.sort((a, b) => {
+                    const priceA = parseInt(a.dataset.price);
+                    const priceB = parseInt(b.dataset.price);
+                    
+                    switch(this.value) {
+                        case 'price-low': return priceA - priceB;
+                        case 'price-high': return priceB - priceA;
+                        case 'newest': return cards.indexOf(b) - cards.indexOf(a);
+                        default: return 0;
+                    }
+                });
+
+                cards.forEach(card => grid.appendChild(card));
+
+                // Re-animate after sort
+                if (!prefersReducedMotion) {
+                    gsap.from(cards, {
+                        opacity: 0, y: 20, duration: 0.4,
+                        stagger: 0.04, ease: 'power2.out'
+                    });
+                }
+            });
+        });
+
+        // ============================================
+        // QUICK VIEW MODAL LOGIC & DATA
+        // ============================================
+        const WATCH_DETAILS = {
+            "Chronova Elite": {
+                sku: "REF: CH-01-ELT",
+                description: "The absolute pinnacle of Chronova horological craftsmanship. The Elite showcases an in-house Swiss automatic calibre encased in hand-polished 316L stainless steel, radiating poise, balance, and peerless mechanical pedigree for the discerning collector.",
+                specs: [
+                    { label: "Movement", value: "Calibre CH-8400 In-House Automatic, 28,800 vph" },
+                    { label: "Case", value: "41mm • 316L Marine Stainless Steel with Brushed Lugs" },
+                    { label: "Crystal", value: "Curved Double-Domed Sapphire • 5-Layer Anti-Reflective" },
+                    { label: "Water Resistance", value: "100m (10 ATM) • Screw-Down Crown System" },
+                    { label: "Power Reserve", value: "72 Hours Perpetual Reserve" },
+                    { label: "Strap", value: "Solid 316L Jubilee Link Bracelet with Butterfly Clasp" }
+                ],
+                availability: "In Stock • Dispatched within 24h"
+            },
+            "Chronova Prime": {
+                sku: "REF: CH-02-PRM",
+                description: "A refined study in understated gentleman's luxury. Chronova Prime pairs a bespoke sunburst dial with handcrafted Tuscan leather that patinas gracefully over decades of distinguished wear.",
+                specs: [
+                    { label: "Movement", value: "Swiss Precision Mechanical Automatic, 26 Jewels" },
+                    { label: "Case", value: "40mm • Ultra-Slim 9.2mm Profile in 316L Steel" },
+                    { label: "Crystal", value: "Flat Sapphire Crystal with Beveled Diamond Edge" },
+                    { label: "Water Resistance", value: "50m (5 ATM) • Splash & Rain Resistant" },
+                    { label: "Power Reserve", value: "48 Hours Continuous Reserve" },
+                    { label: "Strap", value: "Hand-Stitched Italian Full-Grain Leather Strap" }
+                ],
+                availability: "In Stock • Express Insured Courier Available"
+            },
+            "Chronova Neo": {
+                sku: "REF: CH-03-NEO",
+                description: "Bold, forward-thinking avant-garde design meets architectural balance. Chronova Neo reinvents modern wristwear with crisp geometric dial indices, deep shadow relief, and luminescent indices charged by Super-LumiNova BGW9.",
+                specs: [
+                    { label: "Movement", value: "Chronova Calibre Neo-X Quartz Chronometer" },
+                    { label: "Case", value: "42mm • Matte Gunmetal PVD-Coated Stainless Steel" },
+                    { label: "Crystal", value: "Anti-Glare Scratch-Resistant Sapphire Crystal" },
+                    { label: "Water Resistance", value: "100m (10 ATM) • Tested to Strict ISO Standards" },
+                    { label: "Power Reserve", value: "5-Year High-Density Swiss Power Cell" },
+                    { label: "Strap", value: "Custom Textured FKM High-Density Fluororubber" }
+                ],
+                availability: "New Release • Complimentary Chronova Travel Vault"
+            },
+            "Chronova Royal": {
+                sku: "REF: CH-04-RYL",
+                description: "Sumptuous grandeur sculpted in rich 18K yellow gold tone. Chronova Royal captures timeless aristocratic opulence, featuring fluted bezel accents, a champagne dial, and hand-applied applied Roman numerals.",
+                specs: [
+                    { label: "Movement", value: "Calibre CH-900 Gold-Rotor Automatic, 28,800 vph" },
+                    { label: "Case", value: "40mm • 18K Yellow Gold Multi-Layer PVD Finish" },
+                    { label: "Crystal", value: "Cyclops Magnifier over Date • Scratch-Proof Sapphire" },
+                    { label: "Water Resistance", value: "100m (10 ATM) • Hermetically Sealed Oyster Case" },
+                    { label: "Power Reserve", value: "54 Hours Power Reserve" },
+                    { label: "Strap", value: "President-Style 18K Gold PVD Solid Five-Link Bracelet" }
+                ],
+                availability: "Premium Vault Edition • Individual Serial Number Engraved"
+            },
+            "Chronova Classic": {
+                sku: "REF: CH-05-CLS",
+                description: "The essence of traditional watchmaking reborn. Inspired by mid-century Swiss horology, Chronova Classic features delicate leaf hands, a clean ivory dial, and an exhibition caseback displaying rhythmic escapement balance.",
+                specs: [
+                    { label: "Movement", value: "Heritage Hand-Wound / Automatic Hybrid Calibre" },
+                    { label: "Case", value: "39mm • Mirror-Polished Surgical Steel" },
+                    { label: "Crystal", value: "Box-Domed Retro Sapphire Crystal" },
+                    { label: "Water Resistance", value: "50m (5 ATM) • Everyday Dress Watch Proof" },
+                    { label: "Power Reserve", value: "60 Hours Reserve" },
+                    { label: "Strap", value: "Croc-Embossed Calfskin Leather with Tang Buckle" }
+                ],
+                availability: "In Stock • Ships in Signature Lacquered Wooden Case"
+            },
+            "Chronova Urban": {
+                sku: "REF: CH-06-URB",
+                description: "Sleek, resilient, and tailor-made for metropolitan dynamism. Chronova Urban pairs razor-sharp sapphire crystal durability with a discreetly minimalist dial that transitions effortlessly from the boardroom to the midnight lounge.",
+                specs: [
+                    { label: "Movement", value: "Swiss High-Torque Calibre 715" },
+                    { label: "Case", value: "41mm • Satin-Brushed Steel with Angled Chamfers" },
+                    { label: "Crystal", value: "Sapphire Crystal with Triple Internal AR Coating" },
+                    { label: "Water Resistance", value: "100m (10 ATM) • Everyday Metropolitan Proof" },
+                    { label: "Power Reserve", value: "45-Month Battery Life Indicator" },
+                    { label: "Strap", value: "Quick-Release Mesh Milanese Steel Bracelet" }
+                ],
+                availability: "In Stock • Ready for Immediate Atelier Dispatch"
+            },
+            "Chronova Sport": {
+                sku: "REF: CH-07-SPT",
+                description: "High-performance dynamics engineered for action. Chronova Sport features an engraved ceramic tachymeter bezel calibrated for speed calculations, paired with dual-register sub-dials and high-contrast night luminescence.",
+                specs: [
+                    { label: "Movement", value: "Mecha-Quartz Flyback Chronograph Engine" },
+                    { label: "Case", value: "42.5mm • Reinforced 316L Monobloc Case" },
+                    { label: "Crystal", value: "Flat Sapphire with Diamond-Hardness Scratch Guard" },
+                    { label: "Water Resistance", value: "150m (15 ATM) • Screw-Lock Pushers & Crown" },
+                    { label: "Power Reserve", value: "Split-Second Chronograph Timing to 1/5th Sec" },
+                    { label: "Strap", value: "Perforated Rally-Style Breathable Calfskin" }
+                ],
+                availability: "Best Seller • Only 12 Pieces Available This Week"
+            },
+            "Chronova Luxe": {
+                sku: "REF: CH-08-LUX",
+                description: "Purity of form celebrating minimal perfection. Chronova Luxe strips away distractions to reveal the harmonious relationship between brushed metallic textures and solitary golden baton markers.",
+                specs: [
+                    { label: "Movement", value: "Ultra-Thin Swiss Automatic Mechanical Calibre" },
+                    { label: "Case", value: "39.5mm • 8.4mm Ultra-Slim Profile" },
+                    { label: "Crystal", value: "Edge-to-Edge Sapphire Crystal Surface" },
+                    { label: "Water Resistance", value: "50m (5 ATM) • Splash Resistant" },
+                    { label: "Power Reserve", value: "42 Hours Power Reserve" },
+                    { label: "Strap", value: "Supple Nappa Calfskin with Concealed Deployant Clasp" }
+                ],
+                availability: "In Stock • Hand-inspected with Certificate of Origin"
+            },
+            "Chronova Sovereign": {
+                sku: "REF: CH-09-SOV",
+                description: "A mesmerizing open-heart window into pure mechanical soul. The Sovereign’s skeletonized architecture exposes ruthenium-treated bridges, hand-chamfered wheels, and a balance wheel pulsating with unceasing kinetic poetry.",
+                specs: [
+                    { label: "Movement", value: "In-House Calibre CH-SK01 Skeleton Automatic" },
+                    { label: "Case", value: "42mm • Polished & Brushed 316L Surgical Steel" },
+                    { label: "Crystal", value: "Dual Front & Caseback Exhibition Sapphire Crystals" },
+                    { label: "Water Resistance", value: "100m (10 ATM) • Exhibition Caseback Protected" },
+                    { label: "Power Reserve", value: "65 Hours Extended Mechanical Reserve" },
+                    { label: "Strap", value: "Custom Integrated Heavy-Link Steel Bracelet" }
+                ],
+                availability: "Premium Selection • Numbered Production Series"
+            },
+            "Chronova Heritage": {
+                sku: "REF: CH-10-HRT",
+                description: "An homage to the gilded golden era of early 20th-century exploration. Featuring deep sepia-patina markers, cathedral hour hands, and a fluted coin-edge bezel that echoes historic pocket-watch heritage.",
+                specs: [
+                    { label: "Movement", value: "Calibre CH-1928 Automatic with Small Seconds" },
+                    { label: "Case", value: "41mm • Warm Bronze-PVD Coated Stainless Steel" },
+                    { label: "Crystal", value: "Vintage High-Dome Sapphire Crystal" },
+                    { label: "Water Resistance", value: "100m (10 ATM) • Historic Exploration Grade" },
+                    { label: "Power Reserve", value: "50 Hours Power Reserve" },
+                    { label: "Strap", value: "Distressed Vegetable-Tanned Horween Leather" }
+                ],
+                availability: "In Stock • Includes Heritage Collector's Booklet"
+            },
+            "Chronova Velocity": {
+                sku: "REF: CH-11-VEL",
+                description: "Built for speed, cadence, and split-second precision. Velocity incorporates high-contrast chronograph dials with vivid orange second hands, designed for trackside telemetry and adrenaline-fueled pursuits.",
+                specs: [
+                    { label: "Movement", value: "Tri-Compax High-Frequency Chronograph Calibre" },
+                    { label: "Case", value: "42mm • Brushed Stainless Steel with Ceramic Bezel" },
+                    { label: "Crystal", value: "Scratch-Resistant Sapphire with Dual AR Coating" },
+                    { label: "Water Resistance", value: "100m (10 ATM) • Water-Sealed Pushers" },
+                    { label: "Power Reserve", value: "Precision 1/10th Second Measuring Capacity" },
+                    { label: "Strap", value: "Racing-Grade Perforated Leather with Contrast Stitching" }
+                ],
+                availability: "In Stock • Complimentary Cleaning Kit Included"
+            },
+            "Chronova Monarch": {
+                sku: "REF: CH-12-MON",
+                description: "Commanding majesty rendered in lustrous 18K rose gold PVD. The Monarch merges regal warmth with a rich sunburst emerald dial, exuding supreme presence and imperial stature on the wrist.",
+                specs: [
+                    { label: "Movement", value: "Calibre CH-9200 Prestige Automatic, 27 Jewels" },
+                    { label: "Case", value: "41.5mm • 18K Rose Gold Ion-Plated Solid Steel" },
+                    { label: "Crystal", value: "Curved Sapphire Crystal with Anti-Fingerprint Shield" },
+                    { label: "Water Resistance", value: "100m (10 ATM) • Screw-Down Crown with Cabochon" },
+                    { label: "Power Reserve", value: "70 Hours Continuous Kinetic Reserve" },
+                    { label: "Strap", value: "Curved-End Rose Gold Integrated Solid Link Bracelet" }
+                ],
+                availability: "Best Seller • Handcrafted in Limited Seasonal Batches"
+            },
+            "Chronova Drift": {
+                sku: "REF: CH-13-DFT",
+                description: "Born of motorsport inspiration and nocturnal elegance. Chronova Drift commands attention with its satin-finished matte ceramic bezel, stealth anthracite markers, and split-second chronograph functionality calibrated for life in the fast lane.",
+                specs: [
+                    { label: "Movement", value: "Calibre CH-Drift Mecha-Quartz Chronograph" },
+                    { label: "Case", value: "42mm • Matte Black Ceramic Bezel & 316L Core" },
+                    { label: "Crystal", value: "Ultra-Resistant Sapphire Crystal with Blue AR Shield" },
+                    { label: "Water Resistance", value: "100m (10 ATM) • High-Velocity Pressure Tested" },
+                    { label: "Power Reserve", value: "Heavy-Duty 4-Year Quartz Kinetic Cell" },
+                    { label: "Strap", value: "Tiered Silicone-Leather Hybrid Waterproof Strap" }
+                ],
+                availability: "In Stock • Ships in Velvet-Lined Racing Vault Case"
+            },
+            "Chronova Apex": {
+                sku: "REF: CH-14-APX",
+                description: "Space-age aerospace engineering distilled into a featherweight titanium chassis. Chronova Apex provides unparalleled strength-to-weight performance, impervious to magnetic fields and the harshest alpine environments.",
+                specs: [
+                    { label: "Movement", value: "Certified Swiss COSC-Grade Chronometer Calibre" },
+                    { label: "Case", value: "43mm • Aerospace Grade 5 Brushed Titanium" },
+                    { label: "Crystal", value: "Flat Sapphire Crystal with Ceramic Inlay Ring" },
+                    { label: "Water Resistance", value: "200m (20 ATM) • Professional Helical Escape Valve" },
+                    { label: "Power Reserve", value: "65 Hours Power Reserve" },
+                    { label: "Strap", value: "Titanium Bracelet with Micro-Adjustment Clasp" }
+                ],
+                availability: "High Demand • Only 4 Units In Current Atelier Inventory"
+            },
+            "Chronova Horizon": {
+                sku: "REF: CH-15-HRZ",
+                description: "Capturing the serene gradient where twilight meets the ocean deep. The Horizon showcases a hand-lacquered sunburst blue dial that shimmers with changing light, accented by polished rhodium markers.",
+                specs: [
+                    { label: "Movement", value: "Calibre CH-Oceanic Automatic Movement" },
+                    { label: "Case", value: "40.5mm • Mirror-Polished Marine-Grade 316L Steel" },
+                    { label: "Crystal", value: "Domed Sapphire Crystal with Internal Anti-Reflective" },
+                    { label: "Water Resistance", value: "150m (15 ATM) • Nautical Seal Gasket System" },
+                    { label: "Power Reserve", value: "52 Hours Power Reserve" },
+                    { label: "Strap", value: "Navy Blue Alligator Grain Calfskin with Fold-Over Clasp" }
+                ],
+                availability: "In Stock • Includes Hand-Signed Certificate of Origin"
+            },
+            "Chronova Prestige": {
+                sku: "REF: CH-16-PST",
+                description: "The definitive companion for the international transcontinental voyager. The Prestige displays two distinct time zones simultaneously via a dedicated 24-hour gold GMT hand, keeping you in sync across any meridian.",
+                specs: [
+                    { label: "Movement", value: "Calibre CH-GMT Dual-Time Swiss Automatic" },
+                    { label: "Case", value: "41mm • Two-Tone Ceramic 24-Hour Bidirectional Bezel" },
+                    { label: "Crystal", value: "Magnified Date Window • Scratch-Proof Sapphire" },
+                    { label: "Water Resistance", value: "100m (10 ATM) • Triple-Lock Screw-Down Crown" },
+                    { label: "Power Reserve", value: "58 Hours Power Reserve" },
+                    { label: "Strap", value: "Solid 316L Brushed Steel with Comfort-Extension Clasp" }
+                ],
+                availability: "New Release • Complimentary International Travel Case"
+            },
+            "Chronova Flux": {
+                sku: "REF: CH-17-FLX",
+                description: "A theatrical showcase of perpetual kinetic vitality. The open-heart aperture on the dial exposes the beating balance spring at 9 o'clock, inviting the wearer to witness the very heartbeat of mechanical timekeeping.",
+                specs: [
+                    { label: "Movement", value: "Open-Heart Calibre CH-OH21 Automatic Movement" },
+                    { label: "Case", value: "41mm • Contoured 316L Stainless Steel Case" },
+                    { label: "Crystal", value: "Curved Sapphire Crystal with Anti-Scratch Coating" },
+                    { label: "Water Resistance", value: "50m (5 ATM) • Everyday Splash Protection" },
+                    { label: "Power Reserve", value: "45 Hours Power Reserve" },
+                    { label: "Strap", value: "Artisan Waxed Suede Leather with Contrast Stitching" }
+                ],
+                availability: "In Stock • Ships in Signature Chronova Atelier Box"
+            },
+            "Chronova Imperial": {
+                sku: "REF: CH-18-IMP",
+                description: "The quintessential embodiment of Chronova's emerald heritage. Imperial's dial is cut from deep forest green sunray lacquer, encircled by diamond-cut faceted indices and framed in polished gold-tone architecture.",
+                specs: [
+                    { label: "Movement", value: "Calibre CH-Emerald Grand Master Automatic" },
+                    { label: "Case", value: "41mm • 18K Yellow Gold PVD with Exhibition Back" },
+                    { label: "Crystal", value: "Double-Domed AR-Coated Sapphire Crystal" },
+                    { label: "Water Resistance", value: "100m (10 ATM) • Luxury Sport-Dress Rated" },
+                    { label: "Power Reserve", value: "72 Hours Perpetual Reserve" },
+                    { label: "Strap", value: "Deep Emerald Hand-Rolled Italian Leather Strap" }
+                ],
+                availability: "Premium Edition • Hand-Numbered Atelier Series"
+            },
+            "Chronova NovaX": {
+                sku: "REF: CH-19-NVX",
+                description: "Born from high-stakes aerodynamic carbon engineering. The NovaX integrates authentic forged carbon fiber into the dial and bezel, yielding an unrepeatable marbled pattern unique to every single watch produced.",
+                specs: [
+                    { label: "Movement", value: "Calibre CH-Turbo Chronograph High-Speed Engine" },
+                    { label: "Case", value: "43mm • Forged Carbon Fiber Composite & DLC Steel" },
+                    { label: "Crystal", value: "Anti-Reflective Flat Sapphire Crystal" },
+                    { label: "Water Resistance", value: "100m (10 ATM) • Extreme Impact Pressure Tested" },
+                    { label: "Power Reserve", value: "Shock-Absorbing Mecha-Quartz Chronograph Core" },
+                    { label: "Strap", value: "Textured Hybrid Rubber with Carbon Weave Inlay" }
+                ],
+                availability: "New Release • Unique Forged Carbon Pattern on Each Piece"
+            },
+            "Chronova Eternity": {
+                sku: "REF: CH-20-ETN",
+                description: "The crown jewel of Chronova's private haute horlogerie reserve. Eternity sparkles with diamond-cut brilliant markers, an ultra-limited serial engraving, and an opulent tourbillon-inspired movement architecture.",
+                specs: [
+                    { label: "Movement", value: "Calibre CH-Tourbillon Reserve Grade Haute Horlogerie" },
+                    { label: "Case", value: "41mm • Hand-Finished Platinum & 316L Alloy" },
+                    { label: "Crystal", value: "Optical-Grade Pure Sapphire Crystal Dome" },
+                    { label: "Water Resistance", value: "50m (5 ATM) • Museum-Grade Sealed Enclosure" },
+                    { label: "Power Reserve", value: "80 Hours Extended High-Torque Reserve" },
+                    { label: "Strap", value: "Hand-Sewn Black Louisiana Alligator with 18K Gold Clasp" }
+                ],
+                availability: "Limited Edition • Only 5 Masterpieces Remaining Worldwide"
+            }
+        };
+
+        function getFallbackDetails(name, category, price) {
+            return {
+                sku: `REF: CH-${name.replace(/[^A-Za-z0-9]/g, '').slice(0, 5).toUpperCase()}`,
+                description: `An exquisite creation by Chronova Watches. The ${name} embodies authentic Swiss precision and timeless luxury aesthetics, finished to perfection for modern connoisseurs.`,
+                specs: [
+                    { label: "Movement", value: "Calibre CH-Precision Automatic Calibre" },
+                    { label: "Case", value: "41mm • 316L Marine Stainless Steel" },
+                    { label: "Crystal", value: "Scratch-Resistant Sapphire Crystal" },
+                    { label: "Water Resistance", value: "100m (10 ATM) • Screw-Down Crown" },
+                    { label: "Power Reserve", value: "48 Hours Continuous Reserve" },
+                    { label: "Strap", value: "Premium Hand-Finished Strap" }
+                ],
+                availability: "In Stock • Insured Express Dispatch within 24h"
+            };
+        }
+
+        let currentModalProduct = null;
+        let isQuickViewOpen = false;
+
+        function openQuickView(card) {
+            if (!card) return;
+
+            const name = card.dataset.name || "Chronova Luxury Timepiece";
+            const price = parseInt(card.dataset.price) || 0;
+            const category = card.dataset.category || "classic";
+            const imgEl = card.querySelector('.product-card__image img');
+            const imgSrc = imgEl ? imgEl.src : 'static/w1.jpg';
+            const imgAlt = imgEl ? imgEl.alt : name;
+            const badgeEl = card.querySelector('.product-card__badge');
+            const badgeText = badgeEl ? badgeEl.textContent.trim() : '';
+            const starsEl = card.querySelector('.product-card__stars');
+            const starsHtml = starsEl ? starsEl.innerHTML : '<i class="fas fa-star"></i>'.repeat(5);
+            const reviewsEl = card.querySelector('.product-card__reviews');
+            const reviewsText = reviewsEl ? reviewsEl.textContent.trim() : '4.8 (1,250 reviews)';
+            const priceEl = card.querySelector('.product-card__price');
+            const priceText = priceEl ? priceEl.textContent.trim() : '₹' + price.toLocaleString('en-IN');
+
+            const info = WATCH_DETAILS[name] || getFallbackDetails(name, category, price);
+
+            // Populate Modal Content
+            document.getElementById('qvModalTitle').textContent = name;
+            document.getElementById('qvPrice').textContent = priceText;
+            document.getElementById('qvImage').src = imgSrc;
+            document.getElementById('qvImage').alt = imgAlt;
+            document.getElementById('qvStars').innerHTML = starsHtml;
+            document.getElementById('qvReviews').textContent = reviewsText;
+            document.getElementById('qvDescription').textContent = info.description;
+            document.getElementById('qvSku').textContent = info.sku;
+            document.getElementById('qvStockText').textContent = info.availability;
+
+            // Category tag
+            const catLabels = {
+                'best-seller': 'Best Seller Collection',
+                'new': 'New 2026 Collection',
+                'premium': 'Haute Horlogerie • Premium',
+                'limited': 'Limited Atelier Series',
+                'classic': 'Classic Heritage Collection'
+            };
+            document.getElementById('qvCategory').textContent = catLabels[category] || 'Signature Chronova';
+
+            // Badge
+            const qvBadge = document.getElementById('qvBadge');
+            if (badgeText) {
+                qvBadge.textContent = badgeText;
+                qvBadge.className = 'quickview-media__badge ' + (badgeEl ? badgeEl.className.replace('product-card__badge', '').trim() : '');
+                qvBadge.style.display = 'block';
+            } else {
+                qvBadge.style.display = 'none';
+            }
+
+            // Specs Grid
+            const specsContainer = document.getElementById('qvSpecsGrid');
+            specsContainer.innerHTML = '';
+            info.specs.forEach(spec => {
+                const item = document.createElement('div');
+                item.className = 'quickview-spec-item';
+                item.innerHTML = `
+                    <span class="quickview-spec-label">${spec.label}</span>
+                    <span class="quickview-spec-value">${spec.value}</span>
+                `;
+                specsContainer.appendChild(item);
+            });
+
+            // Reset modal Add to Cart button state
+            const qvAddBtn = document.getElementById('qvAddToCartBtn');
+            qvAddBtn.classList.remove('added');
+            document.getElementById('qvAddToCartText').textContent = 'Add to Cart';
+
+            currentModalProduct = { name, price, card };
+
+            // Lock background scrolling
+            document.body.classList.add('modal-open');
+
+            // Open backdrop
+            const backdrop = document.getElementById('quickViewBackdrop');
+            backdrop.classList.add('active');
+            backdrop.setAttribute('aria-hidden', 'false');
+            isQuickViewOpen = true;
+
+            // --- ANIMATIONS ---
+            if (!prefersReducedMotion && typeof gsap !== 'undefined') {
+                // Card subtle scale
+                gsap.to(card, {
+                    scale: 1.025,
+                    duration: 0.18,
+                    yoyo: true,
+                    repeat: 1,
+                    ease: 'power2.out'
+                });
+
+                // Modal expands/fades in
+                const modal = document.getElementById('quickViewModal');
+                gsap.fromTo(modal,
+                    { opacity: 0, scale: 0.92, y: 35 },
+                    { opacity: 1, scale: 1, y: 0, duration: 0.45, ease: 'power3.out' }
+                );
+
+                // Watch image reveals
+                const imgFrame = document.querySelector('.quickview-media__frame');
+                gsap.fromTo(imgFrame,
+                    { opacity: 0, scale: 0.88, rotation: -3 },
+                    { opacity: 1, scale: 1, rotation: 0, duration: 0.55, delay: 0.1, ease: 'power2.out' }
+                );
+
+                // Details slide in
+                const details = document.getElementById('qvDetails');
+                gsap.fromTo(details,
+                    { opacity: 0, x: 25 },
+                    { opacity: 1, x: 0, duration: 0.48, delay: 0.12, ease: 'power3.out' }
+                );
+
+                // Specs stagger
+                const specItems = specsContainer.querySelectorAll('.quickview-spec-item');
+                gsap.fromTo(specItems,
+                    { opacity: 0, y: 12 },
+                    { opacity: 1, y: 0, duration: 0.35, stagger: 0.04, delay: 0.18, ease: 'power2.out' }
+                );
+            }
+        }
+
+        function closeQuickView() {
+            if (!isQuickViewOpen) return;
+            const backdrop = document.getElementById('quickViewBackdrop');
+            const modal = document.getElementById('quickViewModal');
+
+            if (!prefersReducedMotion && typeof gsap !== 'undefined') {
+                gsap.to(modal, {
+                    opacity: 0,
+                    scale: 0.94,
+                    y: 20,
+                    duration: 0.25,
+                    ease: 'power2.in',
+                    onComplete: () => {
+                        backdrop.classList.remove('active');
+                        backdrop.setAttribute('aria-hidden', 'true');
+                        document.body.classList.remove('modal-open');
+                        isQuickViewOpen = false;
+                    }
+                });
+            } else {
+                backdrop.classList.remove('active');
+                backdrop.setAttribute('aria-hidden', 'true');
+                document.body.classList.remove('modal-open');
+                isQuickViewOpen = false;
+            }
+        }
+
+        // Click outside backdrop
+        document.getElementById('quickViewBackdrop').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('quickViewBackdrop')) {
+                closeQuickView();
+            }
+        });
+
+        // Close button
+        document.getElementById('quickViewClose').addEventListener('click', (e) => {
+            e.preventDefault();
+            closeQuickView();
+        });
+
+        // ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && isQuickViewOpen) {
+                closeQuickView();
+            }
+        });
+
+        // Modal Add to Cart
+        document.getElementById('qvAddToCartBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            if (!currentModalProduct) return;
+
+            // Trigger standard addToCart
+            addToCart(currentModalProduct.name, currentModalProduct.price, this);
+
+            // Modal text update
+            const textEl = document.getElementById('qvAddToCartText');
+            textEl.textContent = 'Added to Cart!';
+            setTimeout(() => {
+                if (isQuickViewOpen) {
+                    textEl.textContent = 'Add to Cart';
+                }
+            }, 1800);
+        });
+
+        // Global Event Delegation for ALL Quick View buttons
+        document.addEventListener('click', (e) => {
+            const btn = e.target.closest('.product-card__quick-view');
+            if (btn) {
+                e.preventDefault();
+                e.stopPropagation();
+                const card = btn.closest('.product-card');
+                if (card) {
+                    openQuickView(card);
+                }
+            }
         });
     </script>
 

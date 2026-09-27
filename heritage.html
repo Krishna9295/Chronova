@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chronova | Heritage & Swiss Horology</title>
+    <meta name="description" content="Explore the legacy of Chronova. Four decades of Swiss watchmaking excellence, handcrafted precision, and timeless horological artistry.">
+
+    <!-- Global Theme Controller -->
+    <script src="theme.js"></script>
+
+    <!-- CSS & Fonts -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="theme.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        .heritage-page-hero {
+            padding: 140px 20px 80px;
+            background: linear-gradient(180deg, rgba(6, 31, 27, 0.95) 0%, rgba(9, 43, 38, 0.9) 100%),
+                        radial-gradient(ellipse at 50% 30%, rgba(217, 184, 74, 0.12) 0%, transparent 70%);
+            text-align: center;
+            border-bottom: 1px solid rgba(217, 184, 74, 0.15);
+        }
+
+        .heritage-page-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.4rem, 5vw, 4rem);
+            color: #FAF7F2;
+            margin-bottom: 16px;
+        }
+
+        .heritage-page-hero p {
+            max-width: 680px;
+            margin: 0 auto;
+            color: #C5BFB5;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .heritage-content-section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .timeline-card {
+            background: rgba(9, 43, 38, 0.5);
+            border: 1px solid rgba(217, 184, 74, 0.2);
+            border-radius: 12px;
+            padding: 35px 25px;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+        }
+
+        .timeline-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(217, 184, 74, 0.5);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+        }
+
+        .timeline-year {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: #D9B84A;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .timeline-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: #FAF7F2;
+            margin-bottom: 12px;
+        }
+
+        .timeline-desc {
+            color: #C5BFB5;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .heritage-showcase-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            margin-top: 80px;
+            background: rgba(6, 31, 27, 0.6);
+            border: 1px solid rgba(217, 184, 74, 0.2);
+            border-radius: 16px;
+            padding: 40px;
+        }
+
+        .heritage-showcase-split img {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 1px solid rgba(217, 184, 74, 0.2);
+        }
+
+        @media (max-width: 860px) {
+            .heritage-showcase-split {
+                grid-template-columns: 1fr;
+                padding: 24px;
+            }
+            .heritage-showcase-split img {
+                height: 260px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <a href="index.html" class="logo">Chronova</a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="heritage.html" class="active">Heritage</a></li>
+            <li><a href="collections.html">Collections</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="account.html">Account</a></li>
+
+            <!-- JS CONTROLLED AREA -->
+            <li id="userBox"></li>
+
+            <li>
+                <a href="cart.html" class="cart-link">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count">Cart (<span id="cartCount">0</span>)</span>
+                </a>
+            </li>
+        </ul>
+        <div class="hamburger" id="hamburgerBtn">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- HERITAGE HERO -->
+    <header class="heritage-page-hero">
+        <span class="section-tag" style="color: #D9B84A; letter-spacing: 2px; text-transform: uppercase; font-size: 0.85rem; font-weight: 600;">Geneva Ateliers Since 1985</span>
+        <h1>Four Decades of Haute Horlogerie</h1>
+        <p>A heritage defined by tireless mechanical obsession, hand-finished movements, and enduring Swiss perfection crafted for those who command their destiny.</p>
+    </header>
+
+    <!-- CONTENT SECTION -->
+    <main class="heritage-content-section">
+        <div class="timeline-grid">
+            <div class="timeline-card">
+                <div class="timeline-year">1985</div>
+                <div class="timeline-title">The Foundation in Geneva</div>
+                <div class="timeline-desc">Founded on the shores of Lake Geneva by master horologists seeking to unify centuries-old Swiss balance-wheel traditions with ultra-modern metallurgy.</div>
+            </div>
+            <div class="timeline-card">
+                <div class="timeline-year">2001</div>
+                <div class="timeline-title">The Tourbillon Calibre I</div>
+                <div class="timeline-desc">Introduction of Chronova's signature patented flying tourbillon, compensating for gravity with flawless aesthetic symmetry and 28,800 VpH precision.</div>
+            </div>
+            <div class="timeline-card">
+                <div class="timeline-year">2014</div>
+                <div class="timeline-title">Ceramic & Damascus Steel</div>
+                <div class="timeline-desc">Pioneered custom high-tech forged carbon cases and 316L surgical steel alloys resistant to extreme nautical and aviation pressures.</div>
+            </div>
+            <div class="timeline-card">
+                <div class="timeline-year">Present</div>
+                <div class="timeline-title">The Eternal Legacy</div>
+                <div class="timeline-desc">Continuing to craft limited-edition mechanical masterworks with bespoke bespoke atelier services for the world's most discerning watch collectors.</div>
+            </div>
+        </div>
+
+        <div class="heritage-showcase-split">
+            <div>
+                <span class="section-tag" style="color: #D9B84A; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase;">Atelier Craftsmanship</span>
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 2.2rem; color: #FAF7F2; margin: 12px 0 20px;">Microscopic Precision in Every Detail</h2>
+                <p style="color: #C5BFB5; line-height: 1.8; margin-bottom: 25px;">Every Chronova dial is hand-finished with guilloché patterns, anti-reflective double-domed sapphire crystals, and rhodium-plated indices that catch light with hypnotic brilliance.</p>
+                <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                    <a href="shop.html" class="btn-primary" style="padding: 12px 28px; background: linear-gradient(135deg, #D9B84A, #B39032); color: #061F1B; text-decoration: none; border-radius: 25px; font-weight: 600; text-transform: uppercase; font-size: 13px; letter-spacing: 1px;">Explore Collection</a>
+                    <a href="account.html" class="btn-secondary" style="padding: 12px 28px; background: transparent; border: 1px solid #D9B84A; color: #D9B84A; text-decoration: none; border-radius: 25px; font-weight: 600; text-transform: uppercase; font-size: 13px; letter-spacing: 1px;">Collector Vault</a>
+                </div>
+            </div>
+            <div>
+                <img src="static/w4.jpg" alt="Chronova Heritage Timepiece">
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer" style="background-color: #061F1B; border-top: 1px solid rgba(217, 184, 74, 0.15); padding: 50px 20px 30px; text-align: center; color: #C5BFB5;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2 style="font-family: 'Playfair Display', serif; color: #D9B84A; margin-bottom: 15px;">Chronova Watches</h2>
+            <p style="max-width: 500px; margin: 0 auto 25px; font-size: 0.95rem;">Swiss Haute Horlogerie since 1985. Geneva Atelier & Private Client Salons worldwide.</p>
+            <div style="display: flex; justify-content: center; gap: 20px; margin-bottom: 25px;">
+                <a href="index.html" style="color: #FAF7F2; text-decoration: none; font-size: 13px; text-transform: uppercase;">Home</a>
+                <a href="heritage.html" style="color: #FAF7F2; text-decoration: none; font-size: 13px; text-transform: uppercase;">Heritage</a>
+                <a href="collections.html" style="color: #FAF7F2; text-decoration: none; font-size: 13px; text-transform: uppercase;">Collections</a>
+                <a href="shop.html" style="color: #FAF7F2; text-decoration: none; font-size: 13px; text-transform: uppercase;">Shop</a>
+                <a href="account.html" style="color: #FAF7F2; text-decoration: none; font-size: 13px; text-transform: uppercase;">Account</a>
+                <a href="contact.html" style="color: #FAF7F2; text-decoration: none; font-size: 13px; text-transform: uppercase;">Contact</a>
+            </div>
+            <p style="font-size: 0.85rem; color: #8F8A81;">© 2026 Chronova Haute Horlogerie. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Update Cart Count
+        try {
+            const cart = JSON.parse(localStorage.getItem("cart") || localStorage.getItem("chronova_cart") || "[]");
+            document.getElementById("cartCount").textContent = cart.length;
+        } catch(e) {}
+
+        // Auth & userBox
+        const isLoggedIn = localStorage.getItem("chronova_logged_in");
+        const username = localStorage.getItem("chronova_username");
+        const userBox = document.getElementById("userBox");
+
+        if (userBox) {
+            if (isLoggedIn === "true" && username) {
+                userBox.innerHTML = `
+                    <a href="account.html" title="Atelier Profile" style="background:transparent;border:none;padding:0;box-shadow:none;transform:none;">
+                        <span style="color:#f0d67a;font-weight:bold;cursor:pointer;">
+                            Hi, ${username}
+                        </span>
+                    </a>
+                    <a href="#" onclick="logout()" style="margin-left:12px;">Logout</a>
+                `;
+            } else {
+                userBox.innerHTML = `
+                    <a href="login.html">Login</a>
+                    <a href="signup.html">Sign Up</a>
+                `;
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem("chronova_logged_in");
+            localStorage.removeItem("chronova_username");
+            window.location.href = "index.html";
+        }
+
+        // Mobile Hamburger Toggle
+        const hamburgerBtn = document.getElementById("hamburgerBtn");
+        const navLinks = document.getElementById("navLinks");
+        if (hamburgerBtn && navLinks) {
+            hamburgerBtn.addEventListener("click", () => {
+                navLinks.classList.toggle("active");
+            });
+        }
+    </script>
+</body>
+</html>

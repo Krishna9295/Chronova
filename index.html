@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Chronova Watches | Luxury Timepieces</title>
 
+    <!-- Global Theme Controller -->
+    <script src="theme.js"></script>
+
     <link rel="stylesheet" href="style.css?v=4.0">
+    <link rel="stylesheet" href="theme.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
         rel="stylesheet">
@@ -29,6 +33,7 @@
             <li><a href="#collections">Collections</a></li>
             <li><a href="shop.html">Shop</a></li>
             <li><a href="contact.html">Contact</a></li>
+            <li><a href="account.html">Account</a></li>
 
             <!-- JS CONTROLLED AREA -->
             <li id="userBox"></li>
@@ -685,9 +690,11 @@
 
         if (isLoggedIn === "true" && username) {
             userBox.innerHTML = `
-                <span style="color:#f0d67a;font-weight:bold;">
-                    Hi, ${username}
-                </span>
+                <a href="account.html" title="Atelier Profile" style="background:transparent;border:none;padding:0;box-shadow:none;transform:none;">
+                    <span style="color:#f0d67a;font-weight:bold;cursor:pointer;">
+                        Hi, ${username}
+                    </span>
+                </a>
                 <a href="#" onclick="logout()" style="margin-left:12px;">Logout</a>
             `;
         } else {

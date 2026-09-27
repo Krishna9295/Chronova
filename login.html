@@ -2,9 +2,11 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
     <title>Chronova | Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Global Theme Controller -->
+    <script src="theme.js"></script>
+    <link rel="stylesheet" href="theme.css">
 
     <style>
         /* ===== GLOBAL ===== */
@@ -15,14 +17,130 @@
         }
 
         body {
-            height:100vh;
-            display:flex;
-            justify-content:center;
-            align-items:center;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             font-family: 'Segoe UI', Arial, sans-serif;
             background: linear-gradient(135deg, #0f2c3f 0%, #1a4a5e 50%, #2f6f63 100%);
-            overflow:hidden;
-            position:relative;
+            overflow-x: hidden;
+            position: relative;
+            padding-top: 60px;
+        }
+
+        /* ===== LUXURY NAVBAR ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px clamp(20px, 4vw, 50px);
+            background: rgba(6, 31, 27, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            z-index: 1000;
+        }
+
+        .navbar .logo {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #d4af37;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: clamp(14px, 2vw, 26px);
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #FAF7F2;
+            text-decoration: none;
+            position: relative;
+            padding: 6px 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #d4af37, #f0d67a);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #f0d67a;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-auth-btn {
+            background: linear-gradient(135deg, #d4af37, #f0d67a) !important;
+            color: #061F1B !important;
+            padding: 6px 18px !important;
+            border-radius: 20px !important;
+            font-weight: 600 !important;
+        }
+
+        .nav-auth-btn::after {
+            display: none !important;
+        }
+
+        .nav-auth-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 22px;
+            color: #d4af37;
+            cursor: pointer;
+        }
+
+        @media (max-width: 860px) {
+            .navbar {
+                padding: 14px 20px;
+            }
+            .hamburger {
+                display: block;
+            }
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background: rgba(6, 31, 27, 0.98);
+                border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+                flex-direction: column;
+                padding: 20px;
+                gap: 14px;
+            }
+            .nav-links.active {
+                display: flex;
+            }
         }
 
         /* ===== PARTICLES BACKGROUND ===== */
@@ -398,6 +516,28 @@
 
 <body>
 
+    <!-- NAVBAR -->
+    <nav class="navbar" id="authNavbar">
+        <a href="index.html" class="logo">Chronova</a>
+        <ul class="nav-links" id="authNavLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="heritage.html">Heritage</a></li>
+            <li><a href="collections.html">Collections</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="account.html">Account</a></li>
+            <li><a href="signup.html" class="nav-auth-btn">Sign Up</a></li>
+            <li>
+                <a href="cart.html" style="display:flex;align-items:center;gap:6px;">
+                    <i class="fas fa-shopping-bag"></i> Cart
+                </a>
+            </li>
+        </ul>
+        <div class="hamburger" id="authHamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
     <!-- Particles Background -->
     <div class="particles">
         <div class="particle"></div>
@@ -521,6 +661,15 @@
                 login();
             }
         });
+
+        // Hamburger mobile menu toggle
+        const authHamburger = document.getElementById("authHamburger");
+        const authNavLinks = document.getElementById("authNavLinks");
+        if (authHamburger && authNavLinks) {
+            authHamburger.addEventListener("click", () => {
+                authNavLinks.classList.toggle("active");
+            });
+        }
     </script>
 
 </body>

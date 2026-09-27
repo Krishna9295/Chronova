@@ -3,7 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chronova Watches | Shopping Cart</title>
+<!-- Global Theme Controller -->
+<script src="theme.js"></script>
+
+<link rel="stylesheet" href="theme.css">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -120,6 +123,49 @@ body{
     font-size: 24px;
     color: var(--gold-light);
     cursor: pointer;
+}
+
+/* User Box Styles */
+#userBox {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+#userBox a {
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--dark-bg);
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+#userBox a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+}
+
+#userBox span {
+    color: var(--gold-light);
+    font-weight: 600;
+    font-size: 14px;
+}
+
+#userBox a[onclick] {
+    background: transparent;
+    color: var(--gold-light);
+    border: 1px solid var(--gold);
+    padding: 7px 19px;
+}
+
+#userBox a[onclick]:hover {
+    background: var(--gold);
+    color: var(--dark-bg);
 }
 
 /* ===== PAGE HEADER ===== */
@@ -557,6 +603,19 @@ body{
 
     .nav-links {
         display: none;
+        position: fixed;
+        top: 65px;
+        left: 0;
+        right: 0;
+        background: rgba(6, 31, 27, 0.98);
+        border-bottom: 1px solid rgba(217, 184, 74, 0.15);
+        flex-direction: column;
+        padding: 20px;
+        gap: 15px;
+    }
+
+    .nav-links.active {
+        display: flex;
     }
 
     .hamburger {
@@ -598,21 +657,23 @@ body{
 <body>
     <!-- NAVBAR -->
     <nav class="navbar">
-        <div class="logo">Chronova</div>
-        <ul class="nav-links">
+        <a href="index.html" class="logo" style="text-decoration:none;">Chronova</a>
+        <ul class="nav-links" id="cartNavLinks">
             <li><a href="index.html">Home</a></li>
+            <li><a href="heritage.html">Heritage</a></li>
+            <li><a href="collections.html">Collections</a></li>
             <li><a href="shop.html">Shop</a></li>
             <li><a href="contact.html">Contact</a></li>
-            <li><a href="login.html">Login</a></li>
-            <li><a href="signup.html">Sign Up</a></li>
+            <li><a href="account.html">Account</a></li>
+            <li id="userBox"></li>
             <li>
-                <a href="cart.html" class="cart-link">
+                <a href="cart.html" class="cart-link active">
                     <i class="fas fa-shopping-bag"></i>
                     <span>Cart (<span id="cartCount">0</span>)</span>
                 </a>
             </li>
         </ul>
-        <div class="hamburger">
+        <div class="hamburger" id="cartHamburger">
             <i class="fas fa-bars"></i>
         </div>
     </nav>
@@ -896,9 +957,47 @@ function closePayment(){
 }
 
 /* ===============================
-   INITIAL LOAD
+   INITIAL LOAD & AUTH
 ================================ */
 renderCart();
+
+// Update userBox state
+const isLoggedIn = localStorage.getItem("chronova_logged_in");
+const username = localStorage.getItem("chronova_username");
+const userBox = document.getElementById("userBox");
+
+if (userBox) {
+    if (isLoggedIn === "true" && username) {
+        userBox.innerHTML = `
+            <a href="account.html" title="Atelier Profile" style="background:transparent;border:none;padding:0;box-shadow:none;transform:none;">
+                <span style="color:#f0d67a;font-weight:bold;cursor:pointer;">
+                    Hi, ${username}
+                </span>
+            </a>
+            <a href="#" onclick="logout()" style="margin-left:12px;">Logout</a>
+        `;
+    } else {
+        userBox.innerHTML = `
+            <a href="login.html">Login</a>
+            <a href="signup.html">Sign Up</a>
+        `;
+    }
+}
+
+function logout() {
+    localStorage.removeItem("chronova_logged_in");
+    localStorage.removeItem("chronova_username");
+    window.location.href = "index.html";
+}
+
+// Mobile Hamburger Toggle
+const cartHamburger = document.getElementById("cartHamburger");
+const cartNavLinks = document.getElementById("cartNavLinks");
+if (cartHamburger && cartNavLinks) {
+    cartHamburger.addEventListener("click", () => {
+        cartNavLinks.classList.toggle("active");
+    });
+}
 </script>
 
 </body>

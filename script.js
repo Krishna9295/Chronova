@@ -15,20 +15,24 @@ const username = localStorage.getItem("chronova_username");
 
 const userBox = document.getElementById("userBox");
 
-if(isLoggedIn === "true" && username){
-    // LOGIN KE BAAD
-    userBox.innerHTML = `
-        <span style="color:#f0d67a;font-weight:bold;">
-            Hi, ${username}
-        </span>
-        <a href="#" onclick="logout()" style="margin-left:12px;">Logout</a>
-    `;
-}else{
-    // LOGIN NAHI HAI
-    userBox.innerHTML = `
-        <a href="login.html">Login</a>
-        <a href="signup.html">Sign Up</a>
-    `;
+if(userBox){
+    if(isLoggedIn === "true" && username){
+        // LOGIN KE BAAD
+        userBox.innerHTML = `
+            <a href="account.html" title="Atelier Profile" style="background:transparent;border:none;padding:0;box-shadow:none;transform:none;">
+                <span style="color:#f0d67a;font-weight:bold;cursor:pointer;">
+                    Hi, ${username}
+                </span>
+            </a>
+            <a href="#" onclick="logout()" style="margin-left:12px;">Logout</a>
+        `;
+    }else{
+        // LOGIN NAHI HAI
+        userBox.innerHTML = `
+            <a href="login.html">Login</a>
+            <a href="signup.html">Sign Up</a>
+        `;
+    }
 }
 
 function logout(){

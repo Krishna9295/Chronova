@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chronova | Curated Collections</title>
+    <meta name="description" content="Discover Chronova's pinnacle horological collections: Grand Complication, Drift Nautical, Celestial Moonphase, and Bespoke Haute Horlogerie.">
+
+    <!-- Global Theme Controller -->
+    <script src="theme.js"></script>
+
+    <!-- CSS & Fonts -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="theme.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        .collections-hero {
+            padding: 140px 20px 70px;
+            background: linear-gradient(180deg, rgba(6, 31, 27, 0.95) 0%, rgba(9, 43, 38, 0.9) 100%),
+                        radial-gradient(ellipse at 50% 30%, rgba(217, 184, 74, 0.15) 0%, transparent 70%);
+            text-align: center;
+            border-bottom: 1px solid rgba(217, 184, 74, 0.15);
+        }
+
+        .collections-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.4rem, 5vw, 4rem);
+            color: #FAF7F2;
+            margin-bottom: 16px;
+        }
+
+        .collections-hero p {
+            max-width: 660px;
+            margin: 0 auto;
+            color: #C5BFB5;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .collections-grid-wrapper {
+            padding: 70px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .collections-catalog {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+        }
+
+        .collection-card-item {
+            background: rgba(9, 43, 38, 0.55);
+            border: 1px solid rgba(217, 184, 74, 0.2);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .collection-card-item:hover {
+            transform: translateY(-7px);
+            border-color: rgba(217, 184, 74, 0.55);
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+        }
+
+        .collection-img-box {
+            position: relative;
+            height: 280px;
+            overflow: hidden;
+            background: #041411;
+        }
+
+        .collection-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .collection-card-item:hover .collection-img-box img {
+            transform: scale(1.08);
+        }
+
+        .collection-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: rgba(6, 31, 27, 0.85);
+            border: 1px solid #D9B84A;
+            color: #D9B84A;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .collection-info {
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .collection-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: #FAF7F2;
+            margin-bottom: 12px;
+        }
+
+        .collection-info p {
+            color: #C5BFB5;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 24px;
+            flex-grow: 1;
+        }
+
+        .collection-cta-btn {
+            display: inline-block;
+            text-align: center;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #D9B84A, #B39032);
+            color: #061F1B;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .collection-cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(217, 184, 74, 0.4);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <a href="index.html" class="logo">Chronova</a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="heritage.html">Heritage</a></li>
+            <li><a href="collections.html" class="active">Collections</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="account.html">Account</a></li>
+
+            <!-- JS CONTROLLED AREA -->
+            <li id="userBox"></li>
+
+            <li>
+                <a href="cart.html" class="cart-link">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count">Cart (<span id="cartCount">0</span>)</span>
+                </a>
+            </li>
+        </ul>
+        <div class="hamburger" id="hamburgerBtn">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- COLLECTIONS HERO -->
+    <header class="collections-hero">
+        <span class="section-tag" style="color: #D9B84A; letter-spacing: 2px; text-transform: uppercase; font-size: 0.85rem; font-weight: 600;">The Chronova Horological Anthology</span>
+        <h1>Curated Haute Collections</h1>
+        <p>From complex flying tourbillons to aviation chronographs and perpetual calendars — explore timepieces engineered for eternity.</p>
+    </header>
+
+    <!-- CATALOG GRID -->
+    <main class="collections-grid-wrapper">
+        <div class="collections-catalog">
+            
+            <!-- Collection 1 -->
+            <div class="collection-card-item">
+                <div class="collection-img-box">
+                    <img src="static/w1.jpg" alt="Grand Complication Series">
+                    <span class="collection-badge">Pinnacle Masterpiece</span>
+                </div>
+                <div class="collection-info">
+                    <h3>Grand Complication</h3>
+                    <p>Featuring our patented triple-axis tourbillon and perpetual calendar complications, calibrated to astronomical accuracy in Geneva.</p>
+                    <a href="shop.html" class="collection-cta-btn">View Timepieces</a>
+                </div>
+            </div>
+
+            <!-- Collection 2 -->
+            <div class="collection-card-item">
+                <div class="collection-img-box">
+                    <img src="static/w9.jpg" alt="Drift Nautical Series">
+                    <span class="collection-badge">Nautical Mastery</span>
+                </div>
+                <div class="collection-info">
+                    <h3>Chronova Drift</h3>
+                    <p>Engineered for oceanic voyages and regatta timing, featuring unidirectional ceramic bezels and 300-meter water resistance.</p>
+                    <a href="shop.html" class="collection-cta-btn">View Timepieces</a>
+                </div>
+            </div>
+
+            <!-- Collection 3 -->
+            <div class="collection-card-item">
+                <div class="collection-img-box">
+                    <img src="static/w13.jpg" alt="Celestial Moonphase Series">
+                    <span class="collection-badge">Astronomy & Gold</span>
+                </div>
+                <div class="collection-info">
+                    <h3>Celestial Moonphase</h3>
+                    <p>A tribute to the cosmos with hand-painted aventurine dials and genuine lunar cycle tracking that requires adjustment once every 122 years.</p>
+                    <a href="shop.html" class="collection-cta-btn">View Timepieces</a>
+                </div>
+            </div>
+
+            <!-- Collection 4 -->
+            <div class="collection-card-item">
+                <div class="collection-img-box">
+                    <img src="static/w3.jpg" alt="Heritage Damascus Series">
+                    <span class="collection-badge">Forged Damascus</span>
+                </div>
+                <div class="collection-info">
+                    <h3>Heritage Damascus</h3>
+                    <p>Individually pattern-welded Damascus steel cases that ensure every single timepiece possesses a completely unique fingerprint.</p>
+                    <a href="shop.html" class="collection-cta-btn">View Timepieces</a>
+                </div>
+            </div>
+
+            <!-- Collection 5 -->
+            <div class="collection-card-item">
+                <div class="collection-img-box">
+                    <img src="static/w6.jpg" alt="Aero Chronograph Series">
+                    <span class="collection-badge">Aviation Precision</span>
+                </div>
+                <div class="collection-info">
+                    <h3>Aero Chronograph</h3>
+                    <p>Flyback column-wheel chronograph movements designed in partnership with supersonic test pilots for instantaneous split-second measurement.</p>
+                    <a href="shop.html" class="collection-cta-btn">View Timepieces</a>
+                </div>
+            </div>
+
+            <!-- Collection 6 -->
+            <div class="collection-card-item">
+                <div class="collection-img-box">
+                    <img src="static/w10.jpg" alt="Haute Atelier Series">
+                    <span class="collection-badge">Bespoke Commission</span>
+                </div>
+                <div class="collection-info">
+                    <h3>Bespoke Atelier</h3>
+                    <p>One-of-a-kind horological commissions tailored to private collectors' bespoke dial engravings, gem-settings, and custom complications.</p>
+                    <a href="account.html" class="collection-cta-btn">Atelier Concierge</a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer" style="background-color: #061F1B; border-top: 1px solid rgba(217, 184, 74, 0.15); padding: 50px 20px 30px; text-align: center; color: #C5BFB5;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2 style="font-family: 'Playfair Display', serif; color: #D9B84A; margin-bottom: 15px;">Chronova Watches</h2>
+            <p style="max-width: 500px; margin: 0 auto 25px; font-size: 0.95rem;">Swiss Haute Horlogerie since 1985. Geneva Atelier & Private Client Salons worldwide.</p>
+            <div style="display: flex; justify-content: center; gap: 20px; margin-bottom: 25px;">
+                <a href="index.html" style="color: #FAF7F2; text-decoration: none; font-size: 13px; text-transform: uppercase;">Home</a>
+                <a href="heritage.html" style="color: #FAF7F2; text-decoration: none; font-size: 13px; text-transform: uppercase;">Heritage</a>
+                <a href="collections.html" style="color: #FAF7F2; text-decoration: none; font-size: 13px; text-transform: uppercase;">Collections</a>
+                <a href="shop.html" style="color: #FAF7F2; text-decoration: none; font-size: 13px; text-transform: uppercase;">Shop</a>
+                <a href="account.html" style="color: #FAF7F2; text-decoration: none; font-size: 13px; text-transform: uppercase;">Account</a>
+                <a href="contact.html" style="color: #FAF7F2; text-decoration: none; font-size: 13px; text-transform: uppercase;">Contact</a>
+            </div>
+            <p style="font-size: 0.85rem; color: #8F8A81;">© 2026 Chronova Haute Horlogerie. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Update Cart Count
+        try {
+            const cart = JSON.parse(localStorage.getItem("cart") || localStorage.getItem("chronova_cart") || "[]");
+            document.getElementById("cartCount").textContent = cart.length;
+        } catch(e) {}
+
+        // Auth & userBox
+        const isLoggedIn = localStorage.getItem("chronova_logged_in");
+        const username = localStorage.getItem("chronova_username");
+        const userBox = document.getElementById("userBox");
+
+        if (userBox) {
+            if (isLoggedIn === "true" && username) {
+                userBox.innerHTML = `
+                    <a href="account.html" title="Atelier Profile" style="background:transparent;border:none;padding:0;box-shadow:none;transform:none;">
+                        <span style="color:#f0d67a;font-weight:bold;cursor:pointer;">
+                            Hi, ${username}
+                        </span>
+                    </a>
+                    <a href="#" onclick="logout()" style="margin-left:12px;">Logout</a>
+                `;
+            } else {
+                userBox.innerHTML = `
+                    <a href="login.html">Login</a>
+                    <a href="signup.html">Sign Up</a>
+                `;
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem("chronova_logged_in");
+            localStorage.removeItem("chronova_username");
+            window.location.href = "index.html";
+        }
+
+        // Mobile Hamburger Toggle
+        const hamburgerBtn = document.getElementById("hamburgerBtn");
+        const navLinks = document.getElementById("navLinks");
+        if (hamburgerBtn && navLinks) {
+            hamburgerBtn.addEventListener("click", () => {
+                navLinks.classList.toggle("active");
+            });
+        }
+    </script>
+</body>
+</html>

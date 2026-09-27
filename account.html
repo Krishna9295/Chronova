@@ -1,0 +1,1545 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chronova Watches | Collector Account & Profile</title>
+    <meta name="description" content="Manage your personal Chronova horological vault, orders, addresses, wishlist, and bespoke atelier preferences.">
+    
+    <!-- Global Theme Controller -->
+    <script src="theme.js"></script>
+
+    <!-- CSS & Fonts -->
+    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="account.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- GSAP for subtle animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="accountNavbar">
+        <a href="index.html" class="logo">Chronova</a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="heritage.html">Heritage</a></li>
+            <li><a href="collections.html">Collections</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="account.html" class="active">Account</a></li>
+            <li id="userNavBox">
+                <span class="nav-user-badge" id="navUsername">
+                    <i class="fas fa-crown"></i> <span id="navUserText">Alexander Vance</span>
+                </span>
+            </li>
+            <li>
+                <a href="cart.html" class="nav-cart-btn">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span>Bag (<span id="cartCount">0</span>)</span>
+                </a>
+            </li>
+        </ul>
+        <div class="hamburger" id="hamburgerBtn">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- MAIN ACCOUNT WRAPPER -->
+    <main class="account-wrapper">
+        <div class="account-bg-glow"></div>
+
+        <div class="container">
+
+            <!-- PROFILE HERO BANNER -->
+            <header class="account-header" id="accountHeader">
+                <div class="account-header__welcome">
+                    <div class="account-header__avatar" id="headerAvatar">AV</div>
+                    <div class="account-header__meta">
+                        <p class="section-subtitle">Private Atelier Salon</p>
+                        <h1 id="headerUserName">Welcome back, Alexander</h1>
+                        <p id="headerUserEmail">alexander.vance@chronova-haute.com</p>
+                        <div class="account-header__tier">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Privilege Horological Guild • Platinum Tier</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="account-header__actions">
+                    <button class="btn-luxury-outline" onclick="switchSection('edit-profile')">
+                        <i class="fas fa-user-edit"></i> Edit Profile
+                    </button>
+                    <button class="btn-luxury-primary" onclick="window.location.href='shop.html'">
+                        <i class="fas fa-compass"></i> Explore Shop
+                    </button>
+                </div>
+            </header>
+
+            <!-- MOBILE QUICK NAVIGATION -->
+            <div class="mobile-nav-bar" id="mobileNavBar">
+                <button class="mobile-nav-pill active" onclick="switchSection('overview')"><i class="fas fa-user"></i> Profile</button>
+                <button class="mobile-nav-pill" onclick="switchSection('orders')"><i class="fas fa-box"></i> Orders</button>
+                <button class="mobile-nav-pill" onclick="switchSection('addresses')"><i class="fas fa-map-marker-alt"></i> Addresses</button>
+                <button class="mobile-nav-pill" onclick="switchSection('wishlist')"><i class="fas fa-heart"></i> Wishlist</button>
+                <button class="mobile-nav-pill" onclick="switchSection('wallet')"><i class="fas fa-wallet"></i> Wallet</button>
+                <button class="mobile-nav-pill" onclick="switchSection('care')"><i class="fas fa-headset"></i> Support</button>
+                <button class="mobile-nav-pill" onclick="switchSection('edit-profile')"><i class="fas fa-user-edit"></i> Settings</button>
+                <button class="mobile-nav-pill" onclick="switchSection('theme')"><i class="fas fa-palette"></i> Theme</button>
+            </div>
+
+            <!-- DASHBOARD GRID: SIDEBAR + CONTENT -->
+            <div class="dashboard-grid">
+
+                <!-- DESKTOP SIDEBAR -->
+                <aside class="account-sidebar" id="desktopSidebar">
+                    <div class="sidebar-title">Atelier Navigation</div>
+                    <nav class="sidebar-nav">
+                        <button class="sidebar-btn active" data-section="overview" onclick="switchSection('overview')">
+                            <i class="fas fa-user-circle"></i>
+                            <span>Profile Overview</span>
+                        </button>
+                        <button class="sidebar-btn" data-section="orders" onclick="switchSection('orders')">
+                            <i class="fas fa-box"></i>
+                            <span>Order History</span>
+                            <span class="sidebar-count" id="sidebarOrderCount">4</span>
+                        </button>
+                        <button class="sidebar-btn" data-section="addresses" onclick="switchSection('addresses')">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>My Addresses</span>
+                            <span class="sidebar-count" id="sidebarAddrCount">2</span>
+                        </button>
+                        <button class="sidebar-btn" data-section="wishlist" onclick="switchSection('wishlist')">
+                            <i class="fas fa-heart"></i>
+                            <span>Vault Wishlist</span>
+                            <span class="sidebar-count" id="sidebarWishlistCount">2</span>
+                        </button>
+                        <button class="sidebar-btn" data-section="wallet" onclick="switchSection('wallet')">
+                            <i class="fas fa-wallet"></i>
+                            <span>Chronova Wallet</span>
+                            <span class="sidebar-count" id="sidebarWalletBadge">₹2,500</span>
+                        </button>
+                        <button class="sidebar-btn" data-section="care" onclick="switchSection('care')">
+                            <i class="fas fa-headset"></i>
+                            <span>Customer Care</span>
+                        </button>
+
+                        <div class="sidebar-divider"></div>
+
+                        <button class="sidebar-btn" data-section="edit-profile" onclick="switchSection('edit-profile')">
+                            <i class="fas fa-user-cog"></i>
+                            <span>Edit Profile</span>
+                        </button>
+                        <button class="sidebar-btn" data-section="theme" onclick="switchSection('theme')">
+                            <i class="fas fa-palette"></i>
+                            <span>Theme Settings</span>
+                        </button>
+                        <button class="sidebar-btn btn-logout" onclick="handleLogout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Sign Out</span>
+                        </button>
+                    </nav>
+                </aside>
+
+                <!-- MAIN ACCOUNT CONTENT -->
+                <div class="account-content">
+
+                    <!-- ============================================ -->
+                    <!-- 1. PROFILE OVERVIEW SECTION                  -->
+                    <!-- ============================================ -->
+                    <section class="account-section active" id="section-overview">
+                        <!-- Quick Stats -->
+                        <div class="overview-stats">
+                            <div class="stat-card" onclick="switchSection('orders')">
+                                <div class="stat-icon"><i class="fas fa-box-open"></i></div>
+                                <div class="stat-info">
+                                    <div class="stat-value" id="statOrdersVal">4</div>
+                                    <div class="stat-label">Total Timepieces</div>
+                                </div>
+                            </div>
+                            <div class="stat-card" onclick="switchSection('wishlist')">
+                                <div class="stat-icon"><i class="fas fa-heart"></i></div>
+                                <div class="stat-info">
+                                    <div class="stat-value" id="statWishlistVal">2</div>
+                                    <div class="stat-label">Saved in Vault</div>
+                                </div>
+                            </div>
+                            <div class="stat-card" onclick="switchSection('wallet')">
+                                <div class="stat-icon"><i class="fas fa-wallet"></i></div>
+                                <div class="stat-info">
+                                    <div class="stat-value" id="statWalletVal">₹2,500</div>
+                                    <div class="stat-label">Wallet Balance</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Profile Info Card -->
+                        <div class="section-card">
+                            <div class="section-header">
+                                <div>
+                                    <h2 class="section-title">Collector Credentials</h2>
+                                    <p class="section-subtitle">Your personal account details and verified atelier contact records.</p>
+                                </div>
+                                <button class="btn-luxury-outline" onclick="switchSection('edit-profile')">
+                                    <i class="fas fa-pen"></i> Edit
+                                </button>
+                            </div>
+
+                            <div class="profile-details-grid">
+                                <div class="profile-detail-item">
+                                    <div class="profile-detail-label">Full Name</div>
+                                    <div class="profile-detail-value" id="profileNameVal">Alexander Vance</div>
+                                </div>
+                                <div class="profile-detail-item">
+                                    <div class="profile-detail-label">Email Address</div>
+                                    <div class="profile-detail-value" id="profileEmailVal">alexander.vance@chronova-haute.com</div>
+                                </div>
+                                <div class="profile-detail-item">
+                                    <div class="profile-detail-label">Direct Telephone</div>
+                                    <div class="profile-detail-value" id="profilePhoneVal">+91 98201 48721</div>
+                                </div>
+                                <div class="profile-detail-item">
+                                    <div class="profile-detail-label">Guild Membership</div>
+                                    <div class="profile-detail-value">Member since October 2024</div>
+                                </div>
+                            </div>
+
+                            <!-- Membership Privilege Banner -->
+                            <div class="membership-banner">
+                                <div class="membership-banner__text">
+                                    <h3><i class="fas fa-crown" style="color:var(--gold); margin-right:8px;"></i> Horological Guild Benefits Active</h3>
+                                    <p>As a verified Platinum Member, you receive complimentary private courier insurance, annual atelier movement inspection, and priority allocation for limited-edition release drops.</p>
+                                </div>
+                                <button class="btn-luxury-primary" onclick="switchSection('care')">
+                                    <i class="fas fa-phone-alt"></i> Contact Atelier
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ============================================ -->
+                    <!-- 2. ORDER HISTORY SECTION                     -->
+                    <!-- ============================================ -->
+                    <section class="account-section" id="section-orders">
+                        <div class="section-card">
+                            <div class="section-header">
+                                <div>
+                                    <h2 class="section-title">Atelier Order History</h2>
+                                    <p class="section-subtitle">Track your bespoke commissions, acquisitions, and deliveries.</p>
+                                </div>
+                                <div class="orders-filter-bar">
+                                    <button class="order-filter-btn active" onclick="filterOrders('all', this)">All</button>
+                                    <button class="order-filter-btn" onclick="filterOrders('Processing', this)">Processing</button>
+                                    <button class="order-filter-btn" onclick="filterOrders('Shipped', this)">Shipped</button>
+                                    <button class="order-filter-btn" onclick="filterOrders('Delivered', this)">Delivered</button>
+                                </div>
+                            </div>
+
+                            <!-- Dynamic Orders List -->
+                            <div class="orders-list" id="ordersListContainer">
+                                <!-- Populated dynamically by renderOrders() -->
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ============================================ -->
+                    <!-- 3. MY ADDRESSES SECTION                      -->
+                    <!-- ============================================ -->
+                    <section class="account-section" id="section-addresses">
+                        <div class="section-card">
+                            <div class="section-header">
+                                <div>
+                                    <h2 class="section-title">Delivery Destinations</h2>
+                                    <p class="section-subtitle">Manage secured residential and private atelier delivery addresses.</p>
+                                </div>
+                                <button class="btn-luxury-primary" onclick="openAddressModal()">
+                                    <i class="fas fa-plus"></i> Add New Address
+                                </button>
+                            </div>
+
+                            <!-- Addresses Grid -->
+                            <div class="addresses-grid" id="addressesGrid">
+                                <!-- Populated dynamically by renderAddresses() -->
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ============================================ -->
+                    <!-- 4. WISHLIST SECTION                          -->
+                    <!-- ============================================ -->
+                    <section class="account-section" id="section-wishlist">
+                        <div class="section-card">
+                            <div class="section-header">
+                                <div>
+                                    <h2 class="section-title">Personal Horological Vault</h2>
+                                    <p class="section-subtitle">Timepieces curated for future acquisition.</p>
+                                </div>
+                                <a href="shop.html" class="btn-luxury-outline">
+                                    <i class="fas fa-plus"></i> Browse Collection
+                                </a>
+                            </div>
+
+                            <!-- Wishlist Grid / Empty State -->
+                            <div class="wishlist-grid" id="wishlistGrid">
+                                <!-- Populated dynamically by renderWishlist() -->
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ============================================ -->
+                    <!-- 5. CHRONOVA WALLET SECTION                   -->
+                    <!-- ============================================ -->
+                    <section class="account-section" id="section-wallet">
+                        <div class="section-card">
+                            <div class="section-header">
+                                <div>
+                                    <h2 class="section-title">Chronova Atelier Wallet</h2>
+                                    <p class="section-subtitle">Manage store credits, VIP rewards, and promotional vouchers.</p>
+                                </div>
+                            </div>
+
+                            <div class="wallet-card-container">
+                                <!-- Virtual Luxury Card -->
+                                <div class="wallet-balance-card">
+                                    <div class="wallet-balance-card__top">
+                                        <div class="wallet-brand">CHRONOVA • PRIVILEGE</div>
+                                        <i class="fas fa-gem" style="font-size:22px;"></i>
+                                    </div>
+                                    <div class="wallet-balance-card__num">
+                                        <div class="wallet-balance-label">Current Available Balance</div>
+                                        <div class="wallet-balance-val" id="walletBalanceMain">₹2,500</div>
+                                    </div>
+                                    <div class="wallet-balance-card__bot">
+                                        <span>MEMBER: ALEXANDER VANCE</span>
+                                        <span>EXP: 12/29</span>
+                                    </div>
+                                </div>
+
+                                <!-- Redeem Voucher Card -->
+                                <div class="wallet-action-card">
+                                    <h3>Redeem Atelier Voucher</h3>
+                                    <p>Enter your promotional certificate or VIP reward code to credit your Chronova balance immediately.</p>
+                                    <form class="wallet-voucher-form" id="voucherForm" onsubmit="handleRedeemVoucher(event)">
+                                        <input type="text" class="input-luxury" id="voucherInput" placeholder="Try code: GOLD500" required>
+                                        <button type="submit" class="btn-luxury-primary">Apply</button>
+                                    </form>
+                                    <div id="voucherMsg" style="font-size:12px; margin-top:8px; display:none;"></div>
+                                </div>
+                            </div>
+
+                            <!-- Transactions Table -->
+                            <h3 style="font-family:'Playfair Display',serif; font-size:18px; margin-bottom:14px; color:var(--text-primary);">
+                                Statement History
+                            </h3>
+                            <div style="overflow-x:auto;">
+                                <table class="wallet-txns-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Description</th>
+                                            <th>Type</th>
+                                            <th>Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="walletTxnsBody">
+                                        <!-- Populated dynamically by renderWallet() -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ============================================ -->
+                    <!-- 6. CUSTOMER CARE SECTION                     -->
+                    <!-- ============================================ -->
+                    <section class="account-section" id="section-care">
+                        <!-- Contact Channels -->
+                        <div class="care-channels">
+                            <div class="care-channel-card">
+                                <div class="care-channel-icon"><i class="fas fa-phone-alt"></i></div>
+                                <h4>VIP Concierge Hotline</h4>
+                                <p>Dedicated support for Private Guild members 24 hours a day.</p>
+                                <a href="tel:+91228400019" class="care-channel-link">+91 (022) 8400-CHRONO</a>
+                            </div>
+                            <div class="care-channel-card">
+                                <div class="care-channel-icon"><i class="fas fa-envelope-open-text"></i></div>
+                                <h4>Atelier Email Care</h4>
+                                <p>Detailed horological queries and custom engraving requests.</p>
+                                <a href="mailto:concierge@chronova-watches.com" class="care-channel-link">concierge@chronova-watches.com</a>
+                            </div>
+                            <div class="care-channel-card">
+                                <div class="care-channel-icon"><i class="fab fa-whatsapp"></i></div>
+                                <h4>Direct WhatsApp</h4>
+                                <p>Instant messaging with our master client relations advisor.</p>
+                                <a href="#" class="care-channel-link">Start Private Chat</a>
+                            </div>
+                        </div>
+
+                        <!-- FAQ + Support Request Form -->
+                        <div class="section-card">
+                            <div class="care-split-grid">
+                                <!-- FAQ Accordion -->
+                                <div>
+                                    <div class="section-header" style="padding-bottom:12px; margin-bottom:18px;">
+                                        <h3 class="section-title" style="font-size:20px;">Frequently Asked Questions</h3>
+                                    </div>
+                                    <div class="faq-accordion">
+                                        <div class="faq-item active">
+                                            <div class="faq-question" onclick="toggleFaq(this)">
+                                                <span>How are Chronova timepieces inspected before dispatch?</span>
+                                                <i class="fas fa-chevron-down"></i>
+                                            </div>
+                                            <div class="faq-answer">
+                                                Every single Chronova watch undergoes 847 rigorous quality checks in our atelier, including 5-position chronometric timing, water pressure testing, and hand-polishing inspection before release.
+                                            </div>
+                                        </div>
+                                        <div class="faq-item">
+                                            <div class="faq-question" onclick="toggleFaq(this)">
+                                                <span>What is included in the 5-Year Atelier Warranty?</span>
+                                                <i class="fas fa-chevron-down"></i>
+                                            </div>
+                                            <div class="faq-answer">
+                                                The Chronova International Warranty covers mechanical movement defects, crystal integrity, and complimentary ultrasonic cleaning and bracelet recalibration at any authorized atelier.
+                                            </div>
+                                        </div>
+                                        <div class="faq-item">
+                                            <div class="faq-question" onclick="toggleFaq(this)">
+                                                <span>What is the return and exchange policy?</span>
+                                                <i class="fas fa-chevron-down"></i>
+                                            </div>
+                                            <div class="faq-answer">
+                                                We offer a seamless 14-day vault return policy for unworn timepieces in their original velvet packaging with seals intact. Complimentary courier pickup is arranged.
+                                            </div>
+                                        </div>
+                                        <div class="faq-item">
+                                            <div class="faq-question" onclick="toggleFaq(this)">
+                                                <span>How do I resize my Jubilee or President link bracelet?</span>
+                                                <i class="fas fa-chevron-down"></i>
+                                            </div>
+                                            <div class="faq-answer">
+                                                Each solid bracelet comes with a precision micro-pin adjustment tool. You may also visit any certified jeweler or contact our concierge for customized pre-dispatch sizing.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Support Request Form -->
+                                <div>
+                                    <div class="section-header" style="padding-bottom:12px; margin-bottom:18px;">
+                                        <h3 class="section-title" style="font-size:20px;">Submit a Service Request</h3>
+                                    </div>
+
+                                    <form class="support-form" id="supportForm" onsubmit="handleSupportSubmit(event)">
+                                        <div class="form-group">
+                                            <label class="form-label" for="supportName">Your Name</label>
+                                            <input type="text" class="input-luxury" id="supportName" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label" for="supportEmail">Your Email</label>
+                                            <input type="email" class="input-luxury" id="supportEmail" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label" for="supportOrderId">Order Reference (Optional)</label>
+                                            <input type="text" class="input-luxury" id="supportOrderId" placeholder="e.g. #CHR-9842">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label" for="supportIssue">Nature of Inquiry</label>
+                                            <select class="input-luxury" id="supportIssue" required>
+                                                <option value="Order Status">Order Tracking & Delivery</option>
+                                                <option value="Watch Servicing">Horological Servicing & Polishing</option>
+                                                <option value="Warranty Claim">5-Year Warranty Inquiries</option>
+                                                <option value="Custom Bespoke">Bespoke Engraving & Allocation</option>
+                                                <option value="Other">Other Inquiry</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label" for="supportMsg">Message</label>
+                                            <textarea class="input-luxury" id="supportMsg" placeholder="Please detail your request for our atelier team..." required></textarea>
+                                        </div>
+
+                                        <button type="submit" class="btn-luxury-primary" id="supportSubmitBtn">
+                                            <i class="fas fa-paper-plane"></i> Submit Request
+                                        </button>
+
+                                        <div class="form-success-banner" id="supportSuccessBanner">
+                                            <i class="fas fa-check-circle" style="font-size:20px;"></i>
+                                            <div>
+                                                <strong>Request Dispatched Successfully</strong>
+                                                <div>Your inquiry reference has been assigned. Our atelier concierge will respond within 4 business hours.</div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ============================================ -->
+                    <!-- 7. EDIT PROFILE SECTION                      -->
+                    <!-- ============================================ -->
+                    <section class="account-section" id="section-edit-profile">
+                        <div class="section-card">
+                            <div class="section-header">
+                                <div>
+                                    <h2 class="section-title">Profile Settings & Atelier Identity</h2>
+                                    <p class="section-subtitle">Update your personal collector credentials and communication preferences.</p>
+                                </div>
+                            </div>
+
+                            <form class="edit-profile-form" id="editProfileForm" onsubmit="handleSaveProfile(event)">
+                                <!-- Avatar Choice -->
+                                <div class="form-group" style="margin-bottom:20px;">
+                                    <label class="form-label">Profile Initials / Avatar Style</label>
+                                    <div class="avatar-selector">
+                                        <div class="avatar-preview-lg" id="avatarPreviewLarge">AV</div>
+                                        <div class="avatar-options">
+                                            <button type="button" class="avatar-opt-btn active" onclick="selectAvatar('AV', this)">AV</button>
+                                            <button type="button" class="avatar-opt-btn" onclick="selectAvatar('👑', this)">👑</button>
+                                            <button type="button" class="avatar-opt-btn" onclick="selectAvatar('CH', this)">CH</button>
+                                            <button type="button" class="avatar-opt-btn" onclick="selectAvatar('💎', this)">💎</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label" for="editName">Full Legal Name</label>
+                                    <input type="text" class="input-luxury" id="editName" value="Alexander Vance" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label" for="editEmail">Email Address</label>
+                                    <input type="email" class="input-luxury" id="editEmail" value="alexander.vance@chronova-haute.com" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label" for="editPhone">Telephone / Mobile</label>
+                                    <input type="tel" class="input-luxury" id="editPhone" value="+91 98201 48721" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label" for="editDob">Date of Birth</label>
+                                    <input type="date" class="input-luxury" id="editDob" value="1992-06-15">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label" for="editPreference">Horological Preference</label>
+                                    <select class="input-luxury" id="editPreference">
+                                        <option value="Mechanical Automatics">Mechanical Automatics</option>
+                                        <option value="Skeleton Open-Heart">Skeleton & Open-Heart Calibres</option>
+                                        <option value="Flyback Chronographs">Flyback Chronographs & Racing</option>
+                                        <option value="Precious Metals & Gold">18K Gold & Precious Metals</option>
+                                        <option value="Dual-Time GMT">Dual-Time GMT Complications</option>
+                                    </select>
+                                </div>
+
+                                <div style="display:flex; gap:14px; margin-top:28px;">
+                                    <button type="submit" class="btn-luxury-primary">
+                                        <i class="fas fa-save"></i> Save Changes
+                                    </button>
+                                    <button type="button" class="btn-luxury-outline" onclick="switchSection('overview')">
+                                        Cancel
+                                    </button>
+                                </div>
+
+                                <div id="profileSaveMsg" style="margin-top:14px; font-size:12px; color:#2ecc71; display:none;">
+                                    <i class="fas fa-check-circle"></i> Profile credentials updated in Chronova Atelier records.
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+
+                    <!-- ============================================ -->
+                    <!-- 8. THEME SETTINGS SECTION                    -->
+                    <!-- ============================================ -->
+                    <section class="account-section" id="section-theme">
+                        <div class="section-card">
+                            <div class="section-header">
+                                <div>
+                                    <h2 class="section-title">Chronova Visual Aesthetic</h2>
+                                    <p class="section-subtitle">Select your preferred viewing environment. Both themes preserve the Chronova luxury identity.</p>
+                                </div>
+                            </div>
+
+                            <div class="theme-selector-grid">
+                                <!-- Dark Theme Card -->
+                                <div class="theme-card active" id="themeCardDark" onclick="setTheme('dark')">
+                                    <div class="theme-card__check"><i class="fas fa-check"></i></div>
+                                    <div class="theme-preview-box dark">
+                                        <div style="font-family:'Playfair Display',serif; font-size:16px; color:#F0D36A;">Chronova Noir</div>
+                                        <div class="theme-swatch-row">
+                                            <span class="theme-swatch" style="background:#061F1B;"></span>
+                                            <span class="theme-swatch" style="background:#0B3028;"></span>
+                                            <span class="theme-swatch" style="background:#D9B84A;"></span>
+                                            <span class="theme-swatch" style="background:#F3F1E8;"></span>
+                                        </div>
+                                    </div>
+                                    <h4>Dark Emerald (Default)</h4>
+                                    <p>The signature Chronova midnight aesthetic. Deep emerald background, warm gold luminance, and cream typography.</p>
+                                </div>
+
+                                <!-- Light Theme Card -->
+                                <div class="theme-card" id="themeCardLight" onclick="setTheme('light')">
+                                    <div class="theme-card__check"><i class="fas fa-check"></i></div>
+                                    <div class="theme-preview-box light">
+                                        <div style="font-family:'Playfair Display',serif; font-size:16px; color:#A8862A;">Chronova Ivory</div>
+                                        <div class="theme-swatch-row">
+                                            <span class="theme-swatch" style="background:#F8F5EE;"></span>
+                                            <span class="theme-swatch" style="background:#FFFFFF; border:1px solid #ddd;"></span>
+                                            <span class="theme-swatch" style="background:#A8862A;"></span>
+                                            <span class="theme-swatch" style="background:#061F1B;"></span>
+                                        </div>
+                                    </div>
+                                    <h4>Haute Ivory & Gold</h4>
+                                    <p>An editorial museum gallery ambiance. Warm alabaster background, deep emerald typography, and lustrous gold framing.</p>
+                                </div>
+                            </div>
+
+                            <p style="font-size:12px; color:var(--text-secondary);">
+                                <i class="fas fa-info-circle" style="color:var(--gold); margin-right:6px;"></i>
+                                Your theme selection is automatically saved in your browser and applies across your atelier experience.
+                            </p>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ============================================ -->
+    <!-- MODAL: ORDER DETAILS                         -->
+    <!-- ============================================ -->
+    <div class="modal-backdrop" id="orderModalBackdrop" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="luxury-modal" id="orderModal">
+            <button class="modal-close-btn" onclick="closeOrderModal()" aria-label="Close Order details">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-header">
+                <div class="modal-subtitle" id="modalOrderDate">Ordered on 14 September 2026</div>
+                <h3 class="modal-title" id="modalOrderId">Order #CHR-9842</h3>
+                <span class="status-badge delivered" id="modalOrderStatusBadge">Delivered</span>
+            </div>
+
+            <!-- Visual Order Tracking Timeline -->
+            <div class="order-timeline" id="modalTimeline">
+                <div class="timeline-step completed">
+                    <div class="timeline-step__dot"><i class="fas fa-check"></i></div>
+                    <span class="timeline-step__label">Confirmed</span>
+                </div>
+                <div class="timeline-step completed">
+                    <div class="timeline-step__dot"><i class="fas fa-check"></i></div>
+                    <span class="timeline-step__label">Inspected</span>
+                </div>
+                <div class="timeline-step completed">
+                    <div class="timeline-step__dot"><i class="fas fa-check"></i></div>
+                    <span class="timeline-step__label">Dispatched</span>
+                </div>
+                <div class="timeline-step completed">
+                    <div class="timeline-step__dot"><i class="fas fa-check"></i></div>
+                    <span class="timeline-step__label">Delivered</span>
+                </div>
+            </div>
+
+            <!-- Item Details Row -->
+            <div style="display:flex; gap:18px; align-items:center; background:rgba(6,31,27,0.3); border:1px solid var(--gold-border); border-radius:var(--radius-md); padding:16px;">
+                <div style="width:70px; height:70px; border-radius:var(--radius-sm); overflow:hidden; background:#000; flex-shrink:0;">
+                    <img src="static/w1.jpg" id="modalProductImg" alt="Product" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div>
+                    <h4 style="font-family:'Playfair Display',serif; font-size:16px; color:var(--text-primary);" id="modalProductName">Chronova Elite</h4>
+                    <p style="font-size:12px; color:var(--text-secondary);" id="modalProductSpec">Swiss Automatic Calibre • 41mm Steel</p>
+                    <p style="font-size:13px; font-weight:600; color:var(--gold-light); margin-top:2px;" id="modalProductPrice">Qty: 1 × ₹2,099</p>
+                </div>
+            </div>
+
+            <!-- Order Financial Breakdown -->
+            <div class="order-breakdown">
+                <div class="breakdown-row">
+                    <span>Item Subtotal</span>
+                    <span id="modalSubtotal">₹2,099</span>
+                </div>
+                <div class="breakdown-row">
+                    <span>Atelier Hand-Packaging & Velvet Vault Box</span>
+                    <span style="color:#2ecc71;">COMPLIMENTARY</span>
+                </div>
+                <div class="breakdown-row">
+                    <span>Insured High-Value Air Courier</span>
+                    <span style="color:#2ecc71;">FREE</span>
+                </div>
+                <div class="breakdown-row" id="modalDiscountRow" style="display:none;">
+                    <span>Privilege Guild Discount</span>
+                    <span id="modalDiscountVal">- ₹0</span>
+                </div>
+                <div class="breakdown-row total">
+                    <span>Final Amount Paid</span>
+                    <span id="modalTotalAmount">₹2,099</span>
+                </div>
+            </div>
+
+            <!-- Shipping & Payment Meta -->
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:16px;">
+                <div style="background:rgba(6,31,27,0.3); border:1px solid var(--gold-border); border-radius:var(--radius-md); padding:14px;">
+                    <div style="font-size:10px; font-weight:700; color:var(--gold); letter-spacing:1px; text-transform:uppercase; margin-bottom:4px;">Shipping Address</div>
+                    <div style="font-size:12px; color:var(--text-primary); line-height:1.5;" id="modalAddressText">
+                        Alexander Vance<br>
+                        Apt 42B, The Oberoi Enclave<br>
+                        Marine Drive, Mumbai - 400020
+                    </div>
+                </div>
+                <div style="background:rgba(6,31,27,0.3); border:1px solid var(--gold-border); border-radius:var(--radius-md); padding:14px;">
+                    <div style="font-size:10px; font-weight:700; color:var(--gold); letter-spacing:1px; text-transform:uppercase; margin-bottom:4px;">Payment Method</div>
+                    <div style="font-size:12px; color:var(--text-primary); line-height:1.5;" id="modalPaymentText">
+                        Atelier Direct Pay / UPI<br>
+                        Verified Transaction ID: #TXN-84920<br>
+                        Invoice: CHR-INV-9842.pdf
+                    </div>
+                </div>
+            </div>
+
+            <div style="display:flex; justify-content:flex-end; gap:12px; margin-top:24px;">
+                <button class="btn-luxury-outline" onclick="alert('Downloading Atelier Invoice PDF for ' + document.getElementById('modalOrderId').textContent)">
+                    <i class="fas fa-file-invoice"></i> Download Invoice
+                </button>
+                <button class="btn-luxury-primary" onclick="closeOrderModal()">
+                    Close Details
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- MODAL: ADD / EDIT ADDRESS                    -->
+    <!-- ============================================ -->
+    <div class="modal-backdrop" id="addressModalBackdrop" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="luxury-modal" id="addressModal">
+            <button class="modal-close-btn" onclick="closeAddressModal()" aria-label="Close address form">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-header">
+                <h3 class="modal-title" id="addrModalTitle">Add Delivery Destination</h3>
+                <p class="modal-subtitle">Ensure exact pin code and contact details for insured watch delivery.</p>
+            </div>
+
+            <form id="addressForm" onsubmit="handleSaveAddress(event)">
+                <input type="hidden" id="addrEditIndex" value="-1">
+
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+                    <div class="form-group">
+                        <label class="form-label" for="addrName">Full Name</label>
+                        <input type="text" class="input-luxury" id="addrName" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="addrPhone">Phone Number</label>
+                        <input type="tel" class="input-luxury" id="addrPhone" required>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top:12px;">
+                    <label class="form-label" for="addrFlat">House / Flat / Suite</label>
+                    <input type="text" class="input-luxury" id="addrFlat" placeholder="e.g. Penthouse 42B, Tower 1" required>
+                </div>
+
+                <div class="form-group" style="margin-top:12px;">
+                    <label class="form-label" for="addrStreet">Street / Area / Landmark</label>
+                    <input type="text" class="input-luxury" id="addrStreet" placeholder="e.g. Marine Drive, Nariman Point" required>
+                </div>
+
+                <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:12px;">
+                    <div class="form-group">
+                        <label class="form-label" for="addrCity">City</label>
+                        <input type="text" class="input-luxury" id="addrCity" value="Mumbai" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="addrState">State</label>
+                        <input type="text" class="input-luxury" id="addrState" value="Maharashtra" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="addrPin">PIN Code</label>
+                        <input type="text" class="input-luxury" id="addrPin" placeholder="400020" required>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top:12px;">
+                    <label class="form-label" for="addrCountry">Country</label>
+                    <input type="text" class="input-luxury" id="addrCountry" value="India" required>
+                </div>
+
+                <div style="margin-top:16px; display:flex; align-items:center; gap:8px;">
+                    <input type="checkbox" id="addrIsDefault" style="accent-color:var(--gold); width:16px; height:16px; cursor:pointer;">
+                    <label for="addrIsDefault" style="font-size:13px; color:var(--text-secondary); cursor:pointer;">
+                        Set as primary default destination
+                    </label>
+                </div>
+
+                <div style="display:flex; justify-content:flex-end; gap:12px; margin-top:24px;">
+                    <button type="button" class="btn-luxury-outline" onclick="closeAddressModal()">Cancel</button>
+                    <button type="submit" class="btn-luxury-primary"><i class="fas fa-save"></i> Save Address</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Chronova Watches. All Rights Reserved. | Private Horological Atelier Archive</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================ -->
+    <!-- JAVASCRIPT: ACCOUNT DASHBOARD ENGINE         -->
+    <!-- ============================================ -->
+    <script>
+        // ============================================
+        // 1. DATA INITIALIZATION & USER ARCHITECTURE
+        // ============================================
+        
+        // Theme init
+        const savedTheme = localStorage.getItem("chronova_theme") || "dark";
+        document.documentElement.setAttribute("data-theme", savedTheme);
+
+        // User credentials
+        let storedUser = null;
+        try {
+            storedUser = JSON.parse(localStorage.getItem("chronova_user"));
+        } catch(e) {}
+
+        const storedUsername = localStorage.getItem("chronova_username") || (storedUser ? storedUser.name : "Alexander Vance");
+        const storedEmail = (storedUser && storedUser.email) ? storedUser.email : "alexander.vance@chronova-haute.com";
+        const storedPhone = localStorage.getItem("chronova_phone") || "+91 98201 48721";
+        const storedAvatar = localStorage.getItem("chronova_avatar") || "AV";
+
+        // Seed Default Orders if none exist
+        const DEFAULT_ORDERS = [
+            {
+                id: "CHR-9842",
+                date: "14 Sep 2026",
+                productName: "Chronova Elite",
+                spec: "Swiss Automatic Movement • 41mm Stainless Steel",
+                image: "static/w1.jpg",
+                qty: 1,
+                price: 2099,
+                status: "Delivered",
+                timelineStep: 4,
+                paymentMethod: "Atelier Direct UPI • Ref #84920",
+                address: "Alexander Vance, Apt 42B, The Oberoi Enclave, Marine Drive, Mumbai - 400020"
+            },
+            {
+                id: "CHR-9120",
+                date: "02 Aug 2026",
+                productName: "Chronova Royal",
+                spec: "18K Gold Plated • Fluted Bezel Champagne Dial",
+                image: "static/w4.jpg",
+                qty: 1,
+                price: 3099,
+                status: "Delivered",
+                timelineStep: 4,
+                paymentMethod: "Visa Platinum Verified • Ref #39102",
+                address: "Alexander Vance, Apt 42B, The Oberoi Enclave, Marine Drive, Mumbai - 400020"
+            },
+            {
+                id: "CHR-8755",
+                date: "22 Jul 2026",
+                productName: "Chronova Drift",
+                spec: "Matte Ceramic Bezel • Racing Chronograph",
+                image: "static/w13.jpg",
+                qty: 1,
+                price: 1999,
+                status: "Shipped",
+                timelineStep: 3,
+                paymentMethod: "Chronova Wallet Credits",
+                address: "Alexander Vance, Suite 804, World Trade Centre, Cuffe Parade, Mumbai - 400005"
+            },
+            {
+                id: "CHR-8104",
+                date: "11 May 2026",
+                productName: "Chronova Sovereign",
+                spec: "Skeletonized Dial • Double Exhibition Sapphire",
+                image: "static/w9.jpg",
+                qty: 1,
+                price: 3299,
+                status: "Processing",
+                timelineStep: 2,
+                paymentMethod: "Mastercard World Elite • Ref #10492",
+                address: "Alexander Vance, Apt 42B, The Oberoi Enclave, Marine Drive, Mumbai - 400020"
+            }
+        ];
+
+        let ordersData = JSON.parse(localStorage.getItem("chronova_orders")) || DEFAULT_ORDERS;
+        if (!localStorage.getItem("chronova_orders")) {
+            localStorage.setItem("chronova_orders", JSON.stringify(ordersData));
+        }
+
+        // Seed Default Addresses if none exist
+        const DEFAULT_ADDRESSES = [
+            {
+                name: "Alexander Vance",
+                phone: "+91 98201 48721",
+                flat: "Apt 42B, The Oberoi Enclave",
+                street: "Marine Drive, Nariman Point",
+                city: "Mumbai",
+                state: "Maharashtra",
+                pin: "400020",
+                country: "India",
+                isDefault: true
+            },
+            {
+                name: "Alexander Vance (Private Office)",
+                phone: "+91 98201 48721",
+                flat: "Suite 804, World Trade Centre",
+                street: "Cuffe Parade, Colaba",
+                city: "Mumbai",
+                state: "Maharashtra",
+                pin: "400005",
+                country: "India",
+                isDefault: false
+            }
+        ];
+
+        let addressesData = JSON.parse(localStorage.getItem("chronova_addresses")) || DEFAULT_ADDRESSES;
+        if (!localStorage.getItem("chronova_addresses")) {
+            localStorage.setItem("chronova_addresses", JSON.stringify(addressesData));
+        }
+
+        // Seed Default Wishlist if none exists
+        const DEFAULT_WISHLIST = [
+            {
+                name: "Chronova Monarch",
+                category: "best-seller",
+                price: 3599,
+                image: "static/w12.jpg"
+            },
+            {
+                name: "Chronova Prestige",
+                category: "new",
+                price: 3199,
+                image: "static/w16.jpg"
+            }
+        ];
+
+        let wishlistData = JSON.parse(localStorage.getItem("chronova_wishlist")) || DEFAULT_WISHLIST;
+        if (!localStorage.getItem("chronova_wishlist")) {
+            localStorage.setItem("chronova_wishlist", JSON.stringify(wishlistData));
+        }
+
+        // Wallet Balance & Transactions
+        let walletBalance = parseInt(localStorage.getItem("chronova_wallet_balance")) || 2500;
+        const DEFAULT_TXNS = [
+            { date: "20 Sep 2026", desc: "Promotional Welcome Credit", type: "credit", amount: 500 },
+            { date: "22 Jul 2026", desc: "Payment for Order #CHR-8755", type: "debit", amount: 1999 },
+            { date: "10 Jul 2026", desc: "VIP Guild Anniversary Reward", type: "credit", amount: 2000 },
+            { date: "04 Jun 2026", desc: "Complimentary Atelier Polish Voucher", type: "credit", amount: 1999 }
+        ];
+
+        let walletTxns = JSON.parse(localStorage.getItem("chronova_wallet_txns")) || DEFAULT_TXNS;
+        if (!localStorage.getItem("chronova_wallet_txns")) {
+            localStorage.setItem("chronova_wallet_txns", JSON.stringify(walletTxns));
+            localStorage.setItem("chronova_wallet_balance", walletBalance.toString());
+        }
+
+        // Cart items
+        let cartData = JSON.parse(localStorage.getItem("chronova_cart")) || [];
+
+        // ============================================
+        // 2. RENDER FUNCTIONS
+        // ============================================
+
+        function updateHeaderAndProfileUI() {
+            const name = localStorage.getItem("chronova_username") || "Alexander Vance";
+            const email = storedEmail;
+            const phone = localStorage.getItem("chronova_phone") || storedPhone;
+            const avatar = localStorage.getItem("chronova_avatar") || "AV";
+
+            // Navbar
+            document.getElementById("navUserText").textContent = name;
+
+            // Header Banner
+            document.getElementById("headerAvatar").textContent = avatar;
+            document.getElementById("headerUserName").textContent = `Welcome back, ${name}`;
+            document.getElementById("headerUserEmail").textContent = email;
+
+            // Overview Section
+            document.getElementById("profileNameVal").textContent = name;
+            document.getElementById("profileEmailVal").textContent = email;
+            document.getElementById("profilePhoneVal").textContent = phone;
+
+            // Form Fields
+            document.getElementById("editName").value = name;
+            document.getElementById("editEmail").value = email;
+            document.getElementById("editPhone").value = phone;
+            document.getElementById("avatarPreviewLarge").textContent = avatar;
+
+            // Cart Count
+            const totalQty = cartData.reduce((acc, item) => acc + (item.qty || 1), 0);
+            document.getElementById("cartCount").textContent = totalQty;
+        }
+
+        // Render Stats
+        function updateStatsUI() {
+            document.getElementById("statOrdersVal").textContent = ordersData.length;
+            document.getElementById("statWishlistVal").textContent = wishlistData.length;
+            document.getElementById("statWalletVal").textContent = `₹${walletBalance.toLocaleString('en-IN')}`;
+
+            document.getElementById("sidebarOrderCount").textContent = ordersData.length;
+            document.getElementById("sidebarWishlistCount").textContent = wishlistData.length;
+            document.getElementById("sidebarAddrCount").textContent = addressesData.length;
+            document.getElementById("sidebarWalletBadge").textContent = `₹${walletBalance.toLocaleString('en-IN')}`;
+            document.getElementById("walletBalanceMain").textContent = `₹${walletBalance.toLocaleString('en-IN')}`;
+        }
+
+        // Render Orders
+        function renderOrders(filter = 'all') {
+            const container = document.getElementById("ordersListContainer");
+            container.innerHTML = "";
+
+            const filtered = filter === 'all' 
+                ? ordersData 
+                : ordersData.filter(o => o.status.toLowerCase() === filter.toLowerCase());
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state__icon"><i class="fas fa-box-open"></i></div>
+                        <h3>No Orders Found</h3>
+                        <p>You have no timepiece orders matching "${filter}".</p>
+                    </div>
+                `;
+                return;
+            }
+
+            filtered.forEach(order => {
+                const card = document.createElement("div");
+                card.className = "order-card";
+                card.setAttribute("onclick", `openOrderModal('${order.id}')`);
+                card.innerHTML = `
+                    <div class="order-img-wrap">
+                        <img src="${order.image}" alt="${order.productName}">
+                    </div>
+                    <div class="order-main">
+                        <h4>${order.productName}</h4>
+                        <div class="order-meta-text">Order Ref: <strong>#${order.id}</strong> • ${order.date}</div>
+                        <div class="order-meta-text">${order.spec}</div>
+                    </div>
+                    <div>
+                        <div class="order-meta-text">Quantity</div>
+                        <div style="font-weight:600; color:var(--text-primary);">${order.qty} Piece${order.qty > 1 ? 's' : ''}</div>
+                    </div>
+                    <div>
+                        <span class="status-badge ${order.status.toLowerCase()}">${order.status}</span>
+                    </div>
+                    <div style="text-align:right;">
+                        <div class="order-price">₹${order.price.toLocaleString('en-IN')}</div>
+                        <div style="font-size:11px; color:var(--gold); font-weight:600; margin-top:4px;">
+                            View Details <i class="fas fa-chevron-right" style="font-size:10px;"></i>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function filterOrders(status, btn) {
+            document.querySelectorAll(".order-filter-btn").forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            renderOrders(status);
+        }
+
+        // Render Addresses
+        function renderAddresses() {
+            const grid = document.getElementById("addressesGrid");
+            grid.innerHTML = "";
+
+            if (addressesData.length === 0) {
+                grid.innerHTML = `
+                    <div class="empty-state" style="grid-column:1/-1;">
+                        <div class="empty-state__icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <h3>No Saved Addresses</h3>
+                        <p>Add a verified delivery location for insured timepiece consignments.</p>
+                        <button class="btn-luxury-primary" onclick="openAddressModal()"><i class="fas fa-plus"></i> Add Address</button>
+                    </div>
+                `;
+                return;
+            }
+
+            addressesData.forEach((addr, index) => {
+                const card = document.createElement("div");
+                card.className = `address-card ${addr.isDefault ? 'default' : ''}`;
+                card.innerHTML = `
+                    ${addr.isDefault ? '<div class="address-card__default-badge">DEFAULT DESTINATION</div>' : ''}
+                    <div>
+                        <div class="address-card__name">${addr.name}</div>
+                        <div class="address-card__body">
+                            ${addr.flat}<br>
+                            ${addr.street}<br>
+                            ${addr.city}, ${addr.state} - ${addr.pin}<br>
+                            ${addr.country}<br>
+                            <span style="display:inline-block; margin-top:6px; color:var(--gold);"><i class="fas fa-phone-alt"></i> ${addr.phone}</span>
+                        </div>
+                    </div>
+                    <div class="address-card__footer">
+                        <button class="btn-link-action" onclick="openAddressModal(${index})">
+                            <i class="fas fa-pen"></i> Edit
+                        </button>
+                        ${!addr.isDefault ? `
+                            <button class="btn-link-action" onclick="setDefaultAddress(${index})">
+                                <i class="fas fa-check-circle"></i> Make Default
+                            </button>
+                        ` : ''}
+                        <button class="btn-link-action delete" onclick="deleteAddress(${index})">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Render Wishlist
+        function renderWishlist() {
+            const grid = document.getElementById("wishlistGrid");
+            grid.innerHTML = "";
+
+            if (wishlistData.length === 0) {
+                grid.innerHTML = `
+                    <div class="empty-state" style="grid-column:1/-1;">
+                        <div class="empty-state__icon"><i class="fas fa-heart-broken"></i></div>
+                        <h3>Your Horological Vault is Empty</h3>
+                        <p>Curate your personal collection of master timepieces from the Chronova atelier.</p>
+                        <a href="shop.html" class="btn-luxury-primary" style="display:inline-flex;">
+                            <i class="fas fa-compass"></i> Explore Collection
+                        </a>
+                    </div>
+                `;
+                return;
+            }
+
+            wishlistData.forEach((item, index) => {
+                const card = document.createElement("div");
+                card.className = "wishlist-card";
+                card.innerHTML = `
+                    <div class="wishlist-card__image">
+                        <img src="${item.image}" alt="${item.name}">
+                        <button class="wishlist-card__remove" onclick="removeFromWishlist(${index})" title="Remove from Vault">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="wishlist-card__body">
+                        <div class="wishlist-card__category">${item.category || 'Signature'}</div>
+                        <h4 class="wishlist-card__title">${item.name}</h4>
+                        <div class="wishlist-card__price">₹${item.price.toLocaleString('en-IN')}</div>
+                        <button class="wishlist-card__btn" onclick="addWishlistItemToCart('${item.name}', ${item.price}, ${index})">
+                            <i class="fas fa-shopping-bag"></i> Add to Bag
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Render Wallet
+        function renderWallet() {
+            document.getElementById("walletBalanceMain").textContent = `₹${walletBalance.toLocaleString('en-IN')}`;
+            const tbody = document.getElementById("walletTxnsBody");
+            tbody.innerHTML = "";
+
+            walletTxns.forEach(txn => {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>${txn.date}</td>
+                    <td style="color:var(--text-primary); font-weight:500;">${txn.desc}</td>
+                    <td>
+                        <span style="font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:1px; color:${txn.type === 'credit' ? '#2ecc71' : '#e74c3c'};">
+                            ${txn.type}
+                        </span>
+                    </td>
+                    <td class="txn-amount ${txn.type}">
+                        ${txn.type === 'credit' ? '+ ' : '- '}₹${txn.amount.toLocaleString('en-IN')}
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // ============================================
+        // 3. NAVIGATION & SECTION SWITCHING
+        // ============================================
+        function switchSection(sectionId) {
+            // Update desktop sidebar active class
+            document.querySelectorAll(".sidebar-btn").forEach(btn => {
+                if (btn.dataset.section === sectionId) btn.classList.add("active");
+                else btn.classList.remove("active");
+            });
+
+            // Update mobile pills
+            document.querySelectorAll(".mobile-nav-pill").forEach(pill => {
+                if (pill.getAttribute("onclick").includes(`'${sectionId}'`)) pill.classList.add("active");
+                else pill.classList.remove("active");
+            });
+
+            // Show active section
+            document.querySelectorAll(".account-section").forEach(sec => {
+                sec.classList.remove("active");
+            });
+
+            const targetSection = document.getElementById(`section-${sectionId}`);
+            if (targetSection) {
+                targetSection.classList.add("active");
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // ============================================
+        // 4. ORDER DETAILS MODAL
+        // ============================================
+        function openOrderModal(orderId) {
+            const order = ordersData.find(o => o.id === orderId);
+            if (!order) return;
+
+            document.getElementById("modalOrderId").textContent = `Order #${order.id}`;
+            document.getElementById("modalOrderDate").textContent = `Ordered on ${order.date}`;
+            
+            const badge = document.getElementById("modalOrderStatusBadge");
+            badge.textContent = order.status;
+            badge.className = `status-badge ${order.status.toLowerCase()}`;
+
+            document.getElementById("modalProductImg").src = order.image;
+            document.getElementById("modalProductName").textContent = order.productName;
+            document.getElementById("modalProductSpec").textContent = order.spec;
+            document.getElementById("modalProductPrice").textContent = `Qty: ${order.qty} × ₹${order.price.toLocaleString('en-IN')}`;
+
+            document.getElementById("modalSubtotal").textContent = `₹${order.price.toLocaleString('en-IN')}`;
+            document.getElementById("modalTotalAmount").textContent = `₹${order.price.toLocaleString('en-IN')}`;
+            document.getElementById("modalAddressText").innerHTML = order.address.replace(/, /g, '<br>');
+            document.getElementById("modalPaymentText").innerHTML = `${order.paymentMethod}<br>Verified Atelier Cleared<br>Invoice: CHR-INV-${order.id}.pdf`;
+
+            // Timeline update
+            const steps = document.querySelectorAll(".timeline-step");
+            steps.forEach((step, idx) => {
+                step.classList.remove("completed", "active");
+                if (idx < order.timelineStep) {
+                    step.classList.add("completed");
+                } else if (idx === order.timelineStep) {
+                    step.classList.add("active");
+                }
+            });
+
+            const backdrop = document.getElementById("orderModalBackdrop");
+            backdrop.classList.add("active");
+            backdrop.setAttribute("aria-hidden", "false");
+            document.body.classList.add("modal-open");
+        }
+
+        function closeOrderModal() {
+            const backdrop = document.getElementById("orderModalBackdrop");
+            backdrop.classList.remove("active");
+            backdrop.setAttribute("aria-hidden", "true");
+            document.body.classList.remove("modal-open");
+        }
+
+        // ============================================
+        // 5. ADDRESS MANAGEMENT
+        // ============================================
+        function openAddressModal(editIndex = -1) {
+            document.getElementById("addrEditIndex").value = editIndex;
+            const form = document.getElementById("addressForm");
+            form.reset();
+
+            if (editIndex >= 0 && addressesData[editIndex]) {
+                const a = addressesData[editIndex];
+                document.getElementById("addrModalTitle").textContent = "Edit Delivery Destination";
+                document.getElementById("addrName").value = a.name;
+                document.getElementById("addrPhone").value = a.phone;
+                document.getElementById("addrFlat").value = a.flat;
+                document.getElementById("addrStreet").value = a.street;
+                document.getElementById("addrCity").value = a.city;
+                document.getElementById("addrState").value = a.state;
+                document.getElementById("addrPin").value = a.pin;
+                document.getElementById("addrCountry").value = a.country;
+                document.getElementById("addrIsDefault").checked = a.isDefault;
+            } else {
+                document.getElementById("addrModalTitle").textContent = "Add Delivery Destination";
+                document.getElementById("addrName").value = localStorage.getItem("chronova_username") || "Alexander Vance";
+                document.getElementById("addrPhone").value = localStorage.getItem("chronova_phone") || "+91 98201 48721";
+            }
+
+            const backdrop = document.getElementById("addressModalBackdrop");
+            backdrop.classList.add("active");
+            backdrop.setAttribute("aria-hidden", "false");
+            document.body.classList.add("modal-open");
+        }
+
+        function closeAddressModal() {
+            const backdrop = document.getElementById("addressModalBackdrop");
+            backdrop.classList.remove("active");
+            backdrop.setAttribute("aria-hidden", "true");
+            document.body.classList.remove("modal-open");
+        }
+
+        function handleSaveAddress(e) {
+            e.preventDefault();
+            const editIndex = parseInt(document.getElementById("addrEditIndex").value);
+
+            const newAddr = {
+                name: document.getElementById("addrName").value.trim(),
+                phone: document.getElementById("addrPhone").value.trim(),
+                flat: document.getElementById("addrFlat").value.trim(),
+                street: document.getElementById("addrStreet").value.trim(),
+                city: document.getElementById("addrCity").value.trim(),
+                state: document.getElementById("addrState").value.trim(),
+                pin: document.getElementById("addrPin").value.trim(),
+                country: document.getElementById("addrCountry").value.trim(),
+                isDefault: document.getElementById("addrIsDefault").checked
+            };
+
+            if (newAddr.isDefault) {
+                addressesData.forEach(a => a.isDefault = false);
+            }
+
+            if (editIndex >= 0) {
+                addressesData[editIndex] = newAddr;
+            } else {
+                if (addressesData.length === 0) newAddr.isDefault = true;
+                addressesData.push(newAddr);
+            }
+
+            localStorage.setItem("chronova_addresses", JSON.stringify(addressesData));
+            renderAddresses();
+            updateStatsUI();
+            closeAddressModal();
+        }
+
+        function setDefaultAddress(index) {
+            addressesData.forEach((a, i) => a.isDefault = (i === index));
+            localStorage.setItem("chronova_addresses", JSON.stringify(addressesData));
+            renderAddresses();
+        }
+
+        function deleteAddress(index) {
+            if (confirm("Are you sure you wish to remove this delivery destination?")) {
+                addressesData.splice(index, 1);
+                if (addressesData.length > 0 && !addressesData.some(a => a.isDefault)) {
+                    addressesData[0].isDefault = true;
+                }
+                localStorage.setItem("chronova_addresses", JSON.stringify(addressesData));
+                renderAddresses();
+                updateStatsUI();
+            }
+        }
+
+        // ============================================
+        // 6. WISHLIST MANAGEMENT
+        // ============================================
+        function removeFromWishlist(index) {
+            wishlistData.splice(index, 1);
+            localStorage.setItem("chronova_wishlist", JSON.stringify(wishlistData));
+            renderWishlist();
+            updateStatsUI();
+        }
+
+        function addWishlistItemToCart(name, price, index) {
+            let cart = JSON.parse(localStorage.getItem("chronova_cart")) || [];
+            const item = cart.find(p => p.name === name);
+            if (item) item.qty += 1;
+            else cart.push({ name, price, qty: 1 });
+
+            localStorage.setItem("chronova_cart", JSON.stringify(cart));
+            cartData = cart;
+            updateHeaderAndProfileUI();
+
+            alert(`✨ ${name} has been added to your Chronova Shopping Bag!`);
+        }
+
+        // ============================================
+        // 7. WALLET VOUCHER REDEEM
+        // ============================================
+        function handleRedeemVoucher(e) {
+            e.preventDefault();
+            const input = document.getElementById("voucherInput");
+            const code = input.value.trim().toUpperCase();
+            const msg = document.getElementById("voucherMsg");
+
+            if (code === "GOLD500") {
+                walletBalance += 500;
+                walletTxns.unshift({
+                    date: "Just Now",
+                    desc: "Promotional Voucher (GOLD500)",
+                    type: "credit",
+                    amount: 500
+                });
+                persistWallet("₹500 added to your Chronova Wallet balance! 🎉");
+            } else if (code === "CHRONO1000") {
+                walletBalance += 1000;
+                walletTxns.unshift({
+                    date: "Just Now",
+                    desc: "Atelier Loyalty Reward (CHRONO1000)",
+                    type: "credit",
+                    amount: 1000
+                });
+                persistWallet("₹1,000 added to your Chronova Wallet balance! 👑");
+            } else {
+                msg.style.display = "block";
+                msg.style.color = "#e74c3c";
+                msg.innerHTML = "<i class='fas fa-exclamation-circle'></i> Invalid or expired voucher code. Try <strong>GOLD500</strong> or <strong>CHRONO1000</strong>.";
+                return;
+            }
+
+            input.value = "";
+        }
+
+        function persistWallet(successText) {
+            localStorage.setItem("chronova_wallet_balance", walletBalance.toString());
+            localStorage.setItem("chronova_wallet_txns", JSON.stringify(walletTxns));
+            renderWallet();
+            updateStatsUI();
+
+            const msg = document.getElementById("voucherMsg");
+            msg.style.display = "block";
+            msg.style.color = "#2ecc71";
+            msg.innerHTML = `<i class='fas fa-check-circle'></i> ${successText}`;
+            setTimeout(() => { msg.style.display = "none"; }, 4000);
+        }
+
+        // ============================================
+        // 8. FAQ ACCORDION
+        // ============================================
+        function toggleFaq(btn) {
+            const item = btn.closest(".faq-item");
+            const isActive = item.classList.contains("active");
+            document.querySelectorAll(".faq-item").forEach(i => i.classList.remove("active"));
+            if (!isActive) item.classList.add("active");
+        }
+
+        // ============================================
+        // 9. SUPPORT FORM SUBMIT
+        // ============================================
+        function handleSupportSubmit(e) {
+            e.preventDefault();
+            const btn = document.getElementById("supportSubmitBtn");
+            btn.innerHTML = "<i class='fas fa-spinner fa-spin'></i> Submitting...";
+            btn.disabled = true;
+
+            setTimeout(() => {
+                btn.innerHTML = "<i class='fas fa-paper-plane'></i> Submit Request";
+                btn.disabled = false;
+                document.getElementById("supportSuccessBanner").classList.add("active");
+                document.getElementById("supportForm").reset();
+                setTimeout(() => {
+                    document.getElementById("supportSuccessBanner").classList.remove("active");
+                }, 5000);
+            }, 800);
+        }
+
+        // ============================================
+        // 10. EDIT PROFILE & AVATAR
+        // ============================================
+        function selectAvatar(symbol, btn) {
+            document.querySelectorAll(".avatar-opt-btn").forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            document.getElementById("avatarPreviewLarge").textContent = symbol;
+            localStorage.setItem("chronova_avatar", symbol);
+        }
+
+        function handleSaveProfile(e) {
+            e.preventDefault();
+            const name = document.getElementById("editName").value.trim();
+            const email = document.getElementById("editEmail").value.trim();
+            const phone = document.getElementById("editPhone").value.trim();
+
+            if (!name || !email) {
+                alert("Please provide both your name and email address.");
+                return;
+            }
+
+            localStorage.setItem("chronova_username", name);
+            localStorage.setItem("chronova_phone", phone);
+
+            // Update user in localStorage
+            let user = {};
+            try { user = JSON.parse(localStorage.getItem("chronova_user")) || {}; } catch(err) {}
+            user.name = name;
+            user.email = email;
+            localStorage.setItem("chronova_user", JSON.stringify(user));
+
+            updateHeaderAndProfileUI();
+
+            const msg = document.getElementById("profileSaveMsg");
+            msg.style.display = "block";
+            setTimeout(() => { msg.style.display = "none"; }, 3000);
+        }
+
+        // ============================================
+        // 11. THEME SETTINGS (DARK / LIGHT LUXURY)
+        // ============================================
+        function setTheme(theme) {
+            if (window.setChronovaTheme) {
+                window.setChronovaTheme(theme);
+            } else {
+                document.documentElement.setAttribute("data-theme", theme);
+                localStorage.setItem("chronova_theme", theme);
+            }
+
+            const darkCard = document.getElementById("themeCardDark");
+            const lightCard = document.getElementById("themeCardLight");
+            if (darkCard) darkCard.classList.toggle("active", theme === "dark");
+            if (lightCard) lightCard.classList.toggle("active", theme === "light");
+        }
+
+        // ============================================
+        // 12. LOGOUT & BACKDROP CLOSE LISTENERS
+        // ============================================
+        function handleLogout() {
+            if (confirm("Sign out of your Chronova Atelier account?")) {
+                localStorage.removeItem("chronova_logged_in");
+                localStorage.removeItem("chronova_username");
+                window.location.href = "login.html";
+            }
+        }
+
+        // Backdrop click to close modals
+        document.getElementById("orderModalBackdrop").addEventListener("click", (e) => {
+            if (e.target === document.getElementById("orderModalBackdrop")) closeOrderModal();
+        });
+
+        document.getElementById("addressModalBackdrop").addEventListener("click", (e) => {
+            if (e.target === document.getElementById("addressModalBackdrop")) closeAddressModal();
+        });
+
+        // ESC key close
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") {
+                closeOrderModal();
+                closeAddressModal();
+            }
+        });
+
+        // Hamburger mobile menu
+        document.getElementById("hamburgerBtn").addEventListener("click", () => {
+            document.getElementById("navLinks").classList.toggle("active");
+        });
+
+        // ============================================
+        // INITIALIZATION ON LOAD
+        // ============================================
+        document.addEventListener("DOMContentLoaded", () => {
+            setTheme(savedTheme);
+            updateHeaderAndProfileUI();
+            updateStatsUI();
+            renderOrders();
+            renderAddresses();
+            renderWishlist();
+            renderWallet();
+
+            // Support form defaults
+            document.getElementById("supportName").value = localStorage.getItem("chronova_username") || "Alexander Vance";
+            document.getElementById("supportEmail").value = storedEmail;
+        });
+    </script>
+
+</body>
+
+</html>
