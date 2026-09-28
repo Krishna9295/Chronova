@@ -3,36 +3,50 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Chronova | Contact</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chronova Watches | Contact & Private Concierge</title>
+    <meta name="description" content="Connect with Chronova Haute Horlogerie. Inquire about bespoke timepieces, private atelier salon consultations in Geneva and Mumbai, or order servicing.">
 
-    <!-- Global Theme Controller -->
+    <!-- Global Theme Controller (Zero-Flicker) -->
     <script src="theme.js"></script>
 
+    <!-- CSS & Fonts -->
     <link rel="stylesheet" href="contact.css">
     <link rel="stylesheet" href="theme.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- GSAP for Smooth Luxury Entrance Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
 
 <body>
 
-     <!-- NAVBAR -->
-    <nav>
-        <a href="index.html" class="logo" style="text-decoration:none;">Chronova</a>
-        <ul id="contactNavLinks">
+    <!-- ATMOSPHERIC BACKGROUND GLOWS -->
+    <div class="contact-bg-glow" aria-hidden="true"></div>
+    <div class="contact-bg-glow-bottom" aria-hidden="true"></div>
+
+    <!-- ============================================ -->
+    <!-- 1. UNIFIED CHRONOVA NAVBAR                   -->
+    <!-- ============================================ -->
+    <nav class="navbar" id="contactNavbar">
+        <a href="index.html" class="logo">Chronova</a>
+        <ul class="nav-links" id="contactNavLinks">
             <li><a href="index.html">Home</a></li>
             <li><a href="heritage.html">Heritage</a></li>
             <li><a href="collections.html">Collections</a></li>
             <li><a href="shop.html">Shop</a></li>
-            <li><a href="contact.html" style="color: #f0d67a;">Contact</a></li>
+            <li><a href="contact.html" class="active">Contact</a></li>
             <li><a href="account.html">Account</a></li>
 
-            <!-- JS CONTROLLED AREA -->
+            <!-- DYNAMIC USER AUTH STATE -->
             <li id="userBox"></li>
 
             <li>
-                <a href="cart.html" style="display:flex;align-items:center;gap:6px;">
-                    <i class="fas fa-shopping-bag"></i> Cart (<span id="cartCount">0</span>)
+                <a href="cart.html" class="cart-link">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span>Cart (<span id="cartCount">0</span>)</span>
                 </a>
             </li>
         </ul>
@@ -41,112 +55,547 @@
         </div>
     </nav>
 
-
-    <!-- CONTACT SECTION -->
-    <section class="contact-wrapper">
-
-        <div class="contact-card">
-
-            <!-- LEFT INFO -->
-            <div class="contact-info">
-                <h2>Get in Touch</h2>
-                <p>We’d love to hear from you. Whether you have a question about our watches, pricing, or anything else
-                    — our team is ready to answer.</p>
-
-                <div class="info-item">
-                    <i class="fa-solid fa-phone"></i>
-                    <span>+91 98765 43210</span>
-                </div>
-
-                <div class="info-item">
-                    <i class="fa-solid fa-envelope"></i>
-                    <span>support@chronova.com</span>
-                </div>
-
-                <div class="info-item">
-                    <i class="fa-solid fa-location-dot"></i>
-                    <span>Mumbai, India</span>
-                </div>
+    <!-- ============================================ -->
+    <!-- 2. CINEMATIC CONTACT HERO                    -->
+    <!-- ============================================ -->
+    <header class="contact-hero">
+        <div class="container">
+            <span class="hero-eyebrow" id="heroEyebrow">
+                <i class="fas fa-crown"></i> Private Atelier Concierge
+            </span>
+            <h1 id="heroTitle">Let’s Talk <span>Time</span></h1>
+            <p id="heroDesc">
+                Whether commissioning a bespoke mechanical complication, seeking private salon consultations in Geneva or Mumbai, or inquiring about vault deliveries — our master horologists and client advisors await.
+            </p>
+            <div class="hero-badges-row" id="heroBadges">
+                <span class="hero-badge-pill">
+                    <i class="fas fa-certificate"></i> Swiss Haute Horlogerie
+                </span>
+                <span class="hero-badge-pill">
+                    <i class="fas fa-shield-alt"></i> Swiss Confidentiality Protocol
+                </span>
+                <span class="hero-badge-pill">
+                    <i class="fas fa-plane-departure"></i> Global Armored Delivery
+                </span>
             </div>
-
-            <!-- RIGHT FORM -->
-            <div class="contact-form">
-                <form>
-                    <input type="text" placeholder="Your Name" required>
-                    <input type="email" placeholder="Your Email" required>
-                    <textarea placeholder="Your Message" rows="5" required></textarea>
-                    <button type="submit">Send Message</button>
-                </form>
-            </div>
-
         </div>
+    </header>
 
+    <!-- ============================================ -->
+    <!-- 3. MAIN CONTACT & CONCIERGE SECTION          -->
+    <!-- ============================================ -->
+    <main class="contact-section">
+        <div class="container">
+            <div class="contact-layout">
+
+                <!-- LEFT COLUMN: ATELIER INFORMATION & WATCH VISUAL -->
+                <div class="contact-atelier" id="contactAtelierCol">
+
+                    <!-- Atelier Card -->
+                    <div class="atelier-card">
+                        <div class="atelier-card__header">
+                            <span class="section-tag-gold">Atelier Services</span>
+                            <h2>Private Client Salons</h2>
+                        </div>
+                        <p class="atelier-card__intro">
+                            Every Chronova timepiece represents an intimate journey between collector and watchmaker. We welcome your private inquiries with dedicated white-glove attention.
+                        </p>
+
+                        <div class="atelier-channels">
+                            <!-- Location 1 -->
+                            <div class="channel-item">
+                                <div class="channel-icon">
+                                    <i class="fas fa-landmark"></i>
+                                </div>
+                                <div class="channel-content">
+                                    <div class="channel-label">Geneva Headquarters & Atelier</div>
+                                    <div class="channel-value">Rue du Rhône 42, 1204 Geneva, Switzerland</div>
+                                    <div class="channel-meta">By appointment • Private Salon Available</div>
+                                </div>
+                            </div>
+
+                            <!-- Location 2 -->
+                            <div class="channel-item">
+                                <div class="channel-icon">
+                                    <i class="fas fa-gem"></i>
+                                </div>
+                                <div class="channel-content">
+                                    <div class="channel-label">Mumbai Flagship Salon</div>
+                                    <div class="channel-value">The Grand Palladium, Bandra Kurla Complex, Mumbai 400051</div>
+                                    <div class="channel-meta">Valet Parking • Private Viewing Vault</div>
+                                </div>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="channel-item">
+                                <div class="channel-icon">
+                                    <i class="fas fa-envelope-open-text"></i>
+                                </div>
+                                <div class="channel-content">
+                                    <div class="channel-label">Horological Concierge Email</div>
+                                    <div class="channel-value">
+                                        <a href="mailto:concierge@chronova-haute.com">concierge@chronova-haute.com</a>
+                                    </div>
+                                    <div class="channel-meta">Dedicated reply within 4 hours</div>
+                                </div>
+                            </div>
+
+                            <!-- Phone -->
+                            <div class="channel-item">
+                                <div class="channel-icon">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div class="channel-content">
+                                    <div class="channel-label">Global Private Client Telephone</div>
+                                    <div class="channel-value">
+                                        <a href="tel:+41228198500">+41 22 819 85 00</a> (Geneva) / 
+                                        <a href="tel:+912268904000">+91 22 6890 4000</a> (Mumbai)
+                                    </div>
+                                    <div class="channel-meta">Mon – Sat: 10:00 – 19:30 CET / IST</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Atelier Watch Visual Card -->
+                    <div class="atelier-visual-card">
+                        <div class="visual-image-wrapper">
+                            <div class="visual-aura-glow"></div>
+                            <img src="static/w4.jpg" alt="Chronova Bespoke Atelier Watch" loading="lazy">
+                        </div>
+                        <div class="visual-details">
+                            <span class="section-tag-gold">Bespoke Complications</span>
+                            <h3>Custom Atelier Creations</h3>
+                            <p>Discuss tailor-made guilloché dials, personalized case engravings, or custom perpetual complications.</p>
+                            <span class="visual-status-pill">Atelier Open for Commissions</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- RIGHT COLUMN: LUXURY GLASSMORPHIC CONTACT FORM -->
+                <div class="contact-form-wrapper" id="contactFormCol">
+                    <div class="contact-card-glass">
+
+                        <!-- FORM HEADER -->
+                        <div class="form-header" id="formHeaderBlock">
+                            <span class="section-tag-gold">Inquiry Dispatch</span>
+                            <h2>Send an Inquiry</h2>
+                            <p>Please provide your details below. A dedicated horological concierge advisor will attend to your request.</p>
+                        </div>
+
+                        <!-- INTERACTIVE FORM -->
+                        <form id="chronovaContactForm" class="contact-form" novalidate>
+                            
+                            <div class="form-row">
+                                <!-- Full Name -->
+                                <div class="form-group" id="groupName">
+                                    <label for="contactName">Full Name <span class="required">*</span></label>
+                                    <div class="input-with-icon">
+                                        <input type="text" id="contactName" class="form-control" placeholder="e.g. Lord Sterling Vance" required>
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    <span class="form-field-error" id="errorName">Please provide your full name.</span>
+                                </div>
+
+                                <!-- Email Address -->
+                                <div class="form-group" id="groupEmail">
+                                    <label for="contactEmail">Email Address <span class="required">*</span></label>
+                                    <div class="input-with-icon">
+                                        <input type="email" id="contactEmail" class="form-control" placeholder="vance@atelier-holdings.com" required>
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <span class="form-field-error" id="errorEmail">Please enter a valid email address.</span>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <!-- Phone -->
+                                <div class="form-group" id="groupPhone">
+                                    <label for="contactPhone">Phone Number <span style="font-size: 11px; text-transform: none; color: var(--text-muted);">(Optional)</span></label>
+                                    <div class="input-with-icon">
+                                        <input type="tel" id="contactPhone" class="form-control" placeholder="+41 79 000 0000">
+                                        <i class="fas fa-phone"></i>
+                                    </div>
+                                </div>
+
+                                <!-- Subject -->
+                                <div class="form-group" id="groupSubject">
+                                    <label for="contactSubject">Inquiry Nature <span class="required">*</span></label>
+                                    <div class="input-with-icon">
+                                        <select id="contactSubject" class="form-control" required>
+                                            <option value="" disabled selected>Select an inquiry topic...</option>
+                                            <option value="Bespoke Commission">Bespoke Watch Commission & Tailored Dial</option>
+                                            <option value="Private Atelier Appointment">Private Salon Appointment (Geneva / Mumbai)</option>
+                                            <option value="Order & Vault Delivery">Order Status & Armored Vault Delivery</option>
+                                            <option value="Horological Servicing">Horological Restoration & Servicing</option>
+                                            <option value="VIP Guild Inquiries">Chronova Privilege Guild Inquiries</option>
+                                            <option value="General Concierge">General Atelier Inquiries</option>
+                                        </select>
+                                        <i class="fas fa-compass"></i>
+                                    </div>
+                                    <span class="form-field-error" id="errorSubject">Please select the subject of your inquiry.</span>
+                                </div>
+                            </div>
+
+                            <!-- Message -->
+                            <div class="form-group" id="groupMessage">
+                                <label for="contactMessage">Your Message <span class="required">*</span></label>
+                                <textarea id="contactMessage" class="form-control" rows="5" placeholder="Share details regarding your horological preferences, preferred salon date, or specific timepiece references..." required></textarea>
+                                <span class="form-field-error" id="errorMessage">Please provide details regarding your inquiry.</span>
+                            </div>
+
+                            <!-- Privacy Notice -->
+                            <div class="form-footer-notice">
+                                <i class="fas fa-lock"></i>
+                                <span>Your personal information is preserved with strict Swiss privacy and discretion.</span>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button type="submit" id="contactSubmitBtn" class="btn-submit-luxury">
+                                <span class="btn-text"><i class="fas fa-paper-plane" style="margin-right: 6px;"></i> Send Message</span>
+                                <div class="btn-spinner"></div>
+                            </button>
+                        </form>
+
+                        <!-- SUCCESS STATE MESSAGE (HIDDEN BY DEFAULT) -->
+                        <div class="form-success-card" id="formSuccessCard">
+                            <div class="success-crest">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <h3>Inquiry Received</h3>
+                            <p id="successPersonalizedText">
+                                Thank you. Your inquiry has been logged with the Chronova Private Concierge. A dedicated horological specialist has been assigned to your request and will contact you shortly.
+                            </p>
+                            <div class="inquiry-receipt-box">
+                                <strong>DISPATCH CONFIRMATION:</strong> <span id="inquiryReferenceCode">CHR-CON-7492</span>
+                            </div>
+                            <button type="button" class="btn-reset-form" onclick="resetContactForm()">
+                                <i class="fas fa-redo-alt" style="margin-right: 6px;"></i> Send Another Message
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- ============================================ -->
+    <!-- 4. GLOBAL SALONS & ATELIER SUITES            -->
+    <!-- ============================================ -->
+    <section class="salon-locations-section">
+        <div class="container">
+            <div class="salon-locations-header">
+                <span class="section-tag-gold">International Presence</span>
+                <h2>Chronova Atelier Salons</h2>
+                <p>Private viewings and bespoke consultations available across our flagship sanctuaries.</p>
+            </div>
+
+            <div class="salons-grid">
+                <!-- Salon 1 -->
+                <div class="salon-card">
+                    <div class="salon-city">Geneva</div>
+                    <div class="salon-type">Maison & Master Atelier</div>
+                    <div class="salon-address">
+                        Rue du Rhône 42<br>
+                        1204 Geneva, Switzerland
+                    </div>
+                    <div class="salon-hours">
+                        <i class="fas fa-clock"></i> 10:00 – 19:30 (CET)
+                    </div>
+                </div>
+
+                <!-- Salon 2 -->
+                <div class="salon-card">
+                    <div class="salon-city">Mumbai</div>
+                    <div class="salon-type">Private Client Salon</div>
+                    <div class="salon-address">
+                        The Grand Palladium, Level 7, BKC<br>
+                        Mumbai, Maharashtra 400051
+                    </div>
+                    <div class="salon-hours">
+                        <i class="fas fa-clock"></i> 11:00 – 20:00 (IST)
+                    </div>
+                </div>
+
+                <!-- Salon 3 -->
+                <div class="salon-card">
+                    <div class="salon-city">London</div>
+                    <div class="salon-type">Mayfair Private Suite</div>
+                    <div class="salon-address">
+                        New Bond Street 14<br>
+                        Mayfair, London W1S 3SS
+                    </div>
+                    <div class="salon-hours">
+                        <i class="fas fa-clock"></i> By Private Appointment
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
+    <!-- ============================================ -->
+    <!-- 5. UNIFIED LUXURY FOOTER                     -->
+    <!-- ============================================ -->
     <footer class="footer">
-
         <div class="footer_content">
             <h2>Chronova Watches</h2>
+            <p class="footer_tagline">
+                Swiss Haute Horlogerie since 1985. Handcrafted mechanical precision engineered for eternity.
+            </p>
+
+            <div class="footer_links">
+                <a href="index.html">Home</a>
+                <a href="heritage.html">Heritage</a>
+                <a href="collections.html">Collections</a>
+                <a href="shop.html">Shop</a>
+                <a href="contact.html">Contact</a>
+                <a href="account.html">Account</a>
+                <a href="cart.html">Cart</a>
+            </div>
 
             <div class="footer_social">
-                <a href="#">Instagram</a>
-                <a href="#">Facebook</a>
-                <a href="#">Twitter</a>
-                <a href="#">YouTube</a>
+                <a href="#" aria-label="Chronova on Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Chronova on Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Chronova on X"><i class="fab fa-x-twitter"></i></a>
+                <a href="#" aria-label="Chronova on LinkedIn"><i class="fab fa-linkedin-in"></i></a>
             </div>
 
             <p class="copyright">
-                © 2026 Chronova Watches. All Rights Reserved.
+                © 2026 Chronova Haute Horlogerie S.A. All Rights Reserved. Geneva • Mumbai • London.
             </p>
         </div>
-
     </footer>
 
+    <!-- ============================================ -->
+    <!-- 6. LOGIC & GSAP ANIMATIONS                   -->
+    <!-- ============================================ -->
     <script>
-        // Update Cart Count
-        try {
-            const cart = JSON.parse(localStorage.getItem("cart") || localStorage.getItem("chronova_cart") || "[]");
-            document.getElementById("cartCount").textContent = cart.length;
-        } catch(e) {}
+        document.addEventListener("DOMContentLoaded", () => {
+            'use strict';
 
-        // Auth & userBox
-        const isLoggedIn = localStorage.getItem("chronova_logged_in");
-        const username = localStorage.getItem("chronova_username");
-        const userBox = document.getElementById("userBox");
+            // 1. UPDATE CART COUNT
+            try {
+                const cart = JSON.parse(localStorage.getItem("chronova_cart") || localStorage.getItem("cart") || "[]");
+                const countBadge = document.getElementById("cartCount");
+                if (countBadge) countBadge.textContent = cart.length;
+            } catch (e) {}
 
-        if (userBox) {
-            if (isLoggedIn === "true" && username) {
-                userBox.innerHTML = `
-                    <a href="account.html" title="Atelier Profile" style="background:transparent;border:none;padding:0;box-shadow:none;transform:none;">
-                        <span style="color:#f0d67a;font-weight:bold;cursor:pointer;">
-                            Hi, ${username}
-                        </span>
-                    </a>
-                    <a href="#" onclick="logout()" style="margin-left:12px;">Logout</a>
-                `;
-            } else {
-                userBox.innerHTML = `
-                    <a href="login.html">Login</a>
-                    <a href="signup.html">Sign Up</a>
-                `;
+            // 2. AUTH & USERBOX LOGIC (UNIFIED)
+            const isLoggedIn = localStorage.getItem("chronova_logged_in");
+            let username = localStorage.getItem("chronova_username");
+            if (!username) {
+                try {
+                    const u = JSON.parse(localStorage.getItem("chronova_user"));
+                    if (u && u.name) username = u.name;
+                } catch(e) {}
             }
-        }
+            const userBox = document.getElementById("userBox");
 
-        function logout() {
-            localStorage.removeItem("chronova_logged_in");
-            localStorage.removeItem("chronova_username");
-            window.location.href = "index.html";
-        }
+            if (userBox) {
+                if (isLoggedIn === "true" && username) {
+                    userBox.innerHTML = `
+                        <a href="account.html" title="Atelier Profile" style="background:transparent;border:none;padding:0;box-shadow:none;transform:none;">
+                            <span style="color:#f0d67a;font-weight:bold;cursor:pointer;display:inline-flex;align-items:center;gap:6px;">
+                                <i class="fas fa-crown" style="font-size:12px;"></i> Hi, ${username}
+                            </span>
+                        </a>
+                        <a href="#" onclick="logout()" style="margin-left:12px;">Logout</a>
+                    `;
+                } else {
+                    userBox.innerHTML = `
+                        <a href="login.html">Login</a>
+                        <a href="signup.html">Sign Up</a>
+                    `;
+                }
+            }
 
-        // Mobile Hamburger Toggle
-        const contactHamburger = document.getElementById("contactHamburger");
-        const contactNavLinks = document.getElementById("contactNavLinks");
-        if (contactHamburger && contactNavLinks) {
-            contactHamburger.addEventListener("click", () => {
-                contactNavLinks.classList.toggle("active");
-            });
-        }
+            // 3. LOGOUT HANDLER
+            window.logout = function() {
+                localStorage.removeItem("chronova_logged_in");
+                localStorage.removeItem("chronova_username");
+                window.location.href = "index.html";
+            };
+
+            // 4. MOBILE HAMBURGER TOGGLE
+            const hamburgerBtn = document.getElementById("contactHamburger");
+            const navLinks = document.getElementById("contactNavLinks");
+            if (hamburgerBtn && navLinks) {
+                hamburgerBtn.addEventListener("click", () => {
+                    navLinks.classList.toggle("active");
+                });
+            }
+
+            // 5. GSAP ENTRANCE ANIMATIONS
+            if (typeof gsap !== "undefined") {
+                gsap.from("#heroEyebrow", {
+                    y: -20,
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: "power3.out"
+                });
+
+                gsap.from("#heroTitle", {
+                    y: 30,
+                    opacity: 0,
+                    duration: 1,
+                    delay: 0.15,
+                    ease: "power3.out"
+                });
+
+                gsap.from("#heroDesc", {
+                    y: 20,
+                    opacity: 0,
+                    duration: 0.9,
+                    delay: 0.3,
+                    ease: "power3.out"
+                });
+
+                gsap.from("#heroBadges .hero-badge-pill", {
+                    scale: 0.9,
+                    opacity: 0,
+                    duration: 0.7,
+                    delay: 0.45,
+                    stagger: 0.1,
+                    ease: "back.out(1.4)"
+                });
+
+                gsap.from("#contactAtelierCol", {
+                    x: -40,
+                    opacity: 0,
+                    duration: 1,
+                    delay: 0.5,
+                    ease: "power3.out"
+                });
+
+                gsap.from("#contactFormCol", {
+                    x: 40,
+                    opacity: 0,
+                    duration: 1,
+                    delay: 0.55,
+                    ease: "power3.out"
+                });
+            }
+
+            // 6. CONTACT FORM VALIDATION & SUBMISSION
+            const contactForm = document.getElementById("chronovaContactForm");
+            const submitBtn = document.getElementById("contactSubmitBtn");
+            const successCard = document.getElementById("formSuccessCard");
+            const formHeader = document.getElementById("formHeaderBlock");
+
+            if (contactForm) {
+                contactForm.addEventListener("submit", function(e) {
+                    e.preventDefault();
+
+                    const nameInput = document.getElementById("contactName");
+                    const emailInput = document.getElementById("contactEmail");
+                    const subjectInput = document.getElementById("contactSubject");
+                    const messageInput = document.getElementById("contactMessage");
+
+                    let isValid = true;
+
+                    // Validate Name
+                    if (!nameInput.value.trim()) {
+                        document.getElementById("groupName").classList.add("has-error");
+                        isValid = false;
+                    } else {
+                        document.getElementById("groupName").classList.remove("has-error");
+                    }
+
+                    // Validate Email
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(emailInput.value.trim())) {
+                        document.getElementById("groupEmail").classList.add("has-error");
+                        isValid = false;
+                    } else {
+                        document.getElementById("groupEmail").classList.remove("has-error");
+                    }
+
+                    // Validate Subject
+                    if (!subjectInput.value) {
+                        document.getElementById("groupSubject").classList.add("has-error");
+                        isValid = false;
+                    } else {
+                        document.getElementById("groupSubject").classList.remove("has-error");
+                    }
+
+                    // Validate Message
+                    if (!messageInput.value.trim()) {
+                        document.getElementById("groupMessage").classList.add("has-error");
+                        isValid = false;
+                    } else {
+                        document.getElementById("groupMessage").classList.remove("has-error");
+                    }
+
+                    if (!isValid) return;
+
+                    // Trigger Loading State
+                    submitBtn.classList.add("loading");
+                    submitBtn.disabled = true;
+
+                    // Simulate atelier dispatch
+                    setTimeout(() => {
+                        submitBtn.classList.remove("loading");
+                        submitBtn.disabled = false;
+
+                        // Generate unique inquiry reference code
+                        const refCode = "CHR-CON-" + Math.floor(1000 + Math.random() * 9000);
+                        document.getElementById("inquiryReferenceCode").textContent = refCode;
+
+                        // Personalize text
+                        const clientName = nameInput.value.trim();
+                        document.getElementById("successPersonalizedText").textContent = 
+                            `Thank you, ${clientName}. Your inquiry has been received by the Chronova Horological Concierge. A dedicated specialist will attend to your request within 4 hours.`;
+
+                        // Hide form and show success state
+                        contactForm.style.display = "none";
+                        formHeader.style.display = "none";
+                        successCard.style.display = "block";
+
+                        // Save inquiry to localStorage archive if desired
+                        try {
+                            const inquiries = JSON.parse(localStorage.getItem("chronova_inquiries") || "[]");
+                            inquiries.push({
+                                ref: refCode,
+                                name: clientName,
+                                email: emailInput.value.trim(),
+                                phone: document.getElementById("contactPhone").value.trim(),
+                                subject: subjectInput.value,
+                                message: messageInput.value.trim(),
+                                date: new Date().toISOString()
+                            });
+                            localStorage.setItem("chronova_inquiries", JSON.stringify(inquiries));
+                        } catch(e) {}
+
+                    }, 1100);
+                });
+
+                // Clear errors on typing
+                ["contactName", "contactEmail", "contactSubject", "contactMessage"].forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) {
+                        el.addEventListener("input", () => {
+                            el.closest(".form-group").classList.remove("has-error");
+                        });
+                        el.addEventListener("change", () => {
+                            el.closest(".form-group").classList.remove("has-error");
+                        });
+                    }
+                });
+            }
+
+            // Reset Form Function
+            window.resetContactForm = function() {
+                if (contactForm) {
+                    contactForm.reset();
+                    contactForm.style.display = "flex";
+                }
+                if (formHeader) formHeader.style.display = "block";
+                if (successCard) successCard.style.display = "none";
+            };
+        });
     </script>
 </body>
-
 </html>

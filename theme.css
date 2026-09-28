@@ -449,41 +449,85 @@
 /* ========================================================================== */
 /* CONTACT PAGE (contact.html) LIGHT ADAPTATIONS                              */
 /* ========================================================================== */
-[data-theme="light"] .contact-wrapper {
-    background: var(--bg-primary) !important;
+[data-theme="light"] .contact-hero h1 {
+    color: var(--text-primary) !important;
 }
 
-[data-theme="light"] .contact-card {
+[data-theme="light"] .contact-hero p {
+    color: var(--text-secondary) !important;
+}
+
+[data-theme="light"] .hero-badge-pill {
+    background: rgba(255, 255, 255, 0.8) !important;
+    border-color: var(--gold-border) !important;
+    color: var(--text-secondary) !important;
+}
+
+[data-theme="light"] .atelier-card,
+[data-theme="light"] .atelier-visual-card,
+[data-theme="light"] .contact-card-glass,
+[data-theme="light"] .salon-card {
     background: var(--bg-surface) !important;
     border: 1px solid var(--gold-border) !important;
-    box-shadow: var(--shadow-luxury) !important;
+    box-shadow: var(--shadow-card) !important;
 }
 
-[data-theme="light"] .contact-info h2,
-[data-theme="light"] .contact-info p,
-[data-theme="light"] .info-item span {
+[data-theme="light"] .atelier-card h2,
+[data-theme="light"] .form-header h2,
+[data-theme="light"] .salon-locations-header h2,
+[data-theme="light"] .visual-details h3,
+[data-theme="light"] .form-success-card h3 {
     color: var(--text-primary) !important;
 }
 
-[data-theme="light"] .info-item i {
-    color: var(--gold) !important;
+[data-theme="light"] .atelier-card__intro,
+[data-theme="light"] .form-header p,
+[data-theme="light"] .visual-details p,
+[data-theme="light"] .salon-address,
+[data-theme="light"] .form-success-card p {
+    color: var(--text-secondary) !important;
 }
 
-[data-theme="light"] .contact-form input,
-[data-theme="light"] .contact-form textarea {
-    background: var(--bg-primary) !important;
-    border: 1px solid var(--gold-border) !important;
-    color: var(--text-primary) !important;
+[data-theme="light"] .channel-item {
+    background: rgba(248, 245, 238, 0.7) !important;
+    border-color: var(--gold-border) !important;
 }
 
-[data-theme="light"] .contact-form input:focus,
-[data-theme="light"] .contact-form textarea:focus {
+[data-theme="light"] .channel-item:hover {
+    background: #FFFFFF !important;
     border-color: var(--gold) !important;
 }
 
-[data-theme="light"] .contact-form button {
-    background: linear-gradient(135deg, var(--gold), var(--gold-light)) !important;
-    color: #FAF7F2 !important;
+[data-theme="light"] .channel-value,
+[data-theme="light"] .channel-value a {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="light"] .form-control {
+    background: #F8F5EE !important;
+    border: 1px solid var(--gold-border) !important;
+    color: var(--text-primary) !important;
+}
+
+[data-theme="light"] .form-control::placeholder {
+    color: rgba(91, 117, 110, 0.6) !important;
+}
+
+[data-theme="light"] .form-control:focus {
+    background: #FFFFFF !important;
+    border-color: var(--gold) !important;
+    box-shadow: 0 0 0 3px rgba(168, 134, 42, 0.15) !important;
+}
+
+[data-theme="light"] select.form-control option {
+    background-color: #FFFFFF !important;
+    color: #061F1B !important;
+}
+
+[data-theme="light"] .inquiry-receipt-box {
+    background: rgba(248, 245, 238, 0.9) !important;
+    border-color: var(--gold-border) !important;
+    color: var(--gold-dark) !important;
 }
 
 /* ========================================================================== */
